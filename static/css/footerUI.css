@@ -1,0 +1,42 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+
+}
+
+.copyright {
+    padding: 20px 0px;
+
+    /*
+    float: left;
+
+    */
+    color: #cdcdcd;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    text-align: center;
+}
+
+.footerDiv {
+
+    max-width: 1170px;
+    margin: auto;
+    position: relative;
+    /*
+    border-top: 1px solid #5b6169;
+    */
+    border-top: 1px solid white;
+}

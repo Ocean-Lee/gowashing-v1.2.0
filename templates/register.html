@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>触手可洗-最便捷校园洗衣</title>
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/viewUI.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footerUI.css') }}">
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/select2.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='dist/js/select2.full.js') }}"></script>
+
+</head>
+<body>
+<div>
+    <!-- Navigation -->
+    <nav class="navbar ">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- Collapsed Hamburger -->
+                <div class="hamburger">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#spark-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand" id="school" href="#" style="color: white">触手可洗</a>
+                {#                <a class="navbar-brand" href="/">#}
+                {#                    <img src="{{ url_for('static', filename='css/logo.png') }}" style="height: 50px;">#}
+                {#                </a>#}
+            </div>
+
+            <div class="collapse navbar-collapse" id="spark-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right" style="display: none">
+                    <li><a href="/login" class="navbar-link">Login</a></li>
+                    <li><a href="/register" class="navbar-link">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+
+    <div>
+        <div class=" container">
+
+            <!-- Basic Profile -->
+            <div class="row" style="padding-top: 2rem">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+
+                            <span>注册</span>
+                        </div>
+
+                        <div class="panel-body">
+                            <!-- Generic Error Message -->
+                            <div id="errTip" style="display: none" class="alert alert-danger"></div>
+                            <div id="successTip" style="display: none" class="alert alert-success"></div>
+
+                            <!-- Invitation Code Error -->
+                            <div style="display: none" class="alert alert-danger"
+                                 v-if="registerForm.errors.has('invitation')">
+
+                            </div>
+
+                            <!-- Registration Form -->
+                            <div class="form-horizontal">
+
+
+                                <!-- Name -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">用户名</label>
+
+                                    <div class="col-md-6">
+                                        <input id="register_username" type="name" class="form-control" name="username"
+                                               placeholder=""
+                                               v-model="registerForm.name" autofocus>
+
+                                        <span class="help-block" v-show="registerForm.errors.has('name')">
+
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <!--START-->
+
+
+                                <!---->
+
+
+                                <!-- Password -->
+                                <div class="form-group" :class="{'has-error': registerForm.errors.has('password')}">
+                                    <label class="col-md-4 control-label">设置密码</label>
+
+                                    <div class="col-md-6">
+                                        <input id="register_password" type="password" class="form-control"
+                                               name="password"
+                                               v-model="registerForm.password">
+
+                                        <span class="help-block" v-show="registerForm.errors.has('password')"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Password Confirmation -->
+                                <div class="form-group"
+                                     :class="{'has-error': registerForm.errors.has('password_confirmation')}">
+                                    <label class="col-md-4 control-label">确认密码</label>
+
+                                    <div class="col-md-6">
+                                        <input id="register_password_confirmation" type="password" class="form-control"
+                                               name="password_confirmation"
+                                               v-model="registerForm.password_confirmation">
+
+                                        <span class="help-block"
+                                              v-show="registerForm.errors.has('password_confirmation')">
+
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <!-- E-Mail Address -->
+                                <div class="form-group" :class="{'has-error': registerForm.errors.has('email')}">
+                                    <label class="col-md-4 control-label">手机号</label>
+
+                                    <div class="col-md-4">
+                                        <input id="register_contact" type="text" class="form-control" name="contact"
+                                               v-model="registerForm.email">
+
+                                        <span class="help-block" v-show="registerForm.errors.has('email')">
+
+                                        </span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input id="register_validateBtn" type="button" class="form-control"
+                                               name="validateBtn" value="获取验证码">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" :class="{'has-error': registerForm.errors.has('email')}">
+                                    <label class="col-md-4 control-label">手机验证码</label>
+
+                                    <div class="col-md-6">
+                                        <input id="register_validation" type="text" class="form-control"
+                                               name="validation"
+                                               v-model="registerForm.email">
+
+                                        <span class="help-block" v-show="registerForm.errors.has('email')">
+
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <!-- Terms And Conditions -->
+                                <div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-4">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="readItem" type="checkbox" name="terms">
+                                                    已阅读
+                                                    <a href="/uterm" target="_blank">
+                                                        服务条款
+                                                    </a>
+                                                </label>
+
+                                                <span style="display: none" class="help-block"
+                                                      v-show="registerForm.errors.has('terms')">
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-4">
+                                            <button class="btn btn-primary" id="registerBtn">
+                                                <span>
+                                                    <i></i>注册
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+<!-- Application Level Modals -->
+</div>
+
+<!-- JavaScript -->
+<script type="text/javascript">
+    var daojishi = 0;
+    $("#registerBtn").click(function () {
+        if ($("#register_username").val() == "") {
+            $("#register_username").focus();
+            return;
+        }
+        if ($("#register_password").val() == "") {
+            $("#register_password").focus();
+            return;
+        }
+        if ($("#register_password_confirmation").val() == "") {
+            $("#register_password_confirmation").focus();
+            return;
+        }
+
+
+        //比较两次输入密码是否一致
+        if ($("#register_password").val() != $("#register_password_confirmation").val()) {
+            $('#errTip').show(200, function () {
+                $("#errTip").text("两次密码不一致");
+            }).delay(2000).hide(200);
+            return;
+        }
+
+
+        if ($("#register_contact").val() == "") {
+            $("#register_contact").focus();
+            return;
+        }
+
+
+        if ($("#register_validation").val() == "") {
+            $("#register_validation").focus();
+            return;
+        }
+        if ($("#register_password").val() == "") {
+            $("#register_password").focus();
+            return;
+        }
+
+        //判断单选框是否被选中,用prop方法，不用attr方法
+        if (!$('#readItem').prop('checked')) {
+            $("#readItem").focus();
+            $('#errTip').show(200, function () {
+                $("#errTip").text("请阅读相关条款");
+            }).delay(2000).hide(200);
+            return;
+
+        }
+
+
+        ///
+        $.post("{{ url_for('register') }}", {
+            username: $("#register_username").val(),
+            password: $("#register_password").val(),
+            contact: $("#register_contact").val(),
+            addr: $.cookie('dizhi'),
+            validation: $("#register_validation").val()
+        }, function (data) {
+            if (data.msg == "REPEAT") {
+                //alert("用户名重复！");
+                $('#errTip').toggle(200, function () {
+                    $("#errTip").text("用户名重复");
+                }).delay(2000).hide(200);
+            } else if (data.msg == "PHONE") {
+                // alert("手机号重复！");
+                $('#errTip').show(200, function () {
+                    $("#errTip").text("手机号重复");
+                }).delay(2000).hide(200);
+            } else if (data.msg == "ERR") {
+                //  alert("验证码错误！");
+                $('#errTip').show(200, function () {
+                    $("#errTip").text("验证码错误");
+                }).delay(2000).hide(200);
+
+            } else {
+                $.cookie('contact', $("#register_contact").val(), {expires: 7});
+                $.cookie('user', $("#register_username").val(), {expires: 7});
+                //保存用户类型 $.cookie('u_type', data.u_type, { expires: 7 });
+                //alert("注册成功！");
+                $('#successTip').show(200, function () {
+                    $("#successTip").text("注册成功!正在登录...");
+                }).delay(2000).hide(200);
+
+                setTimeout("window.location.href = '/'", 2900);
+                //window.location.href = '/';
+            }
+        });
+
+
+        ///
+
+
+    });
+
+    $("#register_validateBtn").click(function () {
+        var tel = $("#register_contact").val(); //获取手机号
+        var telReg = !!tel.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[345678]|18[0-9]|14[57])[0-9]{8}$/);
+        //如果手机号码不能通过验证
+        if (telReg == false) {
+            //alert('请输入正确手机号码~');
+            $('#errTip').show(200, function () {
+                $("#errTip").text("请输入正确手机号码~");
+            }).delay(2000).hide(200);
+
+
+            return;
+        } else {
+{#            daojishi=10;#}
+{#            checkPhone_daojishi()#}
+
+
+            $.post("{{ url_for('sendKeyPage') }}", {contact: tel}, function () {
+                // alert("验证码已发送");
+
+                $('#successTip').show(200, function () {
+                    $("#successTip").text("验证码已发送");
+                }).delay(2000).hide(200);
+                daojishi = 60;
+                checkPhone_daojishi()
+            });
+
+        }
+    });
+
+
+      function checkPhone_daojishi() {
+
+        if(daojishi == 0) {
+            $("#register_validateBtn").val("重发");
+        } else {
+            $("#register_validateBtn").val(daojishi);
+            daojishi = daojishi -1;
+            setTimeout("checkPhone_daojishi()", 1000)
+        }
+    }
+
+
+
+    /*********/
+
+    $("#school").text($.cookie('dizhi') + "[切换]");
+
+    /**切换到首页 START**/
+
+    $("#school").click(function () {
+        //$.cookie('dizhi', '', {expires: 7});
+        window.location.href = '/';
+    });
+    $("#logo").click(function () {
+        $.cookie('dizhi', '', {expires: 7});
+        window.location.href = '';
+    });
+
+    /**切换到首页 END**/
+
+
+</script>
+
+</body>
+</html>

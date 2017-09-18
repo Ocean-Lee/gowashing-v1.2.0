@@ -1,0 +1,1984 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>触手可洗-最便捷校园洗衣</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/viewUI.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footerUI.css') }}">
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/select2.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='dist/js/select2.full.js') }}"></script>
+
+    <style>
+        .inputWidth {
+            width: 50%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .inputWidth {
+                width: 100%;
+            }
+
+        }
+
+        .imgsize {
+            width: 100px;
+            height: 100px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .imgsize {
+                width: 50px;
+                height: 50px;
+            }
+
+        }
+
+        .customSym a {
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            color: white;
+            padding: 5px 9px;
+            margin: 0 auto;
+            border: 1px solid white;
+            background: rgba(0, 155, 245, 0.87);
+            -webkit-transition: background 1s;
+            -moz-transition: background 1s;
+            -o-transition: background 1s;
+            transition: background 1s
+        }
+
+        .shumu {
+            font-size: 19px;
+            font-weight: bold;
+            text-decoration: underline;
+            color: white
+        }
+
+        .customBtn a {
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            color: white;
+            padding: 5px 9px;
+            margin: 0 auto;
+            border: 1px solid white;
+            background: rgba(0, 155, 245, 0.87);
+            -webkit-transition: background 1s;
+            -moz-transition: background 1s;
+            -o-transition: background 1s;
+            transition: background 1s
+        }
+
+        .customBtn a :hover {
+            background: white;
+            -webkit-transition: background 1s;
+            -moz-transition: background 1s;
+            -o-transition: background 1s;
+            transition: background 1s
+        }
+
+        .trolleyBtn a {
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            color: white;
+            margin: 5px;
+            padding: 7px 12px;
+            border: 1px solid white;
+            background: rgba(0, 155, 245, 0.87);
+            position: relative;
+            -webkit-transition: background 0.5s;
+            -moz-transition: background 0.5s;
+            -o-transition: background 0.5s;
+            transition: background 0.5s
+        }
+
+        .trolleyBtn a :hover {
+            background: white;
+            -webkit-transition: background 0.5s;
+            -moz-transition: background 0.5s;
+            -o-transition: background 0.5s;
+            transition: background 0.5s
+        }
+
+        .querybackBtn a {
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            color: white;
+            margin: 5px;
+            padding: 7px 12px;
+            border: 1px solid white;
+            background: rgba(0, 155, 245, 0.87);
+            position: relative;
+            -webkit-transition: background 0.5s;
+            -moz-transition: background 0.5s;
+            -o-transition: background 0.5s;
+            transition: background 0.5s
+        }
+
+        .querybackBtn a :hover {
+            background: white;
+            -webkit-transition: background 0.5s;
+            -moz-transition: background 0.5s;
+            -o-transition: background 0.5s;
+            transition: background 0.5s
+        }
+
+        /*********************************/
+        /*
+         * Darkgreen navbar style
+         */
+        #navbar-darkgreen.navbar-default { /* #006633 - #009933 */
+            font-size: 14px;
+
+            background-color: rgba(0, 155, 245, 0.87);
+
+            background: transparent;
+            border: 0px;
+            border-radius: 0;
+        }
+
+        #navbar-darkgreen.navbar-default .navbar-nav > li > a:hover,
+        #navbar-darkgreen.navbar-default .navbar-nav > li > a:focus,
+        #navbar-darkgreen.navbar-default .navbar-nav > li > ul > li > a:hover,
+        #navbar-darkgreen.navbar-default .navbar-nav > li > ul > li > a:focus,
+        #navbar-darkgreen.navbar-default .navbar-nav > .active > a,
+        #navbar-darkgreen.navbar-default .navbar-nav > .active > a:hover,
+        #navbar-darkgreen.navbar-default .navbar-nav > .active > a:focus {
+            color: rgba(51, 51, 51, 1);
+            background-color: rgba(0, 155, 245, 0.87);
+            background: transparent;
+        }
+
+        #sidebar-darkgreen, #column-darkgreen {
+            background-color: rgba(0, 102, 51, 1);
+        }
+
+        #navbar-darkgreen.navbar-default .navbar-toggle {
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        #navbar-darkgreen.navbar-default .navbar-toggle:hover,
+        #navbar-darkgreen.navbar-default .navbar-toggle:focus {
+            background-color: rgba(0, 155, 245, 0.87);
+        }
+
+        #navbar-darkgreen.navbar-default .navbar-nav > li > a,
+        #navbar-darkgreen.navbar-default .navbar-nav > li > ul > li > a,
+        #navbar-darkgreen.navbar-default .navbar-brand {
+            color: white;
+        }
+
+        #navbar-darkgreen.navbar-default .navbar-toggle .icon-bar,
+        #navbar-darkgreen.navbar-default .navbar-toggle:hover .icon-bar,
+        #navbar-darkgreen.navbar-default .navbar-toggle:focus .icon-bar {
+
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        /************/
+
+        #lishiPage {
+            margin: 0px auto;
+            width: 80%;
+
+        }
+
+        #lishiShow table {
+            border: 1px solid white;
+            width: 300px;
+            text-align: center;
+            margin: 0px auto;
+            color: white;
+
+        }
+
+        @media screen and (max-width: 320px) {
+            #lishiShow table {
+                border: 1px solid white;
+                width: 275px;
+                text-align: center;
+                margin: 0px auto;
+                color: white;
+
+            }
+        }
+
+        /**TABLE START ***/
+        /**Time start ***/
+        #shijian {
+            /*margin: 10px 0;*/
+        }
+
+        #shijian {
+
+        {#            *margin: 0px;*/#} font-size: 18px;
+            height: 50px;
+        }
+
+        #riqilist {
+            position: absolute;
+            list-style: none;
+        {#            margin: 5px 0px 0px 10px;#} padding: 0 0 0 0px;
+        {#            width: 90px;#} border: 1px solid white;
+            z-index: 1;
+            background: rgba(0, 155, 245, 0.78);
+        }
+
+        #timelist {
+
+            position: absolute;
+            list-style: none;
+        {#            margin: 5px 0px 0px 115px;#} padding: 0 0 0 0;
+        {#            width: 90px;#} border: 1px solid white;
+            z-index: 1;
+            background: rgba(0, 155, 245, 0.78);
+        }
+
+        ul.droplist .container li:hover {
+            border: 1px dashed white;
+        }
+
+        ul.droplist li {
+            border: 1px solid transparent;
+            padding: 3px;
+        }
+
+        .container1 {
+            position: relative;
+            display: none;
+            max-height: 200px;
+            overflow: auto;
+        }
+
+        b.triangle {
+            display: inline-block;
+            margin-left: 8px;
+            border-style: solid;
+            border-width: 12px 8px 0 8px;
+            border-color: white transparent transparent transparent;
+        }
+
+        b.small-triangle {
+            display: inline-block;
+            margin-left: 6px;
+            border-style: solid;
+            border-width: 10px 6px 0 6px;
+            border-color: black transparent transparent transparent;
+        }
+
+        .Timewidth {
+            width: 90%;
+        }
+
+        @media screen and (max-width: 520px) {
+            .Timewidth {
+                width: 80%;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body unselectable="on" onselectstart="return false;">
+
+<div class="head">
+
+    <!-- 导航，两部分组成：导航栏和图片  -->
+    <div class="container">
+
+        <div class="row">
+            <div class="textCenter">
+
+                <!--新的导航 START-->
+                <nav class="navbar navbar-default" id="navbar-darkgreen"><!--navbar-fixed-top;id="navbar-darkgreen"-->
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" id="school" href="#">触手可洗</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="userBtn"><a href="ulogin" style="text-align: center;">登录</a></li>
+                                <li class="userBtn"><a href="uRegister" style="text-align: center">注册</a></li>
+
+                                <li class="dropdown dropdown-toggle userState" style="display: none">
+                                    <a style="text-align: center;" id="userContent" class="dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       href="#">
+                                        Hi，username<span class="caret" style="display: none"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="" style="text-align: center">修改密码</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="userState" style="display: none"><a id="logOut" href="#"
+                                                                               style="text-align: center">退出</a></li>
+
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+
+                <!--新的导航 END-->
+                <!-- 旧的导航
+                                <nav>
+                                    <ul class="nav nav-pills nav-left">
+                                        <li>
+                                            <a  id="school">上海交通大学</a>
+
+
+                                        </li>
+                                    </ul>
+
+                                    <ul class="nav nav-pills nav-right">
+                                        <li><a href="ulogin">登录</a></li>
+                                        <li><a href="uRegister">注册</a></li>
+
+                                    </ul>
+
+                                </nav>
+
+                -->
+
+
+            </div>
+
+        </div>
+
+        <div class="row row-logo" style="padding-top: 5rem">
+            <div class="textCenter ">
+                <img id="logo" style="max-width:100%" src="{{ url_for('static', filename='img/logo.png') }}">
+            </div>
+        </div>
+
+    </div>
+    <!--Navigator END -->
+
+</div>
+
+<div class="main">
+
+    <!--功能按钮 洗衣篮、查询订单 -->
+    <div id="funBlock" class="container menu-button-frame">
+        <div class="row">
+
+            <!--menu-Buttons -->
+            <div class="menu-button-div">
+                <div>
+                    <a id="trolley" href="#" style="opacity: 1;">
+                        <button class="btn btn-outline-secondary menu-button">
+                            洗衣篮
+                            <sup id="shuliang">0</sup>
+                        </button>
+                    </a>
+                    <a id="queryOrder" href="#" style="opacity: 1; margin-left: 20px">
+                        <button class="btn btn-outline-secondary menu-button">查询订单</button>
+                    </a>
+
+                </div>
+            </div>
+            <!-- menu-Buttons END-->
+
+        </div>
+    </div>
+
+    <!--清洗服务范围 -->
+    <div id="categoryDiv" class="container tabDiv">
+        <ul class="nav nav-tabs">
+
+            <li class=" tab-li active">
+                <a href="#tab1" data-toggle="tab">衣服</a>
+            </li>
+            <li class="tab-li">
+                <a href="#tab2" data-toggle="tab">鞋</a>
+            </li>
+            <li class="tab-li">
+                <a href="#tab3" data-toggle="tab">床上用品</a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!--衣物范围-->
+    <div id="goodsDiv" style="" class="tab-content tab-contentDiv">
+
+        <div class="tab-pane active" id="tab1">
+            <div class="container">
+                <div class="row">
+                    <!--从数据读取填充 -->
+                    {% for clothes in resultClothes %}
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 goodsDiv commodity">
+
+                            <a>
+                                <img width="120" height="120" style="position: relative;border: 3px dashed white"
+                                     src="{{ clothes.imgURL }}">
+                                <div>{{ clothes.c_name }}</div>
+                                <div style="">¥{{ clothes.price }}</div>
+                                <span class="danjia_new"
+                                      style="display: none;position: absolute;bottom: 70px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥14</span>
+                                <span class="danjia_old"
+                                      style="display: none;position: absolute;bottom: 100px;padding: 11px 5px;background: rgba(0, 155, 245, 0.87);border-radius: 30px;text-decoration: line-through;">￥20</span>
+                            </a>
+
+
+                            <!--->
+                        </div>
+                    {% endfor %}
+
+                    <!-- -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane" id="tab2">
+            <div class="container">
+                <div class="row">
+
+                    {% for shoes in resultShoes %}
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 goodsDiv commodity">
+                            <a>
+                                <img width="120" height="120" style="position: relative;border: 3px dashed white"
+                                     src="{{ shoes.imgURL }}">
+                                <div>{{ shoes.c_name }}</div>
+                                <div>¥{{ shoes.price }}</div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane" id="tab3">
+            <div class="container">
+                <div class="row">
+
+                    {% for sheet in result %}
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 goodsDiv commodity">
+                            <a>
+                                <img width="120" height="120" style="position: relative;border: 3px dashed white"
+                                     src="{{ sheet.imgURL }}">
+                                <div>{{ sheet.c_name }}</div>
+                                <div>¥{{ sheet.price }}</div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--购物车  -->
+    <div id="trolleyDiv" class="container text-center " style="display: none">
+        <div class="row tishi" style="color: white;padding-top: 2rem;font-size: 20px;text-align: center"></div>
+        <div id="errTip" style="display: none" class="alert alert-danger"></div>
+        <div id="successTip" style="display: none" class="alert alert-success"></div>
+        <div class="row" id="lanziTable" style="padding: 2rem">
+
+
+            <!--------
+                   <div class="row" style="padding: 1rem">
+{#                       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">#}
+{#                           <img class="imgsize" src="http://7xitj5.com1.z0.glb.clouddn.com/static/img/1西服上衣 拷贝.jpg">#}
+{#                       </div>#}
+                       <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                           <div class="row " style="background-color: yellow; height: 10px;visibility: hidden">填充DIV</div>
+
+                           <div class="row " style="font-size: 19px;">
+
+                               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 mingcheng">
+                                   <div class="row hidden-xs" style="background: darkcyan;visibility: hidden">填充DIV</div>
+                                   <div class="row"><span style="color: white;padding-top: 1rem;"> 羽绒服(长) </span></div>
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                               </div>
+
+
+                               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 danjia">
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                                   <div class="row"><span style="color: white;">￥611</span></div>
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                               </div>
+
+
+                               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1  customSym">
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                                   <div class="row"><a style="color: white">-</a></div>
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                               </div>
+
+
+                               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 shumu">
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                                   <div class="row">15</div>
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                               </div>
+
+
+                               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 customSym">
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                                   <div class="row"><a style="color: white">+</a></div>
+                                   <div class="row hidden-xs" style="background-color: darkcyan;visibility: hidden">填充DIV</div>
+                               </div>
+
+                           </div>
+
+
+                       </div>
+                   </div>
+
+     <!---------------  -->
+        </div>
+
+        <div id="infoTip" style="display: none" class="alert alert-info">
+
+        </div>
+
+        <div class="row trolleyBtn">
+            <a id="zongjia" style="cursor: default;color: rgba(0, 155, 245, 0.87);background: white;">总价：￥<span
+                    id="totalPrice">0</span></a>
+        </div>
+
+
+        <div class="row trolleyBtn" style="padding: 3rem">
+
+            <a id="back">返回</a>
+
+
+            <a id="pay">结算</a>
+
+
+        </div>
+
+    </div>
+
+
+    <!--支付 -->
+    <div id="payDiv" class="container text-center c" style="display: none;">
+
+        <form id="jiesuanList">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="width: 25%">
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 inputWidth">
+                    <div id="errTip1" style="display: none;" class="alert alert-danger"></div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="width: 25%">
+
+                </div>
+
+            </div>
+
+            <div class="row" style="padding-top: 1rem;padding-bottom: 1rem;padding-left: 1rem;padding-right: 1rem">
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="width: 25%">
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 inputWidth">
+
+
+                    <div class="input-group">
+                        <span class="input-group-addon" style="background: white" id="labelschool">学校</span>
+                        <input id="address" class="form-control" style="text-align: center;" placeholder="详细地址"
+                               aria-describedby="labelschool">
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="width: 25%">
+
+                </div>
+
+            </div>
+
+            <div class="row" style="padding: 1rem">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="width: 25%">
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 inputWidth">
+
+                    <div class="input-group">
+                        <span class="input-group-addon" style="background: white;text-align: right"
+                              id="labelPhone">联系方式</span>
+                        <input id="phone" class="form-control" style="text-align: center;" placeholder="联系方式"
+                               aria-describedby="labelPhone">
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="width: 25%">
+
+                </div>
+
+            </div>
+
+
+            <!--日期-->
+            <div class="row" style="padding: 1rem">
+                <div class=" col-md-3 ">
+
+                </div>
+                <div class="col-md-3  col-xs-6 " id="shijian" style="color: white;">
+                    <ul id="riqilist" class="droplist" style="width: 90%">
+                        <li id="riqidrop" class="drop">取衣日期</li>
+                        <div class="container1"></div>
+                    </ul>
+
+                </div>
+
+                <div class=" col-md-3 col-xs-6 " style="font-size: 18px;height: 50px;color: white">
+                    <ul id="timelist" class="droplist Timewidth">
+                        <li id="timedrop" class="drop">取衣时间</li>
+                        <div class="container1"></div>
+                    </ul>
+                </div>
+                <div class=" col-md-3 ">
+
+                </div>
+                {##}
+                {#                <div class="col-md-3 col-xs-6">#}
+                {#                    <select id="dateChoose" class="dateList dateSelected" style="width: 100%"></select>#}
+                {#                </div>#}
+                {##}
+                {##}
+                {#                <div class="col-md-3 col-xs-6">#}
+                {#                    <select id="timeChoose" class="timeList" style="width: 100%"></select>#}
+                {#                </div>#}
+                {#                <div class="col-md-3 ">#}
+                {##}
+                {#                </div>#}
+
+
+            </div>
+
+
+            <div class="row" style="padding: 1rem">
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="width: 25%">
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 inputWidth" style="color: white">
+                    <div style="border: solid 1px white">
+                        <label for="exampleInputEmail1">提示</label>
+                        <p style=" ">如您的衣物和鞋子有加皮，加厚，羊毛、羊绒、真丝等昂贵面料，或衣物上有难以清洗的污渍等情况，我们将适当增加5~10元清洗费用，请您谅解。</p>
+                        <p>将由专业的衣护人员在预约时间内收取衣物并收取相应费用</p>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="width: 25%">
+
+                </div>
+
+
+            </div>
+
+            <div class="row" style="padding: 1rem">
+
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="width: 25%">
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 inputWidth">
+
+
+                    <div class="input-group">
+                        <span class="input-group-addon" style="background: white;text-align: right"
+                              id="labelNote">留言</span>
+                        <input id="note" class="form-control" style="text-align: center;" placeholder="留言"
+                               aria-describedby="labelPhone">
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="width: 25%">
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <div class="row customBtn" style="padding: 1rem">
+
+
+            <a id="backTrolleyDiv" class="customBtn">返回</a>
+            <a id="confirm">确认</a>
+
+        </div>
+    </div>
+
+
+    <!--支付结果-->
+    <div id="payResultDiv" class="container text-center" style="display: none;padding-top: 3rem">
+        <div class="row" style="color: white">
+
+            <h2>订单提交成功！</h2>
+            <img src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/success.png') }}"
+                 alt="对号">
+            <p>剩余<span id="miaoshu" style="text-decoration:underline">3</span>秒自动跳转</p>
+        </div>
+
+    </div>
+
+
+    <!--查询订单-->
+    <div id="OrdersDiv" class="container text-center" style="display:none;padding-top: 2rem">
+        <div class="row">
+
+            <div id="lishiPage">
+
+                <div class="header">
+
+
+                    <div id="lishiShow" style="">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row querybackBtn">
+            <a id="queryOrderBack">返回</a>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class=" footer">
+    <div class="footerDiv">
+        <div class="copyright" style="text-align: center">
+            © 2017 备案/许可证编号为：沪ICP备17035507号
+        </div>
+
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript">
+    var riqi = "";
+    var time = "";
+
+    $(document).ready(function () {
+
+
+        //先要隐藏VIP提示信息
+        $('#infoTip').hide();
+        //alert($.cookie('u_type'))
+
+        //var readyData = JSON.parse($.cookie("cart"));
+        $("#lanziTable").data(JSON.parse($.cookie("cart")));
+
+        //保证页面加载完成后刷新一下页面的篮子
+        update();
+        updateGood();
+
+        //判断cookie中是否由用户名。判断用户是否登录,若用户登录，怎显示 .userState 隐藏。userBtn
+        if ($.cookie("user")) {
+            $('#userContent').html('Hi,' + $.cookie("user"));
+            $(".userBtn").hide();
+            $(".userState").show();
+
+        } else {
+            $(".userBtn").show();
+            $(".userState").hide();
+        }
+
+        //退出登录
+        $('#logOut').click(function () {
+            //退出时要清空学校、联系人、用户、用户类型
+            $.cookie('dizhi', '');
+            $.cookie('contact', '');
+            $.cookie('user', '');
+            $.cookie('u_type', '');
+            //$.cookie('cart', null);
+            $(".userBtn").show();
+            $(".userState").hide();
+            window.location.href = ''
+        });
+
+
+        //在标题栏显示学校或地区
+        $("#school").text($.cookie('dizhi') + "[切换]");
+
+        /**切换到首页 START**/
+
+        $("#school").click(function () {
+            $.cookie('dizhi', '', {expires: 7});
+            window.location.href = '';
+        });
+        $("#logo").click(function () {
+            $.cookie('dizhi', '', {expires: 7});
+            window.location.href = '';
+        });
+
+        /**切换到首页 END**/
+
+
+
+        //向被选元素div  添加数据（使用对象向元素附加数据）
+        $("#lanziTable").data(JSON.parse($.cookie("cart")));
+
+
+        $(".commodity").click(function () {
+
+
+            var divChild = $(this).children('a').children('div');
+
+
+            ///temp 是衣服的名称
+            var temp = divChild[0].innerHTML;
+            var fee = divChild[1].innerHTML.substring(1);
+            // var temp = $(this).children('a').children('div').text();
+            //  var fee = $(this).children('a').children('div')[1].text().substring(1);
+            var imgURL = $(this).children('a').children('img').attr('src');
+
+
+            if (parseInt(fee) == 0 && $("#lanziTable").data(temp)) {
+                return;
+            }
+
+            if ($("#lanziTable").data(temp)) {
+                $("#lanziTable").data(temp).quantity += 1;
+            } else {
+
+                //key:衣服，value:对象{quantity,price,src,name}
+                $("#lanziTable").data(temp, {
+                    ////???????????
+                    quantity: 1,
+
+                    price: fee,
+                    src: imgURL,
+                    name: temp
+                });
+            }
+            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+            update();
+            updateGood();
+
+            /** 特效 START **/
+            var copy = $(this).find("img").clone();
+            copy.css({
+                position: 'absolute',
+                left: $(this).offset().left,
+                top: $(this).offset().top,
+                width: '150px',
+                height: '150px'
+            });
+            $("body").append(copy);
+            copy.animate({
+                left: $("#trolley").offset().left,
+                top: $("#trolley").offset().top,
+                height: '10',
+                width: '10',
+                opacity: '0.3'
+            }, 500, function () {
+
+                copy.remove();
+                if (!$('#trolley').is(":animated")) {
+                    $('#trolley').animate({top: "-=8"}, 100).animate({top: "+=8"}, 70).animate({top: "-=6"}, 30).animate({top: "+=6"}, 20).animate({top: "-=3"}, 10).animate({top: "+=3"}, 5);
+                }
+            });
+
+
+            /** 特效 END**/
+
+
+        });
+    });
+
+    //////////////////////////////////////////////
+    function update(mingcheng, danjia, shumu, zongjia) {
+
+        $("#lanziTable").children('div').remove();
+        var test = $("#lanziTable").data();
+        var length = test.length;
+        for (var i in $("#lanziTable").data()) {
+            var quantity = $("#lanziTable").data(i).quantity;
+
+            var price = $("#lanziTable").data(i).price;
+
+            var name = $("#lanziTable").data(i).name;
+
+            var src = $("#lanziTable").data(i).src;
+
+
+            $("#lanziTable").append(
+                '<div class="row A" style="padding:1rem">'
+                + '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 photo">'
+                + '<img class="imgsize " src="' + src + '">'
+                + '</div>'
+                + '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9 clothInfo">'
+                + '<div class="row" style="background-color:yellow;height:10px;visibility:hidden">填充DIV</div>'
+
+                + '<div class="row" style="font-size:19px;">'
+
+                + '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 mingcheng">'
+                + '<div class="row hidden-xs"  style="background:darkcyan; visibility:hidden">填充DIV</div>'
+                + '<div class="row"><span  style="color:white;padding-top:1rem">' + i + '</span></div>'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '</div>'
+
+
+                + '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 danjia">'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '<div class="row"><span style="color:white">￥' + price + '</span></div>'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '</div>'
+
+
+                + '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 customSym">'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '<div class="row jian"><a style="color:white">-</a></div>'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '</div>'
+
+
+                + '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 shumu">'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '<div class="row" id="trollyQuan">' + quantity + '</div>'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '</div>'
+
+
+                + '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 customSym">'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '<div class="row"><a class="jia" style="color:white">+</a></div>'
+                + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
+                + '</div>'
+
+                + '</div>'
+
+
+                + '</div>'
+                + '</div>'
+            )
+
+
+        }
+    }
+
+    function updateGood() {
+        $('#shuliang').text(shuliang());
+        $('#totalPrice').text(totalPrice());
+    }
+
+    function shuliang() {
+        var temp = 0;
+        for (var i in $("#lanziTable").data()) {
+            temp += $("#lanziTable").data(i).quantity;
+        }
+
+        return temp;
+    }
+
+    function totalPrice() {
+
+        var temp = 0;
+        var t = $("#lanziTable").data();
+
+        for (var i in $("#lanziTable").data()) {
+            temp += $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;
+        }
+
+
+        var typeUser = $.cookie('u_type');
+        var level_name = '';
+        var level_discount_name = '';
+        var level_discount = '';
+
+
+        $.post("{{ url_for('queryMembership') }}", {"typeUser": "VIP会员"}, function (data) {
+            var mem = data.member;
+
+            for (var i = 0; i < data.length; i++) {
+
+                if (typeUser == mem[i].level_name) {
+                    level_name = mem[i].level_name;
+                    level_discount_name = mem[i].level_discount_name
+                    level_discount = mem[i].level_discount;
+
+
+                }
+
+            }
+        });
+
+        if (typeUser == '至尊会员') {
+            $('#infoTip').show(200, function () {
+                $("#infoTip").text(level_name + ":" + level_discount_name + "￥" + temp);
+            })
+            //return temp * level_discount
+            return temp * 0.8
+        }
+        if (typeUser == 'VIP会员') {
+            $('#infoTip').show(200, function () {
+                $("#infoTip").text(typeUser + ":" + "八折优惠" + "￥" + temp);
+            })
+            //return temp * level_discount
+            return temp * 0.8
+        }
+        if (typeUser == '超级会员') {
+            $('#infoTip').show(200, function () {
+                //  $("#infoTip").text(level_name + ":" + level_discount_name + "￥" + temp).delay(10000).hide(200);
+                $("#infoTip").text(level_name + ":" + level_discount_name + "￥" + temp);
+            })
+            //return temp * level_discount
+            return temp * 0.8
+        }
+
+        //如果是普通用户则隐藏infoTip
+        if (typeUser == '普通用户') {
+            $('#infoTip').hide();
+
+
+        }
+
+
+        {#        if (typeUser != '普通用户') {#}
+        {#            $('#infoTip').show(200, function () {#}
+        {#                $("#infoTip").text(level_name + ":" + level_discount_name + "￥" + temp);#}
+        {#            })#}
+        {#            //return temp * level_discount#}
+        {#            return temp * 0.8#}
+        {#        }#}
+
+        return temp;
+    }
+
+
+    $("#lanziTable").delegate('.jian', 'click', function () {
+            //获取衣服的名字
+            var clothName = ($(this).parent().parent()).children('.mingcheng').find("span").text();
+
+
+            var trollryOfDiv = ($(this).parent().parent()).children('.shumu').find("#trollyQuan");
+
+
+            // var ss = $(this).parent().parent().parent().parent().parent().html();
+            // var delteParent =$(this).parent().parent().parent().parent().find(".photo").html();
+            var photoOfDiv = $(this).parent().parent().parent().parent().find(".photo");
+            var clothInfoOfDiv = $(this).parent().parent().parent().parent().find(".clothInfo");
+            // console.log(delteParent);
+
+
+            //var temp = $(this).next();
+            var temp = trollryOfDiv;
+
+            var s = temp.text();
+
+            if (temp.text() == '0') {
+                return;
+            }
+            //减少数量
+            temp.text((parseInt(temp.text()) - 1).toString());
+
+            //var m = temp.text();
+            //var t = $(this).prevAll('.mingcheng').children("span").first().text();
+            $("#lanziTable").data(clothName).quantity -= 1;
+            updateGood();
+            if (temp.text() > '0') {
+                //不知道要干嘛
+                $(this).nextAll(".jiage").first().text("￥" + (parseInt($(this).nextAll(".jiage").first().text().substring(1)) - parseInt($(this).prevAll(".danjia").first().text().substring(1))));
+            } else {
+                photoOfDiv.remove();
+                clothInfoOfDiv.remove();
+                /*       之前的代码
+                           var p = $(this).parent().parent();
+                           $(this).parent().parent().fadeOut(400, function () {
+                               var pp = $(this).parent();
+                               $(this).parent().remove();
+                               photoOfDiv.remove();
+                               clothInfoOfDiv.remove();
+
+
+                           });
+           */
+
+                //  $("#lanziTable").removeData($(this).prevAll('.mingcheng').children("span").first().text());
+                $("#lanziTable").removeData(clothName);
+
+
+            }
+            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+        }
+    );
+
+    $("#lanziTable").delegate('.jia', 'click', function () {
+            //获取衣服的名字
+            var clothName = ($(this).parent().parent()).parent().children('.mingcheng').find("span").text();
+            // $("#lanziTable").data( $(this).prevAll('.mingcheng').children("span").first().text() ).quantity += 1;
+            $("#lanziTable").data(clothName).quantity += 1;
+
+            //获取购物车中的数量对象
+            var trollryOfDiv = ($(this).parent().parent()).parent().children('.shumu').find("#trollyQuan");
+            updateGood();
+            trollryOfDiv.text((parseInt(trollryOfDiv.text()) + 1).toString());
+            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+
+
+            //获取价格div
+            // var priceOfDiv = ($(this).parent().parent()).parent().children('.danjia').find("span");
+            //alert(priceOfDiv.text().substring(1));
+            // var temp = $(this).prev();
+
+            //  updateGood();
+            //  temp.text((parseInt(temp.text()) + 1).toString());
+            //  temp = $(this).nextAll(".jiage").first();
+
+
+            //不知道要干嘛
+            // temp.text("￥" + (parseInt(temp.text().substring(1)) + parseInt($(this).prevAll(".danjia").first().text().substring(1))));
+
+
+            // $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+        }
+    );
+
+
+    /////
+
+    /**
+     *
+     * 切换到 trolleyDiv
+     *
+     * */
+    $("#trolley").click(function () {
+        //  if ($('#lanzi').is(":animated"))
+        //     return;
+        //  $('#xiyilan').stop();
+
+
+        if ($.cookie('u_type') == '普通用户') {
+            //先要隐藏VIP提示信息
+            $('#infoTip').hide();
+            $('#infoTip').hide();
+
+
+        }
+
+
+        $('#goodsDiv').fadeToggle(200, function () {
+            $('#trolleyDiv').fadeToggle(200);
+        });
+        //  $("#splitPage").hide();
+        $('#goodsDiv').hide();
+        $('#funBlock').hide();
+        $('#categoryDiv').hide();
+        // $('#splitPage').hide();
+    });
+
+
+    /**
+     *
+     * 切换到 初始div
+     *
+     * */
+
+    $("#back").click(function () {
+        $('#trolleyDiv').fadeToggle(200, function () {
+            $('#goodsDiv').fadeToggle(200);
+            $('#funBlock').fadeToggle(200);
+            $('#categoryDiv').fadeToggle(200);
+
+        });
+
+    });
+
+
+    /**
+     *
+     * 切换到 payDiv
+     *
+     * */
+    $("#pay").click(function () {
+
+        if (!$.cookie("user")) {
+            $('#errTip').show(200, function () {
+                $("#errTip").text("请先登录");
+            }).delay(2000).hide(200);
+            return;
+        }
+
+
+        if (shuliang() == 0) {
+
+            $('#errTip').show(200, function () {
+                $("#errTip").text("请先挑选所需要清洗的衣物！");
+            }).delay(2000).hide(200);
+
+
+        } else {
+            /****生成时间 START****/
+            var date = new Date();
+            $("#riqilist").children('.container1').children().remove();
+            $("#riqilist").children('.container1').append('<li class="riqi">今天</li>');
+            // $("#riqilist").children('.container').append('<li class="riqi">'+(date.getMonth()+1)+'-'+date.getDate()+'</li>');
+            if ((date.getDate() + 1) > date.MaxDayOfDate) {
+                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');
+            } else {
+                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 1) + '</li>');
+            }
+            if ((date.getDate() + 2) > date.MaxDayOfDate) {
+                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');
+            } else {
+                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 2) + '</li>');
+            }
+            /****生成时间 END****/
+
+
+            {#            //生成日期 START#}
+            {##}
+            {#            var date = new Date();#}
+            {#            var nowDate = new Date(date.getYear(), date.getMonth() + 2, 0);#}
+            {#            //var nowDate = new Date(2017, 10, 0);#}
+            {#            var monofDay = nowDate.getDate();#}
+            {##}
+            {##}
+            {#            var datum = [{id: 0, text: '日期'}];#}
+            {#            //datum.pop();#}
+            {#            datum.push({id: 1, text: "今天"});#}
+            {#            if ((date.getDate() + 1) > monofDay) {#}
+            {#                datum.push({id: 1, text: (date.getMonth() + 1) + "-" + date.getDate()})#}
+            {##}
+            {#            } else {#}
+            {#                datum.push({id: 1, text: (date.getMonth() + 1) + '-' + (date.getDate() + 1)});#}
+            {#            }#}
+            {#            if ((date.getDate() + 2) > monofDay) {#}
+            {#                datum.push({id: 2, text: (date.getMonth() + 2) + '-' + 1})#}
+            {#            } else {#}
+            {#                datum.push({id: 2, text: (date.getMonth() + 1) + '-' + (date.getDate() + 2)});#}
+            {#            }#}
+            {##}
+            {#            $(".dateList").select2({#}
+            {##}
+            {##}
+            {#                data: datum,#}
+            {#                minimumResultsForSearch: Infinity,#}
+            {##}
+            {#            });#}
+            {##}
+            {##}
+            {#            //生成日期 END#}
+
+
+            //获取学校地址
+            $('#labelschool').text($.cookie('dizhi'));
+            if ($.cookie("contact")) {
+                $('#phone').val($.cookie("contact"));
+            }
+            ;
+
+
+            //切换到结算页面
+            $('#trolleyDiv').fadeToggle(200, function () {
+                $('#payDiv').fadeToggle(200);
+            });
+
+
+        }
+
+
+    });
+
+    $(".dateList").on("select2:select", function () {
+        var datumTime = [];
+        var date = new Date();
+
+        //$(this).prev().text() 同辈元素是否为空
+        // if ($(this).prev().text() == "") {
+        if (date.getHours() < 10) {
+            datumTime.push({id: 0, text: '12:00-12:45'});
+
+        }
+        if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {
+            datumTime.push({id: 1, text: '12:45-13:30'});
+        }
+        if (date.getHours() < 16) {
+
+            datumTime.push({id: 2, text: '18:00-18:45'});
+        }
+        if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {
+
+            datumTime.push({id: 3, text: '18:45-19:30'});
+        }
+        if ((date.getHours() == 21 && date.getMinutes() < 30) || date.getHours() < 21) {
+
+            datumTime.push({id: 4, text: '22:00-23:00'});
+        } else {
+
+            datumTime.push({id: 5, text: '无可用取衣时间段'});
+        }
+
+        //  } else {
+
+
+        {#                datumTime.push({id: 0, text: '12:00-12:45'});#}
+        {#                datumTime.push({id: 1, text: '12:45-13:30'});#}
+        {#                datumTime.push({id: 2, text: '18:00-18:45'});#}
+        {#                datumTime.push({id: 3, text: '18:45-19:30'});#}
+        {#                datumTime.push({id: 4, text: '22:00-23:00'});#}
+
+        // }
+
+        $(".timeList").select2({
+
+
+            data: datumTime,
+            minimumResultsForSearch: Infinity,
+
+        })
+
+    });
+
+
+    /**
+     *
+     *  Calender START
+     * */
+
+    {#    var date = new Date();#}
+    {#    var nowDate = new Date(date.getYear(), date.getMonth() + 2, 0);#}
+    {#    //var nowDate = new Date(2017, 10, 0);#}
+    {#    var monofDay = nowDate.getDate();#}
+    {##}
+    {##}
+    {#    var datum = [{id: 0, text: '日期'}];#}
+    {#    //datum.pop();#}
+    {#    datum.push({id: 1, text: "今天"});#}
+    {#    if ((date.getDate() + 1) > monofDay) {#}
+    {#        datum.push({id: 1, text: (date.getMonth() + 1) + "-" + date.getDate()})#}
+    {##}
+    {#    } else {#}
+    {#        datum.push({id: 1, text: (date.getMonth() + 1) + '-' + (date.getDate() + 1)});#}
+    {#    }#}
+    {#    if ((date.getDate() + 2) > monofDay) {#}
+    {#        datum.push({id: 2, text: (date.getMonth() + 2) + '-' + 1})#}
+    {#    } else {#}
+    {#        datum.push({id: 2, text: (date.getMonth() + 1) + '-' + (date.getDate() + 2)});#}
+    {#    }#}
+    {##}
+    {#    $(".dateList").select2({#}
+    {##}
+    {##}
+    {#        data: datum,#}
+    {#        minimumResultsForSearch: Infinity,#}
+    {##}
+    {#    });#}
+    $(".timeList").select2({
+
+
+        placeholder: "取衣时间",
+        minimumResultsForSearch: Infinity,
+
+    });
+
+
+    {#    var datumTime = [];#}
+    {##}
+    {##}
+    {#    if ($(this).prev().text() == "") {#}
+    {#        if (date.getHours() < 10) {#}
+    {#            datumTime.push({id: 0, text: '12:00-12:45'});#}
+    {##}
+    {#        }#}
+    {#        if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {#}
+    {#            datumTime.push({id: 1, text: '12:45-13:30'});#}
+    {#        }#}
+    {#        if (date.getHours() < 16) {#}
+    {##}
+    {#            datumTime.push({id: 2, text: '18:00-18:45'});#}
+    {#        }#}
+    {#        if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {#}
+    {##}
+    {#            datumTime.push({id: 3, text: '18:45-19:30'});#}
+    {#        }#}
+    {#        if ((date.getHours() == 21 && date.getMinutes() < 30) || date.getHours() < 21) {#}
+    {##}
+    {#            datumTime.push({id: 4, text: '22:00-23:00'});#}
+    {#        } else {#}
+    {##}
+    {#            datumTime.push({id: 5, text: '无可用取衣时间段'});#}
+    {#        }#}
+    {#    } else {#}
+    {##}
+    {##}
+    {#        datumTime.push({id: 0, text: '12:00-12:45'});#}
+    {#        datumTime.push({id: 1, text: '12:45-13:30'});#}
+    {#        datumTime.push({id: 2, text: '18:00-18:45'});#}
+    {#        datumTime.push({id: 3, text: '18:45-19:30'});#}
+    {#        datumTime.push({id: 4, text: '22:00-23:00'});#}
+    {##}
+    {#    }#}
+
+
+    $('select').on('select2:selecting', function (evt) {
+
+    });
+    {#    $(".timeList").select2({#}
+    {##}
+    {##}
+    {#        data: datumTime,#}
+    {#        minimumResultsForSearch: Infinity,#}
+    {##}
+    {#    })#}
+
+
+    /**
+     * Calender END
+     * */
+
+
+    /**
+     *
+     * 切换到 trolleyDiv
+     *
+     * */
+    $("#backTrolleyDiv").click(function () {
+        $('#payDiv').fadeToggle(200, function () {
+            $('#trolleyDiv').fadeToggle(200);
+        });
+
+
+    });
+
+
+    /**
+     *
+     * 切换到 queryOrdersDiv
+     *queryOrderBack
+     * */
+    $("#queryOrder").click(function () {
+
+        {#         if (!$.cookie("user")) {#}
+        {#            $('#errTip').show(200, function () {#}
+        {#                $("#errTip").text("请先登录");#}
+        {#            }).delay(2000).hide(200);#}
+        {#            return;#}
+        {#        }#}
+
+
+        $('#goodsDiv').fadeToggle(200, function () {
+            $('#OrdersDiv').fadeToggle(200);
+
+
+        });
+        $('#funBlock').hide();
+        $('#categoryDiv').hide();
+        $('#goodsDiv').hide();
+
+
+        var tel = $.cookie('contact');
+        $.post("{{ url_for('queryOrders') }}", {phone: tel}, function (data) {
+
+            $("#lishiShow").children().remove();
+            for (i = 0; i < data.cart.length; i++) {
+                $("#lishiShow").append('<table>' +
+                    '<tr><td>订单内容</td><td style="text-align: center">' + showCart(JSON.parse(data.cart[i].list)) + '</td></tr>' +
+                    '<tr><td>取衣时间</td><td style="text-align: center">' + data.cart[i].dtime + '</td></tr>' +
+                    '<tr><td>地址</td><td style="text-align: center">' + data.cart[i].deliver + '</td></tr>' +
+                    '<tr><td>状态</td><td style="text-align: center">' + queryState(data.cart[i].state) + '</td>' +
+                    '</tr><tr><td>留言</td><td  style="text-align: center">' + data.cart[i].note + '</td></tr>' +
+                    '</table><br>')
+            }
+
+        });
+
+
+    });
+
+    $("#queryOrderBack").click(function () {
+
+        $('#OrdersDiv').fadeToggle(200, function () {
+            $('#goodsDiv').fadeToggle(200);
+
+
+        });
+        $('#funBlock').show();
+        $('#categoryDiv').show();
+
+    });
+    /**
+     *
+     * 切换到 初始化
+     *
+     * */
+    $("#queryBack").click(function () {
+
+        $('#OrdersDiv').hide();
+
+        $('#funBlock').show();
+        $('#categoryDiv').show();
+        $('#goodsDiv').fadeToggle(200);
+    });
+
+    ////
+
+    /**
+     * 结算
+     * */
+
+
+    $("#jiesuan").click(function () {
+        if ($.cookie("user") == null) {
+            alert("请先登录");
+        }
+        else {
+
+            /* ********/
+            if (shuliang() == 0) {
+                $('.tishi').text('请先挑选所需要清洗的衣物！');
+                $('.tishi').slideToggle(200);
+                setTimeout("$('.tishi').slideToggle(200);", 1000);
+            } else if (totalPrice() == 0) {
+                $('.tishi').text('要选择至少一件其它的衣物呦~');
+                $('.tishi').slideToggle(200);
+                setTimeout("$('.tishi').slideToggle(200);", 1000);
+            } else {
+                $('#quyu').val($.cookie('dizhi'));
+                if ($.cookie("contact")) {
+                    $('#lianxi').val($.cookie("contact"));
+                }
+                ;
+                $('#xiyilan').fadeToggle(200);
+
+
+                setTimeout("$('#jiesuanDiv').fadeToggle(200);", 200);
+            }
+            /*********/
+
+
+        }//
+
+
+    });
+
+    $('#dateList').on('select2:selecting', function (e) {
+        var data = e.params.data;
+        alert();
+        console.log('date:' + data);
+    });
+    /**pay START**/
+    $("#confirm").click(
+        function () {
+            var school = $.cookie('dizhi');
+            var addr = $('#address').val();
+            var address = school + addr;
+
+
+            //获取日期和时间
+
+
+            $('#timeList').on('select2:select', function (e) {
+                timeInfo = e.params.data;
+                console.log('time' + data);
+            });
+
+            ///
+            var phone = $('#phone').val();
+            var note = $('#note').val();
+
+
+            console.log('school:' + school);
+            console.log('addr:' + addr);
+            console.log('address:' + address);
+            console.log('phone:' + phone);
+            console.log('note:' + note);
+            console.log('dateInfo:' + riqi);
+            console.log('timeInfo:' + time);
+
+            var dateInfo = riqi;
+            var timeInfo = time;
+
+            ///检测表单是否为空
+            if ($('#address').val() == "") {
+                $('#address').focus();
+                return;
+            }
+            if ($('#phone').val() == "") {
+                $('#phone').focus();
+                return;
+            } else {
+                var telReg = !!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+                if (telReg == false) {
+                    //  alert()
+                    $('#errTip1').show(200, function () {
+                        $("#errTip1").text("请输入正确手机号码！");
+                    }).delay(2000).hide(200);
+                    return;
+                }
+            }
+            if (dateInfo == "") {
+
+                $('#errTip1').show(200, function () {
+                    $("#errTip1").text("请选择取衣日期！");
+                }).delay(2000).hide(200);
+                return;
+
+            }
+            if (timeInfo == "") {
+                $('#errTip1').show(200, function () {
+                    $("#errTip1").text("请选择取衣时间！");
+                }).delay(2000).hide(200);
+                return;
+            }
+
+            //new -start
+            //判断洗衣篮是否为空
+            if (!$.cookie("cart")) {
+                return;
+            }
+            ;
+
+            /***SART***/
+            $.cookie("cart", null);
+            $.post("{{ url_for('toudi') }}", {
+                dizhi: address,
+                shouji: phone,
+                shijian: dateInfo + " " + timeInfo,
+                content: JSON.stringify($("#lanziTable").data()),
+                note: note,
+                scope: school
+            }, function () {
+                $("#payDiv").fadeToggle('200', function () {
+                    $("#lanziTable").removeData();
+                    $.cookie("contact", phone, {expires: 7});
+                    $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+                    $("#payResultDiv").fadeToggle('200', function () {
+                        setTimeout("$('#miaoshu').text('2')", 800);
+                        setTimeout("$('#miaoshu').text('1')", 1800);
+                        setTimeout("$('#miaoshu').text('0')", 2800);
+                        setTimeout("window.location.href = ''", 2900);
+                    });
+                });
+            });
+            /***END***/
+
+///new-end
+
+
+            /*
+                    $("#payDiv").fadeToggle('200', function () {
+                       // $("#lanziTable").removeData();
+                       // $.cookie("contact", $("#lianxi").val(), {expires: 7});
+                       // $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+                        $("#payResultDiv").fadeToggle('200', function () {
+                            setTimeout("$('#miaoshu').text('2')", 800);
+                            setTimeout("$('#miaoshu').text('1')", 1800);
+                            setTimeout("$('#miaoshu').text('0')", 2800);
+                            setTimeout("window.location.href = ''", 2900);
+                        });
+                    });
+
+            */
+
+            /*************************/
+            {#            if ($.cookie('cart')) {#}
+            {#                if ($("#quyu").val() == "" || $("#lianxi").val() == "" || riqi == "" || time == "") {#}
+            {#                    $('.tishi').text('请填写完整信息！');#}
+            {#                    $('.tishi').slideToggle(200);#}
+            {#                    setTimeout("$('.tishi').slideToggle(200);", 1000);#}
+            {#                } else {#}
+            {#                    if ($("#jiesuanDiv").is(":animated")) {#}
+            {#                        return;#}
+            {#                    } else {#}
+            {##}
+            {#                        //new -start#}
+            {#                        if (!$.cookie("cart")) {#}
+            {#                            return;#}
+            {#                        }#}
+            {#                        ;#}
+            {#                        $.cookie("cart", null);#}
+            {#                        $.post("{{ url_for('toudi') }}", {#}
+            {#                            dizhi: $("#quyu").val(),#}
+            {#                            shouji: $("#lianxi").val(),#}
+            {#                            shijian: riqi + " " + time,#}
+            {#                            content: JSON.stringify($("#lanziTable").data()),#}
+            {#                            note: $("#liuyan").val()#}
+            {#                        }, function () {#}
+            {#                            $("#payDiv").fadeToggle('200', function () {#}
+            {#                                $("#lanziTable").removeData();#}
+            {#                                $.cookie("contact", $("#lianxi").val(), {expires: 7});#}
+            {#                                $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});#}
+            {#                                $("#payResultDiv").fadeToggle('200', function () {#}
+            {#                                    setTimeout("$('#miaoshu').text('2')", 800);#}
+            {#                                    setTimeout("$('#miaoshu').text('1')", 1800);#}
+            {#                                    setTimeout("$('#miaoshu').text('0')", 2800);#}
+            {#                                    setTimeout("window.location.href = ''", 2900);#}
+            {#                                });#}
+            {#                            });#}
+            {#                        });#}
+            {##}
+            {##}
+            {#///new-end#}
+            {##}
+            {##}
+            {#                    }#}
+            {#                }#}
+            {#            } else {#}
+            {#                return;#}
+            {#            }#}
+            /*************************/
+
+        }//functon() END
+    );
+
+
+    /**pay END**/
+
+
+    /**queryOrders START**/
+    {# $('#checkBtn').click(function () {
+         var tel = $.cookie('contact');
+         $.post("{{ url_for('queryOrders') }}", {phone: tel}, function (data) {
+
+             $("#lishiShow").children().remove();
+             for (i = 0; i < data.cart.length; i++) {
+                 $("#lishiShow").append('<table>' +
+                     '<tr><td>订单内容</td><td style="text-align: center">' + showCart(JSON.parse(data.cart[i].list)) + '</td></tr>' +
+                     '<tr><td>取衣时间</td><td style="text-align: center>' + data.cart[i].dtime + '</td></tr>' +
+                     '<tr><td>地址</td><td style="text-align: center>' + data.cart[i].deliver + '</td></tr>' +
+                     '<tr><td>状态</td><td >' + queryState(data.cart[i].state) + '</td>' +
+                     '</tr><tr><td>留言</td><td>' + data.cart[i].note + '</td></tr>' +
+                     '</table><br>')
+             }
+
+         });
+
+
+     });
+ #}
+
+    function showCart(cart) {
+        var result = "";
+        for (var i in cart) {
+            result += cart[i].name + "：" + cart[i].quantity + "<br>";
+        }
+        ;
+
+        return result;
+    }
+
+
+    function queryState(state) {
+        switch (state) {
+            case 0:
+                return "未处理";
+                break;
+            case 1:
+                return "已确认";
+                break;
+            case 2:
+                return "正在清洗";
+                break;
+            case 3:
+                return "待送回";
+                break;
+            case 4:
+                return "已完成";
+                break;
+            default:
+                return "错误"
+        }
+    }
+
+    /**queryOrders END**/
+
+
+    /**时间日期相关 START**/
+    $(".container1").delegate('.riqi', 'click', function () {
+        var date = new Date();
+        $("#timelist").children('.container1').children().remove();
+        $("#timedrop").html('取衣时间');
+        time = "";
+
+{#        if ($.cookie('dizhi').substring(0, 6) == "华东师范大学" || $.cookie('dizhi').substring(0, 6) == "上海东海学院" || $.cookie('dizhi').substring(0, 6) == "上海电机学院") {#}
+{#            if ($(this).prev().text() == "") {#}
+{#                if (date.getHours() < 10) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
+{#                }#}
+{#                if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
+{#                } else {#}
+{#                    $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');#}
+{#                }#}
+{#            } else {#}
+{#                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
+{#                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
+{#            }#}
+{#        } else if ($.cookie('dizhi').substring(0, 6) == "上海交通大学") {#}
+{#            if ($(this).prev().text() == "") {#}
+{#                if (date.getHours() < 10) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
+{#                }#}
+{#                if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
+{#                }#}
+{#                if (date.getHours() < 16) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');#}
+{#                }#}
+{#                if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');#}
+{#                }#}
+{#                if ((date.getHours() == 21 && date.getMinutes() < 30) || date.getHours() < 21) {#}
+{##}
+{#                } else {#}
+{#                    $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');#}
+{#                }#}
+{#            } else {#}
+{#                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
+{#                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
+{#                $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');#}
+{#                $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');#}
+{##}
+{#            }#}
+{#        } else {#}
+{#            if ($(this).prev().text() == "") {#}
+{#                if (date.getHours() < 10) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
+{#                }#}
+{#                if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
+{#                }#}
+{#                if (date.getHours() < 16) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');#}
+{#                }#}
+{#                if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');#}
+{#                }#}
+{#                if ((date.getHours() == 21 && date.getMinutes() < 30) || date.getHours() < 21) {#}
+{#                    $("#timelist").children('.container1').append('<li class="time">22:00-23:00</li>');#}
+{#                } else {#}
+{#                    $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');#}
+{#                }#}
+{#            } else {#}
+{#                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
+{#                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
+{#                $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');#}
+{#                $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');#}
+{##}
+{#            }#}
+{#        }#}
+
+
+
+
+
+        if ($(this).text()=="今天") {
+            if (date.getHours() < 10) {
+                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
+            }
+            if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {
+                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
+            }
+            if (date.getHours() < 16) {
+                $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
+            }
+            if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {
+                $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
+            }
+             else {
+                $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');
+            }
+        } else {
+            $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
+            $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
+            $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
+            $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $("#riqidrop").text($(this).text());
+        $(this).parent().slideToggle(200);
+        riqi = $(this).text();
+        if (riqi.trim() == "今天") {
+            var d = new Date();
+            riqi = d.getMonth() + 1 + '-' + d.getDate();
+        }
+    });
+
+
+    $(".container1").delegate('.time', 'click', function () {
+        $("#timedrop").text($(this).text());
+        $(this).parent().slideToggle(200);
+        time = $(this).text()
+    });
+    $("li.drop").click(function () {
+        if ($(this).next().text() != "")
+            $(this).next().stop().slideToggle(200);
+        else {
+            {#            $('.tishi').text('请先选择日期！');#}
+            {#            $('.tishi').slideToggle(200);#}
+            {#            setTimeout("$('.tishi').slideToggle(200);", 1000);#}
+        }
+    });
+    /**时间日期相关 END**/
+
+
+</script>
+
+
+</html>
