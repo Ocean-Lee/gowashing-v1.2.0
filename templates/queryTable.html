@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset='utf-8'/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/back.css') }}">
+    <style type="text/css">
+        .orderList {
+        }
+
+        .col1 {
+            float: left;
+            width: 60px;
+            border: 1px solid;
+        }
+
+        .col2 {
+            float: left;
+            width: 10px;
+            border: 1px solid;
+        }
+
+        .col3 {
+            float: left;
+            width: 15px;
+            border: 1px solid;
+        }
+    </style>
+    <title>触手可洗 - 表查询</title>
+</head>
+
+<body>
+
+<table id="BACKORDER" border="1" style="">
+    <tr>
+        <th>编号</th>
+        <th>商家编号</th>
+        <th>商家merchant</th>
+        <th>商家用户名</th>
+        <th>商家密码</th>
+        <th>scope</th>
+        <th>删除</th>
+        <th>修改</th>
+
+
+    </tr>
+
+    {% for order in orders %}
+        <tr>
+            <td class="orderID">
+                {{ order.id }}
+            </td>
+            <td class="state">
+                {{ order.m_id }}
+            </td>
+            <td class="orderList">
+                {{ order.merchant }}
+            </td>
+            <td>
+                {{ order.m_name }}
+            </td>
+            <td>
+                {{ order.m_passwd }}
+            </td>
+            <td class="dtime">
+                {{ order.scope }}
+            </td>
+
+            <td>
+                <button class="reBtn" onclick="remove({{ order.id }})">删除</button>
+            </td>
+            <td>
+                <button class="reBtn" onclick="removeOrder({{ order.id }})">修改</button>
+            </td>
+
+        </tr>
+    {% endfor %}
+</table>
+
+
+
+
+
+
+
+<br>
+
+
+<table id="BACKORDER" border="1" style="">
+    <tr>
+        <th>编号</th>
+        <th>商家编号</th>
+        <th>商家merchant</th>
+        <th>商家用户名</th>
+        <th>商家密码</th>
+        <th>scope</th>
+        <th>删除</th>
+        <th>修改</th>
+
+
+    </tr>
+
+    {% for order in orders %}
+        <tr>
+            <td class="orderID">
+                {{ order.id }}
+            </td>
+            <td class="state">
+                {{ order.m_id }}
+            </td>
+            <td class="orderList">
+                {{ order.merchant }}
+            </td>
+            <td>
+                {{ order.m_name }}
+            </td>
+            <td>
+                {{ order.m_passwd }}
+            </td>
+            <td class="dtime">
+                {{ order.scope }}
+            </td>
+
+            <td>
+                <button class="reBtn" onclick="remove({{ order.id }})">删除</button>
+            </td>
+            <td>
+                <button class="reBtn" onclick="removeOrder({{ order.id }})">修改</button>
+            </td>
+
+        </tr>
+    {% endfor %}
+</table>
+
+
+
+
+
+
+</body>
+<script>
+      function removeOrder(id) {
+        if (confirm("确定删除么？")) {
+            $.post("{{ url_for('removeMerchant') }}", {id: id}, function () {
+                window.location.href = '';
+            });
+            if ($.cookie("id")) {
+                $.cookie("id", $.cookie("id") + "<br>订单号：" + id + " 操作：删除 时间：" + getFormatDate());
+            }
+            else
+                $.cookie("id", "订单号：" + id + " 操作：删除 时间：" + getFormatDate());
+        }
+        else {
+        }
+    }
+</script>
+
+</html>

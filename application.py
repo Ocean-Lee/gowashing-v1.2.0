@@ -1079,5 +1079,21 @@ def page_not_found(error):
     return render_template('error.html'), 404
 
 
+
+@app.route('/table')
+def getTable():
+    merchants = query_db('select * from merchant')
+    return render_template("queryTable.html", orders=merchants)
+
+@app.route('/table/removeMerchant', methods=['GET', 'POST'])
+def removeMerchant():
+    pid = request.form.get('id')
+    # g.db.execute('delete from cart where id=?', [pid])
+    # g.db.execute('delete from cart where id=?', [pid])
+    # g.db.commit()
+    print 'ok'
+    return jsonify({"msg": "OK"})
+
+
 if __name__ == "__main__":
     app.run(debug=True)
