@@ -1021,57 +1021,49 @@
 
     function totalPrice() {
 
+
+
+ var typeUser = $.cookie('u_type');
+        var old_price = 0;
         var temp = 0;
         var t = $("#lanziTable").data();
 
+for (var i in $("#lanziTable").data()) {
+
+
+
+           old_price =old_price+ $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;
+
+        }
+
+
+
+
+
+
+
         for (var i in $("#lanziTable").data()) {
-            temp += $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;
-        }
 
-
-        var typeUser = $.cookie('u_type');
-        var level_name = '';
-        var level_discount_name = '';
-        var level_discount = '';
-
-
-        $.post("{{ url_for('queryMembership') }}", {"typeUser": "VIP会员"}, function (data) {
-            var mem = data.member;
-
-            for (var i = 0; i < data.length; i++) {
-
-                if (typeUser == mem[i].level_name) {
-                    level_name = mem[i].level_name;
-                    level_discount_name = mem[i].level_discount_name
-                    level_discount = mem[i].level_discount;
-
-
-                }
-
+            if ($("#lanziTable").data(i).name == '西服上衣'||$("#lanziTable").data(i).name == '西裤'||$("#lanziTable").data(i).name == '运动鞋'||$("#lanziTable").data(i).name == '休闲鞋') {
+                temp =temp+ $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;
+                
             }
-        });
 
-        if (typeUser == '至尊会员') {
-            $('#infoTip').show(200, function () {
-                $("#infoTip").text(level_name + ":" + level_discount_name + "￥" + temp);
-            })
-            //return temp * level_discount
-            return temp * 0.8
+            else {
+
+
+                temp = temp+($("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price)*0.8;
+{#                 alert(temp);#}
+            }
         }
-        if (typeUser == 'VIP会员') {
+
+
+       if (typeUser == 'VIP会员') {
             $('#infoTip').show(200, function () {
-                $("#infoTip").text(typeUser + ":" + "八折优惠" + "￥" + temp);
+                $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)" + "￥" + old_price);
             })
             //return temp * level_discount
-            return temp * 0.8
-        }
-        if (typeUser == '超级会员') {
-            $('#infoTip').show(200, function () {
-                //  $("#infoTip").text(level_name + ":" + level_discount_name + "￥" + temp).delay(10000).hide(200);
-                $("#infoTip").text(level_name + ":" + level_discount_name + "￥" + temp);
-            })
-            //return temp * level_discount
-            return temp * 0.8
+            return temp
         }
 
         //如果是普通用户则隐藏infoTip
@@ -1081,16 +1073,22 @@
 
         }
 
+ if (typeUser == 'VIP会员') {
+                return temp;
 
-        {#        if (typeUser != '普通用户') {#}
-        {#            $('#infoTip').show(200, function () {#}
-        {#                $("#infoTip").text(level_name + ":" + level_discount_name + "￥" + temp);#}
-        {#            })#}
-        {#            //return temp * level_discount#}
-        {#            return temp * 0.8#}
-        {#        }#}
+            } else {
+                temp = old_price
+                return temp
+            }
 
-        return temp;
+
+
+
+
+    //    return temp;
+
+
+
     }
 
 
@@ -1911,11 +1909,12 @@
 
 
 
+/*
 if($.cookie('dizhi')=="上海交通大学" && $(this).text()=="今天"){
 $("#timelist").children('.container1').append('<li class="notime">该时间预约已满</li>');
 
 }else{
-
+*/
 
 
 
@@ -1946,7 +1945,7 @@ $("#timelist").children('.container1').append('<li class="notime">该时间预�
 
 
 
-}/**/
+//}/**/
 
 
 

@@ -3,3 +3,4 @@
 web.pid
 database/*
 database/LS.db
+application.pyc
