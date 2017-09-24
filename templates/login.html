@@ -171,10 +171,10 @@
 
             } else {
 
-                $.cookie('dizhi', data.addr, {expires: 7});//实际上存放的是学校名称
-                $.cookie('contact', data.contact, {expires: 7});
-                $.cookie('user', data.name, {expires: 7});
-                $.cookie('u_type', data.u_type, {expires: 7});
+                $.cookie('dizhi', data.addr, {expires: 1});//实际上存放的是学校名称
+                $.cookie('contact', data.contact, {expires: 1});
+                $.cookie('user', data.name, {expires: 1});
+                $.cookie('u_type', data.u_type, {expires: 1});
                 // window.location.href='/';
                 setTimeout("window.location.href = '/'", 100);
             }
@@ -189,11 +189,11 @@
         /**切换到首页 START**/
 
         $("#school").click(function () {
-          //  $.cookie('dizhi', '', {expires: 7});
+          //  $.cookie('dizhi', '', {expires: 1});
             window.location.href = '/';
         });
         $("#logo").click(function () {
-            $.cookie('dizhi', '', {expires: 7});
+            $.cookie('dizhi', '', {expires: 1});
             window.location.href = '';
         });
 

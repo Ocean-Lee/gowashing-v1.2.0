@@ -851,11 +851,11 @@
         /**切换到首页 START**/
 
         $("#school").click(function () {
-            $.cookie('dizhi', '', {expires: 7});
+            $.cookie('dizhi', '', {expires: 1});
             window.location.href = '';
         });
         $("#logo").click(function () {
-            $.cookie('dizhi', '', {expires: 7});
+            $.cookie('dizhi', '', {expires: 1});
             window.location.href = '';
         });
 
@@ -899,7 +899,7 @@
                     name: temp
                 });
             }
-            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});
             update();
             updateGood();
 
@@ -1150,7 +1150,7 @@
 
 
             }
-            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});
         }
     );
 
@@ -1164,7 +1164,7 @@
             var trollryOfDiv = ($(this).parent().parent()).parent().children('.shumu').find("#trollyQuan");
             updateGood();
             trollryOfDiv.text((parseInt(trollryOfDiv.text()) + 1).toString());
-            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+            $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});
 
 
             //获取价格div
@@ -1181,7 +1181,7 @@
             // temp.text("￥" + (parseInt(temp.text().substring(1)) + parseInt($(this).prevAll(".danjia").first().text().substring(1))));
 
 
-            // $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+            // $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});
         }
     );
 
@@ -1694,8 +1694,8 @@
             }, function () {
                 $("#payDiv").fadeToggle('200', function () {
                     $("#lanziTable").removeData();
-                    $.cookie("contact", phone, {expires: 7});
-                    $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+                    $.cookie("contact", phone, {expires: 1});
+                    $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});
                     $("#payResultDiv").fadeToggle('200', function () {
                         setTimeout("$('#miaoshu').text('2')", 800);
                         setTimeout("$('#miaoshu').text('1')", 1800);
@@ -1712,8 +1712,8 @@
             /*
                     $("#payDiv").fadeToggle('200', function () {
                        // $("#lanziTable").removeData();
-                       // $.cookie("contact", $("#lianxi").val(), {expires: 7});
-                       // $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});
+                       // $.cookie("contact", $("#lianxi").val(), {expires: 1});
+                       // $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});
                         $("#payResultDiv").fadeToggle('200', function () {
                             setTimeout("$('#miaoshu').text('2')", 800);
                             setTimeout("$('#miaoshu').text('1')", 1800);
@@ -1750,8 +1750,8 @@
             {#                        }, function () {#}
             {#                            $("#payDiv").fadeToggle('200', function () {#}
             {#                                $("#lanziTable").removeData();#}
-            {#                                $.cookie("contact", $("#lianxi").val(), {expires: 7});#}
-            {#                                $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 7});#}
+            {#                                $.cookie("contact", $("#lianxi").val(), {expires: 1});#}
+            {#                                $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});#}
             {#                                $("#payResultDiv").fadeToggle('200', function () {#}
             {#                                    setTimeout("$('#miaoshu').text('2')", 800);#}
             {#                                    setTimeout("$('#miaoshu').text('1')", 1800);#}

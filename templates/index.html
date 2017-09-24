@@ -322,7 +322,7 @@ function queren() {
 		else
 		{
 			$("#waiting").fadeIn(200);
-			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 7 });
+			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 1 });
 			window.location.href = '';
 		}
 	}
@@ -345,7 +345,7 @@ function queren41() {
 		else
 		{
 			$("#waiting").fadeIn(200);
-			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 7 });
+			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 1 });
 			window.location.href = '';
 		}
 	}
@@ -368,7 +368,7 @@ function queren51() {
 		else
 		{
 			$("#waiting").fadeIn(200);
-			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 7 });
+			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 1 });
 			window.location.href = '';
 		}
 	}
@@ -387,7 +387,7 @@ function queren61() {
                 }
                 else {
                     $("#waiting").fadeIn(200);
-                    $.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, {expires: 7});
+                    $.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, {expires: 1});
                     window.location.href = '';
                 }
             }
@@ -437,12 +437,12 @@ function jiaoda () {
 					$("#waiting").fadeIn(200);
 					var schoolName = $("#schoolData").data("xuexiao");
 
-					$.cookie('dizhi', schoolName, { expires: 7 });
+					$.cookie('dizhi', schoolName, { expires: 1 });
 
 					if($(this).text() == "上海交通大学") {
-					    $.cookie('schoolname', 'jiaotong', { expires: 7 });
+					    $.cookie('schoolname', 'jiaotong', { expires: 1 });
                     } else if($(this).text() == "华东师范大学") {
-					    $.cookie('schoolname', 'huashida', { expires: 7 });
+					    $.cookie('schoolname', 'huashida', { expires: 1 });
                     }
 
 
@@ -482,21 +482,21 @@ function jiaoda () {
 
 
 					$("#waiting").fadeIn(200);
-					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 7 });
+					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 1 });
 
 
 					if($(this).text() == "松江一期") {
-					    $.cookie('schoolname', 'songjiang1', { expires: 7 });
+					    $.cookie('schoolname', 'songjiang1', { expires: 1 });
                     } else if($(this).text() == "松江二期") {
-					    $.cookie('schoolname', 'songjiang2', { expires: 7 });
+					    $.cookie('schoolname', 'songjiang2', { expires: 1 });
                     } else if($(this).text() == "松江三期") {
-					    $.cookie('schoolname', 'songjiang3', { expires: 7 });
+					    $.cookie('schoolname', 'songjiang3', { expires: 1 });
                     } else if($(this).text() == "松江四期") {
-					    $.cookie('schoolname', 'songjiang4', { expires: 7 });
+					    $.cookie('schoolname', 'songjiang4', { expires: 1 });
                     } else if($(this).text() == "松江五期") {
-					    $.cookie('schoolname', 'songjiang5', { expires: 7 });
+					    $.cookie('schoolname', 'songjiang5', { expires: 1 });
                     } else if($(this).text() == "松江六期") {
-					    $.cookie('schoolname', 'songjiang6', { expires: 7 });
+					    $.cookie('schoolname', 'songjiang6', { expires: 1 });
                     }
 
 
@@ -535,16 +535,16 @@ function jiaoda () {
 
 
 					$("#waiting").fadeIn(200);
-					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 7 });
+					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 1 });
 
 					if($(this).text() == "复旦大学") {
-					    $.cookie('schoolname', 'fudannan', { expires: 7 });
+					    $.cookie('schoolname', 'fudannan', { expires: 1 });
                     } else if($(this).text() == "复旦北区") {
-					    $.cookie('schoolname', 'fudanbei', { expires: 7 });
+					    $.cookie('schoolname', 'fudanbei', { expires: 1 });
                     } else if($(this).text() == "同济大学") {
-					    $.cookie('schoolname', 'tongji', { expires: 7 });
+					    $.cookie('schoolname', 'tongji', { expires: 1 });
                     } else if($(this).text() == "上海财经大学") {
-					    $.cookie('schoolname', 'caijingdaxue', { expires: 7 });
+					    $.cookie('schoolname', 'caijingdaxue', { expires: 1 });
                     }
 
 
@@ -575,9 +575,9 @@ function jiaoda () {
 
 
 					$("#waiting").fadeIn(200);
-					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 7 });
+					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 1 });
 
-					$.cookie('schoolname', 'jiaodaxuhui', { expires: 7 });
+					$.cookie('schoolname', 'jiaodaxuhui', { expires: 1 });
 
 
 

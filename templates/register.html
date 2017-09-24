@@ -307,9 +307,9 @@
                 }).delay(2000).hide(200);
 
             } else {
-                $.cookie('contact', $("#register_contact").val(), {expires: 7});
-                $.cookie('user', $("#register_username").val(), {expires: 7});
-                //保存用户类型 $.cookie('u_type', data.u_type, { expires: 7 });
+                $.cookie('contact', $("#register_contact").val(), {expires: 1});
+                $.cookie('user', $("#register_username").val(), {expires: 1});
+                //保存用户类型 $.cookie('u_type', data.u_type, { expires: 1 });
                 //alert("注册成功！");
                 $('#successTip').show(200, function () {
                     $("#successTip").text("注册成功!正在登录...");
@@ -377,11 +377,11 @@
     /**切换到首页 START**/
 
     $("#school").click(function () {
-        //$.cookie('dizhi', '', {expires: 7});
+        //$.cookie('dizhi', '', {expires: 1});
         window.location.href = '/';
     });
     $("#logo").click(function () {
-        $.cookie('dizhi', '', {expires: 7});
+        $.cookie('dizhi', '', {expires: 1});
         window.location.href = '';
     });
 
