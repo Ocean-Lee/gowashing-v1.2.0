@@ -1864,23 +1864,31 @@
 
     function queryState(state) {
         switch (state) {
+            /**
+             * 0 - 未处理
+             * 1 - 已接单
+             * 2 - 已接收衣物
+             * 3 - 正在清洗
+             * 4 - 订单完成
+             * **/
             case 0:
                 return "未处理";
                 break;
             case 1:
-                return "已确认";
+                return "已接单";
                 break;
             case 2:
-                return "正在清洗";
+                return "已接收衣物";
                 break;
             case 3:
-                return "待送回";
+                return "正在清洗";
                 break;
             case 4:
-                return "已完成";
+                return "订单完成";
                 break;
             default:
                 return "错误"
+
         }
     }
 
