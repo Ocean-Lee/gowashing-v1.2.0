@@ -169,15 +169,15 @@
                     <button class="reBtn" onclick="updateOrder({{ order.id }}, 1, '接收')">接单</button>
                 {% endif %}
                 {% if order.state == 1 %}
-                    <button class="reBtn" onclick="updateOrder({{ order.id }}, 2, '送洗')">接收衣物</button>
+                    <button class="reBtn" onclick="updateOrder({{ order.id }}, 2, '送洗')">收衣</button>
                     <button class="reBtn" onclick="updateOrder({{ order.id }}, 0, '撤销')">撤销</button>
                 {% endif %}
                 {% if order.state == 2 %}
-                    <button class="reBtn" onclick="updateOrder({{ order.id }}, 3, '送回')">正在清洗</button>
+                    <button class="reBtn" onclick="updateOrder({{ order.id }}, 3, '送回')">清洗</button>
                     <button class="reBtn" onclick="updateOrder({{ order.id }}, 1, '撤销')">撤销</button>
                 {% endif %}
                 {% if order.state == 3 %}
-                    <button class="reBtn" onclick="updateOrder({{ order.id }}, 4, '完成')">订单完成</button>
+                    <button class="reBtn" onclick="updateOrder({{ order.id }}, 4, '完成')">完成</button>
                     <button class="reBtn" onclick="updateOrder({{ order.id }}, 2, '撤销')">撤销</button>
                 {% endif %}
                 {% if order.state == 4 %}
