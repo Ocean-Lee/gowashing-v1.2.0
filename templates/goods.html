@@ -443,8 +443,35 @@
                                      src="{{ clothes.imgURL }}">
                                 <div>{{ clothes.c_name }}</div>
                                 <div style="">¥{{ clothes.price }}</div>
-                                <span class="danjia_new"
-                                      style="display: none;position: absolute;bottom: 70px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥14</span>
+
+                                {% if clothes.c_name== '西服上衣' %}
+                                    <span class="danjia_new"
+                                          style="position: absolute;bottom: 110px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ clothes.price }}</span>
+
+                                {% else %}
+                                    <span class="danjia_new"
+                                          style="display: none; position: absolute;bottom: 110px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ clothes.price }}</span>
+
+                                {% endif %}
+
+                                {% if clothes.c_name== '西裤' %}
+                                    <span class="danjia_new"
+                                          style="position: absolute;bottom: 110px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ clothes.price }}</span>
+
+                                {% else %}
+                                    <span class="danjia_new"
+                                          style="display: none; position: absolute;bottom: 110px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ clothes.price }}</span>
+
+                                {% endif %}
+
+
+
+
+
+
+
+
+
                                 <span class="danjia_old"
                                       style="display: none;position: absolute;bottom: 100px;padding: 11px 5px;background: rgba(0, 155, 245, 0.87);border-radius: 30px;text-decoration: line-through;">￥20</span>
                             </a>
@@ -471,6 +498,29 @@
                                      src="{{ shoes.imgURL }}">
                                 <div>{{ shoes.c_name }}</div>
                                 <div>¥{{ shoes.price }}</div>
+
+                                {% if shoes.c_name== '运动鞋' %}
+                                    <span class="danjia_new"
+                                          style="position: absolute;bottom: 110px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ shoes.price }}</span>
+
+                                {% else %}
+                                    <span class="danjia_new"
+                                          style="display: none; position: absolute;bottom: 110px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ shoes.price }}</span>
+
+                                {% endif %}
+
+
+                                {% if shoes.c_name== '休闲鞋' %}
+                                    <span class="danjia_new"
+                                          style="position: absolute;bottom: 110px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ shoes.price }}</span>
+
+                                {% else %}
+                                    <span class="danjia_new"
+                                          style="display: none; position: absolute;bottom: 110px;padding: 11px 5px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ shoes.price }}</span>
+
+                                {% endif %}
+
+
                             </a>
                         </div>
                     {% endfor %}
@@ -1051,7 +1101,7 @@
             }
         }
 
-/***********************/
+        /***********************/
         if (typeUser == 'VIP会员') {
             $('#infoTip').show(200, function () {
                 $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)" + "￥" + old_price);
@@ -1066,13 +1116,13 @@
 
             $.cookie("old_price", 0);
             $.cookie("old_price", old_price, {expires: 1});
-           // alert($.cookie("old_price"))
+            // alert($.cookie("old_price"))
             return temp
         }
         $.cookie("old_price", 0);
         $.cookie("old_price", temp, {expires: 1});
         //alert($.cookie("old_price"))
-/***********************/
+        /***********************/
 
         //如果是普通用户则隐藏infoTip
         if (typeUser == '普通用户') {
