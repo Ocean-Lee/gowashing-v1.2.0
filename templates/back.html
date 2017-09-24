@@ -72,6 +72,8 @@
         <th>用户名</th>
         <th>联系方式</th>
         <th>用户类型</th>
+        <th>原价合计</th>
+        <th>会员价合计</th>
         <th>留言</th>
         <th>操作</th>
         <th>备注</th>
@@ -101,6 +103,7 @@
         <td>
             <button style="display:none" onclick="window.location.href='/back/orders/ContactSort'">排序</button>
         </td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -139,15 +142,23 @@
             <td class="dtime">
                 {{ order.dtime }}
             </td>
-            <td >
+            <td>
                 {{ order.name }}
             </td>
             <td>
-{#                {{ order.contact }}#}
+                {#                {{ order.contact }}#}
                 {{ order.phone }}
             </td>
+
             <td>
                 {{ order.u_type }}
+            </td>
+
+            <td>
+                {{ order.oldPrice }}
+            </td>
+            <td>
+                {{ order.vipPrice }}
             </td>
             <td width="100">
                 {{ order.note }}

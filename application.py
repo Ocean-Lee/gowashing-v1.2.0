@@ -328,74 +328,74 @@ def getBackOrder():
         if session['xuexiao'] == "total":
             # orders = query_db('select * from cart where time>? order by ID desc', [int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where c.time>? order by ID desc',
                 [int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "SJTU":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? and id not in(select id from cart where substr(deliver, 0, 11)=?)  and time>? order by ID desc', [u'上海交通大学',u'上海交通大学(徐汇)', int(time.time())-604800])
             orders = query_db(
-                'select  c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.id not in(select id from cart where substr(deliver, 0, 11)=?)  and c.time>? order by ID desc',
+                'select  c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.id not in(select id from cart where substr(deliver, 0, 11)=?)  and c.time>? order by ID desc',
                 [u'上海交通大学', u'上海交通大学(徐汇)', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "ECNU":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? and time>? order by ID desc', [u'华东师范大学', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.time>? order by ID desc',
                 [u'华东师范大学', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
 
         if session['xuexiao'] == "TJJF":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? and time>? order by ID desc', [u'同济大学', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
                 [u'同济大学', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "HSSW":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? and time>? order by ID desc', [u'华东师范大学', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.time>? order by ID desc',
                 [u'华东师范大学', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "SJUCC":
             # orders = query_db('select * from cart where substr(deliver, 0, 5) in ("松江五期","松江六期") and time>? order by ID desc', [ int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5) in ("松江五期","松江六期") and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5) in ("松江五期","松江六期") and c.time>? order by ID desc',
                 [int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "SJHSLJ":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? and time>? order by ID desc', [u'松江四期', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and time>? order by ID desc',
                 [u'松江四期', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "SJSW":
             # orders = query_db('select * from cart where substr(deliver, 0, 5) in("松江一期","松江二期","松江三期") and time>? order by ID desc', [ int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5) in("松江一期","松江二期","松江三期") and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5) in("松江一期","松江二期","松江三期") and c.time>? order by ID desc',
                 [int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "FDBHSLJ":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? and time>? order by ID desc', [u'复旦北区', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
                 [u'复旦北区', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "FDNJLYL":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? and time>? order by ID desc', [u'复旦大学', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
                 [u'复旦大学', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "SCXW":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? and time>? order by ID desc', [u'上海财经大学', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.time>? order by ID desc',
                 [u'上海财经大学', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "SJXH":
             # orders = query_db('select * from cart where substr(deliver, 0, 11)=? and time>? order by ID desc', [u'上海交通大学(徐汇)', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 11)=? and c.time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 11)=? and c.time>? order by ID desc',
                 [u'上海交通大学(徐汇)', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
 
@@ -410,73 +410,73 @@ def getBackOrder_ALL():
         if session['xuexiao'] == "total":
             # orders = query_db('select * from cart order by ID desc')
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone order by ID desc')
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone order by ID desc')
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "SJTU":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? and id not in(select id from cart where substr(deliver, 0, 11)=?)  order by ID desc', [u'上海交通大学',u'上海交通大学(徐汇)'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.id not in(select id from cart where substr(deliver, 0, 11)=?)  order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? and c.id not in(select id from cart where substr(deliver, 0, 11)=?)  order by ID desc',
                 [u'上海交通大学', u'上海交通大学(徐汇)'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "ECNU":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? order by ID desc', [u'华东师范大学'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
                 [u'华东师范大学'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
 
         if session['xuexiao'] == "TJJF":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? order by ID desc', [u'同济大学'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? order by ID desc',
                 [u'同济大学'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "HSSW":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? order by ID desc', [u'同济大学北区'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
                 [u'同济大学北区'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "SJUCC":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? order by ID desc', [u'同济大学北区'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
                 [u'同济大学北区'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "SJHSLJ":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? order by ID desc', [u'同济大学北区'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
                 [u'同济大学北区'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "SJSW":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? order by ID desc', [u'同济大学北区'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
                 [u'同济大学北区'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "FDBHSLJ":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? order by ID desc', [u'复旦北区'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? order by ID desc',
                 [u'复旦北区'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "FDNJLYL":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? order by ID desc', [u'复旦大学'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? order by ID desc',
                 [u'复旦大学'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "SCXW":
             # orders = query_db('select * from cart where substr(deliver, 0, 7)=? order by ID desc', [u'上海财经大学'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
                 [u'上海财经大学'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
         if session['xuexiao'] == "SJXH":
             # orders = query_db('select * from cart where substr(deliver, 0, 11)=? order by ID desc', [u'上海交通大学(徐汇)'])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 11)=? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 11)=? order by ID desc',
                 [u'上海交通大学(徐汇)'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
     else:
@@ -617,10 +617,14 @@ def toudi():
     content = request.form.get('content')
     liuyan = request.form.get('note')
     scope = request.form.get('scope')
+    vip_price = request.form.get('vip_price')
+    old_price = request.form.get('old_price')
+    print old_price
+
     # g.db.execute('insert into cart (contact, list, note, deliver, time, pickup, dtime, ptime) values (?, ?, ?, ?, ?, ?, ?, ?)',
     g.db.execute(
-        'insert into cart (phone, list, note, deliver, time, pickup, dtime, ptime,scope) values (?, ?, ?, ?, ?, ?, ?, ?,?)',
-        [shouji, content, liuyan, dizhi, int(time.time()), dizhi, shijian, shijian, scope])
+        'insert into cart (phone, list, note, deliver, time, pickup, dtime, ptime,scope,vipPrice,oldPrice) values (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)',
+        [shouji, content, liuyan, dizhi, int(time.time()), dizhi, shijian, shijian, scope, vip_price, old_price])
     g.db.commit()
     return jsonify({"msg": "OK"})
 
