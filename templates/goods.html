@@ -957,7 +957,7 @@
 
             if (promotion == '0') {
                 var fee = divChild[1].innerHTML.substring(1);
-               // alert('原价' + fee);
+                // alert('原价' + fee);
             } else {
                 var fee = spanChild[1].innerHTML.substring(1);
                 // alert('促销价'+fee);
@@ -1331,93 +1331,141 @@
      * */
     $("#pay").click(function () {
 
-        if (!$.cookie("user")) {
-            $('#errTip').show(200, function () {
-                $("#errTip").text("请先登录");
-            }).delay(2000).hide(200);
-            return;
-        }
+            if (!$.cookie("user")) {
+                $('#errTip').show(200, function () {
+                    $("#errTip").text("请先登录");
+                }).delay(2000).hide(200);
+                return;
+            }
 
 
-        if (shuliang() == 0) {
+            if (shuliang() == 0) {
 
-            $('#errTip').show(200, function () {
-                $("#errTip").text("请先挑选所需要清洗的衣物！");
-            }).delay(2000).hide(200);
+                $('#errTip').show(200, function () {
+                    $("#errTip").text("请先挑选所需要清洗的衣物！");
+                }).delay(2000).hide(200);
 
 
-        } else {
-            /****生成时间 START****/
-            var date = new Date();
-            $("#riqilist").children('.container1').children().remove();
-            $("#riqilist").children('.container1').append('<li class="riqi">今天</li>');
-            // $("#riqilist").children('.container').append('<li class="riqi">'+(date.getMonth()+1)+'-'+date.getDate()+'</li>');
-            if ((date.getDate() + 1) > date.MaxDayOfDate) {
-                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');
             } else {
-                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 1) + '</li>');
+                /****生成时间 START****/
+                var date = new Date();
+
+                var Y = date.getYear();
+                var M = date.getMonth() + 1;
+                var D = date.getDate();
+                var tempDate = new Date(2017, M, 0);
+                var daycount = tempDate.getDate();
+//alert(daycount)
+
+                //date.setFullYear(2017, 8, 29);
+{#alert($.cookie('dizhi'));#}
+{#                if ($.cookie('dizhi') == "复旦大学") {#}
+{#                    $("#riqilist").children('.container1').children().remove();#}
+{#                    if ((date.getDate() + 1) > daycount) {#}
+{#                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');#}
+{#                    } else {#}
+{#                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 10) + '</li>');#}
+{#                    }#}
+{#                    if ((date.getDate() + 2) > daycount) {#}
+{#                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');#}
+{#                    } else {#}
+{#                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 12) + '</li>');#}
+{#                    }#}
+{##}
+{#                }//if#}
+{#                else {#}
+{##}
+{##}
+{#                    $("#riqilist").children('.container1').children().remove();#}
+{#                    $("#riqilist").children('.container1').append('<li class="riqi">今天</li>');#}
+{#                    // $("#riqilist").children('.container').append('<li class="riqi">'+(date.getMonth()+1)+'-'+date.getDate()+'</li>');#}
+{#                    if ((date.getDate() + 1) > daycount) {#}
+{#                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');#}
+{#                    } else {#}
+{#                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 1) + '</li>');#}
+{#                    }#}
+{#                    if ((date.getDate() + 2) > daycount) {#}
+{#                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');#}
+{#                    } else {#}
+{#                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 2) + '</li>');#}
+{#                    }#}
+{##}
+{##}
+{##}
+{##}
+{#                }#}
+/////-------------------
+
+                            $("#riqilist").children('.container1').children().remove();
+                            $("#riqilist").children('.container1').append('<li class="riqi">今天</li>');
+                            // $("#riqilist").children('.container').append('<li class="riqi">'+(date.getMonth()+1)+'-'+date.getDate()+'</li>');
+                            if ((date.getDate() + 1) > daycount) {
+                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');
+                            } else {
+                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 1) + '</li>');
+                            }
+                            if ((date.getDate() + 2) > daycount) {
+                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');
+                            } else {
+                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 2) + '</li>');
+                            }
+                /****生成时间 END****/
+
+
+                {#            //生成日期 START#}
+                {##}
+                {#            var date = new Date();#}
+                {#            var nowDate = new Date(date.getYear(), date.getMonth() + 2, 0);#}
+                {#            //var nowDate = new Date(2017, 10, 0);#}
+                {#            var monofDay = nowDate.getDate();#}
+                {##}
+                {##}
+                {#            var datum = [{id: 0, text: '日期'}];#}
+                {#            //datum.pop();#}
+                {#            datum.push({id: 1, text: "今天"});#}
+                {#            if ((date.getDate() + 1) > monofDay) {#}
+                {#                datum.push({id: 1, text: (date.getMonth() + 1) + "-" + date.getDate()})#}
+                {##}
+                {#            } else {#}
+                {#                datum.push({id: 1, text: (date.getMonth() + 1) + '-' + (date.getDate() + 1)});#}
+                {#            }#}
+                {#            if ((date.getDate() + 2) > monofDay) {#}
+                {#                datum.push({id: 2, text: (date.getMonth() + 2) + '-' + 1})#}
+                {#            } else {#}
+                {#                datum.push({id: 2, text: (date.getMonth() + 1) + '-' + (date.getDate() + 2)});#}
+                {#            }#}
+                {##}
+                {#            $(".dateList").select2({#}
+                {##}
+                {##}
+                {#                data: datum,#}
+                {#                minimumResultsForSearch: Infinity,#}
+                {##}
+                {#            });#}
+                {##}
+                {##}
+                {#            //生成日期 END#}
+
+
+                //获取学校地址
+                $('#labelschool').text($.cookie('dizhi'));
+                if ($.cookie("contact")) {
+                    $('#phone').val($.cookie("contact"));
+                }
+                ;
+
+
+                //切换到结算页面
+                $('#trolleyDiv').fadeToggle(200, function () {
+                    $('#payDiv').fadeToggle(200);
+                });
+
+
             }
-            if ((date.getDate() + 2) > date.MaxDayOfDate) {
-                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');
-            } else {
-                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 2) + '</li>');
-            }
-            /****生成时间 END****/
-
-
-            {#            //生成日期 START#}
-            {##}
-            {#            var date = new Date();#}
-            {#            var nowDate = new Date(date.getYear(), date.getMonth() + 2, 0);#}
-            {#            //var nowDate = new Date(2017, 10, 0);#}
-            {#            var monofDay = nowDate.getDate();#}
-            {##}
-            {##}
-            {#            var datum = [{id: 0, text: '日期'}];#}
-            {#            //datum.pop();#}
-            {#            datum.push({id: 1, text: "今天"});#}
-            {#            if ((date.getDate() + 1) > monofDay) {#}
-            {#                datum.push({id: 1, text: (date.getMonth() + 1) + "-" + date.getDate()})#}
-            {##}
-            {#            } else {#}
-            {#                datum.push({id: 1, text: (date.getMonth() + 1) + '-' + (date.getDate() + 1)});#}
-            {#            }#}
-            {#            if ((date.getDate() + 2) > monofDay) {#}
-            {#                datum.push({id: 2, text: (date.getMonth() + 2) + '-' + 1})#}
-            {#            } else {#}
-            {#                datum.push({id: 2, text: (date.getMonth() + 1) + '-' + (date.getDate() + 2)});#}
-            {#            }#}
-            {##}
-            {#            $(".dateList").select2({#}
-            {##}
-            {##}
-            {#                data: datum,#}
-            {#                minimumResultsForSearch: Infinity,#}
-            {##}
-            {#            });#}
-            {##}
-            {##}
-            {#            //生成日期 END#}
-
-
-            //获取学校地址
-            $('#labelschool').text($.cookie('dizhi'));
-            if ($.cookie("contact")) {
-                $('#phone').val($.cookie("contact"));
-            }
-            ;
-
-
-            //切换到结算页面
-            $('#trolleyDiv').fadeToggle(200, function () {
-                $('#payDiv').fadeToggle(200);
-            });
 
 
         }
-
-
-    });
+    );
 
     $(".dateList").on("select2:select", function () {
         var datumTime = [];
@@ -1940,6 +1988,7 @@
         $("#timedrop").html('取衣时间');
         time = "";
 
+
         {#        if ($.cookie('dizhi').substring(0, 6) == "华东师范大学" || $.cookie('dizhi').substring(0, 6) == "上海东海学院" || $.cookie('dizhi').substring(0, 6) == "上海电机学院") {#}
         {#            if ($(this).prev().text() == "") {#}
         {#                if (date.getHours() < 10) {#}
@@ -2007,8 +2056,6 @@
         {##}
         {#            }#}
         {#        }#}
-
-
 
 
 
