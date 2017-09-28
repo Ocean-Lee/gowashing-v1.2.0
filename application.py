@@ -365,7 +365,7 @@ def getBackOrder():
         if session['xuexiao'] == "SJHSLJ":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? and time>? order by ID desc', [u'松江四期', int(time.time())-604800])
             orders = query_db(
-                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and time>? order by ID desc',
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
                 [u'松江四期', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
         if session['xuexiao'] == "SJSW":
