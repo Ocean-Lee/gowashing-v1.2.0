@@ -1381,15 +1381,22 @@
                 var daycount = tempDate.getDate();
 //alert(daycount)
 
-                {#               // date.setFullYear(2017, 9, 1);#}
+{#                                date.setFullYear(2017, 9, 1);#}
 //alert(tempDate)
 
 //alert($.cookie('dizhi'));
                 if ($.cookie('dizhi') == "复旦大学") {
-                    $("#riqilist").children('.container1').children().remove();
-                    $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 12 + '</li>');
-                    $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 13 + '</li>');
+                    if ((date.getMonth() + 1) == 9) {
 
+                        $("#riqilist").children('.container1').children().remove();
+                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 12 + '</li>');
+                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 13 + '</li>');
+                    } else {
+                        $("#riqilist").children('.container1').children().remove();
+                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + 12 + '</li>');
+                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + 13 + '</li>');
+
+                    }
 
                 }//if
                 else {
@@ -1399,33 +1406,48 @@
 
                     ///上财S
                     if ($.cookie('dizhi') == "上海财经大学") {
-                        $("#riqilist").children('.container1').children().remove();
-                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 4 + '</li>');
-                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 5 + '</li>');
+                        if ((date.getMonth() + 1) == 9) {
+                            $("#riqilist").children('.container1').children().remove();
+                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 4 + '</li>');
+                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 5 + '</li>');
+                        } else {
+                            $("#riqilist").children('.container1').children().remove();
+                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + 4 + '</li>');
+                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + 5 + '</li>');
 
+                        }
                     }//if
                     ///上财E
                     else {
                         ///松江1、2、3期
 
                         if (($.cookie('dizhi') == "松江一期") || ($.cookie('dizhi') == "松江二期") || ($.cookie('dizhi') == "松江三期")) {
-                            $("#riqilist").children('.container1').children().remove();
-                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 6 + '</li>');
-                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 7 + '</li>');
+                            if ((date.getMonth() + 1) == 9) {
+                                $("#riqilist").children('.container1').children().remove();
+                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 6 + '</li>');
+                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 7 + '</li>');
+                            } else {
+                                $("#riqilist").children('.container1').children().remove();
+                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + 6 + '</li>');
+                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + 7 + '</li>');
 
+                            }
 
                         }//if
 
 
                         else {
                             if (($.cookie('dizhi') == "松江五期") || ($.cookie('dizhi') == "松江六期")) {
-                                $("#riqilist").children('.container1').children().remove();
-                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 5 + '</li>');
-                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 6 + '</li>');
+                                if ((date.getMonth() + 1) == 9) {
+                                    $("#riqilist").children('.container1').children().remove();
+                                    $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 5 + '</li>');
+                                    $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 6 + '</li>');
+                                } else {
+                                    $("#riqilist").children('.container1').children().remove();
+                                    $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + 5 + '</li>');
+                                    $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + 6 + '</li>');
 
-
-
-
+                                }
 
                             }//if
                             else {
