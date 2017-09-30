@@ -1383,44 +1383,13 @@
 //alert(daycount)
 
 {#               // date.setFullYear(2017, 9, 1);#}
-
+//alert(tempDate)
 
 //alert($.cookie('dizhi'));
                 if ($.cookie('dizhi') == "复旦大学") {
                     $("#riqilist").children('.container1').children().remove();
-                    $("#riqilist").children('.container1').append('<li class="riqi">今天</li>');
-
-
-                    //加第一天
-                    if ((date.getDate() + 1) > daycount) {
-                        if (date.getDate() == 30) {
-                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 13 + '</li>');
-                        } else {
-                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 12 + '</li>');
-                        }
-
-                    } else {
-
-                        if ((date.getMonth() + 1) == 9) {
-                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 1 ) + '</li>');
-                        }
-                        else {
-
-                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 14 ) + '</li>');
-                        }
-                    }
-
-                    //加第二天
-                    if ((date.getDate() + 2) > daycount) {
-
-                        if (date.getDate() == 30) {
-                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 14 + '</li>');
-                        } else {
-                            $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 12 + '</li>');
-                        }
-                    } else {
-                        $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 15) + '</li>');
-                    }
+                   $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 12 + '</li>');
+                   $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 13 + '</li>');
 
 
                 }//if
@@ -1561,7 +1530,7 @@
                                     $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 1) + '</li>');
                                 }
                                 if ((date.getDate() + 2) > daycount) {
-                                    $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');
+                                    $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 2 + '</li>');
                                 } else {
                                     $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 2) + '</li>');
                                 }
