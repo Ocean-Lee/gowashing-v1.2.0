@@ -2106,7 +2106,7 @@
                     if (date.getHours() < 10) {
 
                         if (time1_flag_TD) {
-                            $("#timelist").children('.container1').append('<li class="notime">12:00-12:45(预约已满)</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">12:00-12:45(预约已满)</li>');
                         } else {
                             $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
 
@@ -2116,7 +2116,7 @@
                     }
                     if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {
                         if (time2_flag_TD) {
-                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">12:45-13:30(预约已满)</li>');
                         } else {
                             $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
 
@@ -2124,7 +2124,7 @@
                     }
                     if (date.getHours() < 16) {
                         if (time3_flag_TD) {
-                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">18:00-18:45(预约已满)</li>');
                         } else {
                             $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
                         }
@@ -2132,7 +2132,7 @@
                     }
                     if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {
                         if (time4_flag_TD) {
-                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">18:45-19:30(预约已满)</li>');
                         } else {
                             $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
                         }
@@ -2150,22 +2150,22 @@
                         $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
                     } else {
                         if (time1_flag_T) {
-                            $("#timelist").children('.container1').append('<li class="notime" style="color:red;font-size:5px">12:00-12:45(预约已满)</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">12:00-12:45(预约已满)</li>');
                         } else {
                             $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
                         }
                         if (time2_flag_T) {
-                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">12:45-13:30(预约已满)</li>');
                         } else {
                             $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
                         }
                         if (time3_flag_T) {
-                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">18:00-18:45(预约已满)</li>');
                         } else {
                             $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
                         }
                         if (time4_flag_T) {
-                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">18:45-19:30(预约已满)</li>');
                         } else {
                             $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
                         }
@@ -2177,25 +2177,25 @@
                     if (M_D == tomm1) {
                         if (false) {
 
-                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">(预约已满)</li>');
                         } else {
                             if (time1_flag_T1) {
-                                $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                                $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">12:00-12:45(预约已满)</li>');
                             } else {
                                 $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
                             }
                             if (time2_flag_T1) {
-                                $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                                $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">12:45-13:30(预约已满)</li>');
                             } else {
                                 $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
                             }
                             if (time3_flag_T1) {
-                                $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                                $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">18:00-18:45(预约已满)</li>');
                             } else {
                                 $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
                             }
                             if (time4_flag_T1) {
-                                $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                                $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">18:45-19:30(预约已满)</li>');
                             } else {
                                 $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
                             }
