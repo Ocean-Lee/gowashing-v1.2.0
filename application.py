@@ -1115,6 +1115,7 @@ def t():
     m_num = query_db('select countDay as c_number from merchant where scope = ?', [school])
     m_num_n = m_num[0]["c_number"]
     days = [order_day1,order_day2,order_day3]
+
     flag_TD = {}
     flag_T = {}
     flag_T1 = {}
@@ -1133,10 +1134,9 @@ def t():
             "select count(*) as number from cart where substr(dtime, 1, 4) = ? and scope = ? and substr(dtime,6,11)='18:45-19:30' ",
             [day, school])
         time_1_use_n = time_1_use[0]["number"]
-        time_2_use_n = time_1_use[0]["number"]
-        time_3_use_n = time_1_use[0]["number"]
-        time_4_use_n = time_1_use[0]["number"]
-
+        time_2_use_n = time_2_use[0]["number"]
+        time_3_use_n = time_3_use[0]["number"]
+        time_4_use_n = time_4_use[0]["number"]
 
         time1_flag = False
         time2_flag = False
@@ -1161,6 +1161,7 @@ def t():
             flag_T={day:{"time1_flag":time1_flag,"time2_flag":time2_flag,"time3_flag":time3_flag,"time4_flag":time4_flag}}
         if day==order_day3:
             flag_T1={day:{"time1_flag":time1_flag,"time2_flag":time2_flag,"time3_flag":time3_flag,"time4_flag":time4_flag}}
+
 
     return jsonify({"flag_TD": flag_TD, "flag_T":flag_T, "flag_T1":flag_T1})
 
