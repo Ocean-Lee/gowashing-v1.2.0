@@ -442,7 +442,8 @@
                                 <img width="120" height="120" style="position: relative;border: 3px dashed white"
                                      src="{{ clothes.imgURL }}">
                                 <div>{{ clothes.c_name }}</div>
-                                <div style="">¥{{ clothes.price }}</div>
+                                <div style="" class="origin">¥{{ clothes.price }}</div>
+                                <div style="display: none;" class="disPrice">¥{{ clothes.disPrice }}</div>
 
                                 {% if clothes.c_name== '西服上衣' %}
                                     <span class="danjia_new"
@@ -497,7 +498,8 @@
                                 <img width="120" height="120" style="position: relative;border: 3px dashed white"
                                      src="{{ shoes.imgURL }}">
                                 <div>{{ shoes.c_name }}</div>
-                                <div>¥{{ shoes.price }}</div>
+                                <div class="origin">¥{{ shoes.price }}</div>
+                                <div style="display: none;" class="disPrice">¥{{ shoes.disPrice }}</div>
 
                                 {% if shoes.c_name== '运动鞋' %}
                                     <span class="danjia_new"
@@ -541,7 +543,8 @@
                                 <img width="120" height="120" style="position: relative;border: 3px dashed white"
                                      src="{{ sheet.imgURL }}">
                                 <div>{{ sheet.c_name }}</div>
-                                <div>¥{{ sheet.price }}</div>
+                                <div class="origin">¥{{ sheet.price }}</div>
+                                <div style="display: none;" class="disPrice">¥{{ sheet.disPrice }}</div>
 
 
                                 {% if sheet.c_name== '休闲鞋' %}
@@ -581,6 +584,7 @@
         <div class="row tishi" style="color: white;padding-top: 2rem;font-size: 20px;text-align: center"></div>
         <div id="errTip" style="display: none" class="alert alert-danger"></div>
         <div id="successTip" style="display: none" class="alert alert-success"></div>
+        <div id="discoutTip" style="display: none" class="alert alert-success"></div>
         <div class="row" id="lanziTable" style="padding: 2rem">
 
 
@@ -637,9 +641,8 @@
      <!---------------  -->
         </div>
 
-        <div id="infoTip" style="display: none" class="alert alert-info">
-
-        </div>
+        <div id="infoTip" style="display: none" class="alert alert-info"></div>
+        <div id="disTips" style="display: none" class="alert alert-info"></div>
 
         <div class="row trolleyBtn">
             <a id="zongjia" style="cursor: default;color: rgba(0, 155, 245, 0.87);background: white;">总价：￥<span
@@ -885,6 +888,7 @@
 
         //先要隐藏VIP提示信息
         $('#infoTip').hide();
+        $("#disTips").hide();
         //alert($.cookie('u_type'))
 
         //var readyData = JSON.parse($.cookie("cart"));
@@ -947,6 +951,9 @@
             var divChild = $(this).children('a').children('div');
             var spanChild = $(this).children('a').children('span');
 
+            var originPrice = divChild[1].innerHTML.substring(1);
+            var disPrice = divChild[2].innerHTML.substring(1);
+
 
             ///temp 是衣服的名称
             var temp = divChild[0].innerHTML;
@@ -958,10 +965,11 @@
 
             if (promotion == '0') {
                 var fee = divChild[1].innerHTML.substring(1);
-                // alert('原价' + fee);
+                //alert('原价' + fee);
             } else {
                 var fee = spanChild[1].innerHTML.substring(1);
-                // alert('促销价'+fee);
+
+                //alert('促销价'+fee);
             }
 
             // var temp = $(this).children('a').children('div').text();
@@ -983,8 +991,11 @@
                     quantity: 1,
 
                     price: fee,
+                    promotion: 0,
                     src: imgURL,
-                    name: temp
+                    name: temp,
+                    disPrice: disPrice,//促销价
+                    originPrice: originPrice//原价
                 });
             }
             $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});
@@ -1039,6 +1050,8 @@
             var src = $("#lanziTable").data(i).src;
 
 
+            var originPrice = $("#lanziTable").data(i).originPrice
+
             $("#lanziTable").append(
                 '<div class="row A" style="padding:1rem">'
                 + '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 photo">'
@@ -1073,6 +1086,7 @@
                 + '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-1 shumu">'
                 + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
                 + '<div class="row" id="trollyQuan">' + quantity + '</div>'
+
                 + '<div class="row hidden-xs" style="background-color:darkcyan;visibility:hidden">填充DIV</div>'
                 + '</div>'
 
@@ -1108,42 +1122,263 @@
         return temp;
     }
 
+    function isClothes(clothesName, dis_Name) {
+        var flag = false;
+        for (var i = 0; i < clothesName.length; i++) {
+            for (var j = 0; j < dis_Name.length; j++) {
+                if (clothesName[i] == dis_Name[j]) {
+                    flag = true;
+                    return flag;
+                }
+            }
+
+
+        }
+
+
+        return flag
+    }
+
+    function isOverCount(clothesAll) {
+
+        var flag = false;
+        for (var i in clothesAll.data()) {
+            var tempName = clothesAll.data(i).name;
+            if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
+                flag = true;
+
+            }
+        }
+        return flag;
+    }
+
+    function isVIPs(typeUser) {
+        var flag = false;
+        if (typeUser == 'VIP会员') {
+            flag = true;
+        }
+        return flag;
+
+    }
+
+    function countNormal(clothesAll, typeUser, discount) {
+        var flag = false;
+        for (var i in clothesAll.data()) {
+            var tempName = clothesAll.data(i).name;
+            if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
+                flag = true;
+                $.cookie("flag", flag);
+            }
+        }
+
+        var amount = 0;
+        //flag 是否有特价
+        if (flag) {
+            for (var i in clothesAll.data()) {
+                var tempName = clothesAll.data(i).name;
+                //有无特价衣物
+                if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
+                    if (clothesAll.data(i).quantity > 1) {
+                        {#        disPrice//促销价#}
+                        {#       originPrice//原价#}
+                        amount = amount + 1 * clothesAll.data(i).price;
+                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
+
+                    } else {
+                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                    }
+//无特价衣物
+                } else {
+                    amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
+                }
+
+
+            }
+        } else {
+
+
+            for (var i in clothesAll.data()) {
+                amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+            }
+
+
+        }
+
+        return amount
+
+    }
+
+    function countDiscount(clothesAll, typeUser, discount) {
+
+        var flag = false;
+        for (var i in clothesAll.data()) {
+            var tempName = clothesAll.data(i).name;
+            if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
+                flag = true;
+
+            }
+        }
+        var amount = 0;
+        if (flag) {
+            for (var i in clothesAll.data()) {
+                //有无特价衣物
+                var tempName = clothesAll.data(i).name;
+                if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
+                    if (clothesAll.data(i).quantity > 1) {
+                        {#        disPrice//促销价#}
+                        {#       originPrice//原价#}
+                        //到时候改成disPrice
+                        amount = amount + 1 * clothesAll.data(i).price;
+                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
+
+                    } else {
+                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                    }
+//无特价衣物
+                } else {
+                    amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.7;
+                }
+            }
+
+        } else {
+            for (var i in clothesAll.data()) {
+                amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.7;
+            }
+
+        }
+
+
+        return amount
+
+
+    }
+
+
     function totalPrice() {
-
-
+        //获取用户类型
         var typeUser = $.cookie('u_type');
-        var old_price = 0;
+
+        var vipFlag = isVIPs(typeUser);
+
+        /*************NEW START*****************/
         var temp = 0;
-        var t = $("#lanziTable").data();
+        var amount = 0;
+        var discount = 0.7;
+        var clothesAll = $("#lanziTable");
+        var clothesName = new Array();
+        var dis_Name = new Array();
 
+
+        var isRepeat = isOverCount(clothesAll);
+
+        var count = 0;
+        for (var i in clothesAll.data()) {
+            var quantity = clothesAll.data(i).quantity;
+
+            var price = clothesAll.data(i).price;
+
+
+            var name = clothesAll.data(i).name;
+
+            var src = clothesAll.data(i).src;
+            clothesName[count] = name;
+            count++;
+
+
+        }
+        var dis_clothFlag = isClothes(clothesName, dis_Name);
+        //dis_clothFlag:true含特价衣服
+        if (vipFlag) {
+            amount = countDiscount(clothesAll, typeUser, discount)
+
+        }
+        else {
+            amount = countNormal(clothesAll, typeUser, discount);
+
+        }
+
+        amount = parseFloat(amount).toFixed(2);
+        {#        alert("price "+amount)#}
+        temp = amount;
+        /*************NEW END*****************/
+
+
+
+        var old_price = 0;
         for (var i in $("#lanziTable").data()) {
 
 
-            old_price = old_price + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;
+            old_price = old_price + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).originPrice;
 
         }
 
 
-        //特价衣物
-        for (var i in $("#lanziTable").data()) {
+        /*******Old START********/
+        {#        var old_price = 0;#}
+        {#        var temp = 0;#}
+        {#        var tempD = 0;#}
+        {#        var t = $("#lanziTable").data();#}
+        {##}
+        {#        for (var i in $("#lanziTable").data()) {#}
+        {##}
+        {##}
+        {#            old_price = old_price + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;#}
+        {##}
+        {#        }#}
+        {##}
+        {#        var flagDiscount = 0;#}
+        {#        //含有特价衣服#}
+        {#        for (var i in $("#lanziTable").data()) {#}
+        {#            if ($("#lanziTable").data(i).name == '西服上衣' || $("#lanziTable").data(i).name == '西裤' || $("#lanziTable").data(i).name == '运动鞋' || $("#lanziTable").data(i).name == '休闲鞋') {#}
+        {#                flagDiscount = 1;#}
+        {#                if ($("#lanziTable").data(i).quantity != 1) {#}
+        {#                    tempD = tempD + 1 * $("#lanziTable").data(i).price * 0.5;#}
+        {#                    tempD = tempD + ($("#lanziTable").data(i).quantity - 1) * $("#lanziTable").data(i).price;#}
+        {##}
+        {#                } else {#}
+        {#                    tempD = tempD + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;#}
+        {#                }#}
+        {#            } else {#}
+        {#                tempD = tempD + ($("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price);#}
+        {#            }#}
+        {##}
+        {##}
+        {#        }#}
+        {##}
+        {##}
+        {#        //特价衣物#}
+        {#        for (var i in $("#lanziTable").data()) {#}
+        {##}
+        {#            if ($("#lanziTable").data(i).name == '西服上衣' || $("#lanziTable").data(i).name == '西裤' || $("#lanziTable").data(i).name == '运动鞋' || $("#lanziTable").data(i).name == '休闲鞋') {#}
+        {##}
+        {#                temp = temp + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;#}
+        {##}
+        {##}
+        {#                if ($("#lanziTable").data(i).quantity != 1) {#}
+        {#                    temp = temp + 1* $("#lanziTable").data(i).price*0.5;#}
+        {#                    temp = temp + ($("#lanziTable").data(i).quantity-1) * $("#lanziTable").data(i).price;#}
+        {##}
+        {#                } else {#}
+        {#                    temp = temp + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;#}
+        {#                }#}
+        {##}
+        {#            }#}
+        {##}
+        {#            else {#}
+        {##}
+        {##}
+        {#                temp = temp + ($("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price) * 0.8;#}
+        {#                 alert(temp);#}
+        {#            }#}
+        {#        }#}
 
-            if ($("#lanziTable").data(i).name == '西服上衣' || $("#lanziTable").data(i).name == '西裤' || $("#lanziTable").data(i).name == '运动鞋' || $("#lanziTable").data(i).name == '休闲鞋') {
-                temp = temp + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;
+        /*******Old END********/
 
-            }
-
-            else {
-
-
-                temp = temp + ($("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price) * 0.8;
-                {#                 alert(temp);#}
-            }
-        }
 
         /***********************/
         if (typeUser == 'VIP会员') {
             $('#infoTip').show(200, function () {
-                $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)" + "￥" + old_price);
+                $("#infoTip").text(typeUser + ":" + "七折优惠(特价衣物除外)" + "￥" + old_price);
             })
             //return temp * level_discount
 
@@ -1158,10 +1393,40 @@
             // alert($.cookie("old_price"))
             return temp
         }
+
+        //普通用户含有特价商品
+
+        if (isRepeat) {
+
+            $('#disTips').show(200, function () {
+                $("#disTips").text(typeUser + ":" + "含有特价衣物除外，享受八折优惠" + "￥" + old_price);
+            })
+            //return temp * level_discount
+
+
+            $.cookie("vip_price", 0);
+            $.cookie("vip_price", temp, {expires: 1});
+            //alert($.cookie("vip_price"))
+
+
+            $.cookie("old_price", 0);
+            $.cookie("old_price", old_price, {expires: 1});
+            // alert($.cookie("old_price"))
+            return temp
+        }
+        //END
+
+
         $.cookie("old_price", 0);
         $.cookie("old_price", old_price, {expires: 1});
         //alert($.cookie("old_price"))
         /***********************/
+        {#        if (flagDiscount == 2) {#}
+        {#            $('#discoutTip').show(200, function () {#}
+        {#                $("#discoutTip").text("含特价衣物，第一件特价优惠!");#}
+        {#            })#}
+        {#        }#}
+
 
         //如果是普通用户则隐藏infoTip
         if (typeUser == '普通用户') {
@@ -1171,11 +1436,13 @@
         }
 
         if (typeUser == 'VIP会员') {
-
+            $("#disTips").hide();
             return temp;
 
         } else {
             temp = old_price
+
+
             return temp
         }
 
@@ -1221,7 +1488,13 @@
                 $(this).nextAll(".jiage").first().text("￥" + (parseInt($(this).nextAll(".jiage").first().text().substring(1)) - parseInt($(this).prevAll(".danjia").first().text().substring(1))));
             } else {
                 photoOfDiv.remove();
-                clothInfoOfDiv.remove();
+                clothInfoOfDiv.remove()
+                numCloth = $("#lanziTable").data(clothName).quantity;
+                if (clothName == '西服上衣' || clothName == '西裤' || clothName == '运动鞋' || clothName == '休闲鞋') {
+                    $('#disTips').hide();
+                }
+                {#                $('#disTips').hide();#}
+                {#                $('#infoTip').hide();#}
                 /*       之前的代码
                            var p = $(this).parent().parent();
                            $(this).parent().parent().fadeOut(400, function () {
@@ -1331,13 +1604,26 @@
      *
      * */
     $("#pay").click(function () {
-
             if (!$.cookie("user")) {
                 $('#errTip').show(200, function () {
                     $("#errTip").text("请先登录");
                 }).delay(2000).hide(200);
                 return;
             }
+
+            var date = new Date();
+
+            var Y = date.getYear();
+            var M = date.getMonth() + 1;
+            var D = date.getDate();
+            var tempDate = new Date(2017, M, 0);
+            var daycount = tempDate.getDate();
+
+            var school = $.cookie('dizhi')
+
+            var orderTime = M + '-' + D;
+
+/////////--------------------------
             if (($.cookie('dizhi') == "复旦大学") || ($.cookie('dizhi') == "上海财经大学") || ($.cookie('dizhi') == "松江一期") || ($.cookie('dizhi') == "松江二期")
                 || ($.cookie('dizhi') == "松江三期") || ($.cookie('dizhi') == "松江五期") || ($.cookie('dizhi') == "松江六期")) {
 
@@ -1371,20 +1657,9 @@
 
 
             } else {
-                /****生成时间 START****/
-                var date = new Date();
+//////---------                /****生成时间 START****/
 
-                var Y = date.getYear();
-                var M = date.getMonth() + 1;
-                var D = date.getDate();
-                var tempDate = new Date(2017, M, 0);
-                var daycount = tempDate.getDate();
-//alert(daycount)
 
-{#                                date.setFullYear(2017, 9, 1);#}
-//alert(tempDate)
-
-//alert($.cookie('dizhi'));
                 if ($.cookie('dizhi') == "复旦大学") {
                     if ((date.getMonth() + 1) == 9) {
 
@@ -1451,6 +1726,8 @@
 
                             }//if
                             else {
+
+
                                 $("#riqilist").children('.container1').children().remove();
                                 $("#riqilist").children('.container1').append('<li class="riqi">今天</li>');
                                 // $("#riqilist").children('.container').append('<li class="riqi">'+(date.getMonth()+1)+'-'+date.getDate()+'</li>');
@@ -1465,63 +1742,13 @@
                                     $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 2) + '</li>');
                                 }
 
-                            }
+
+                            }//else-if
                         }//if
                     }
 
 
                 }
-/////-------------------
-
-                {#                            $("#riqilist").children('.container1').children().remove();#}
-                {#                            $("#riqilist").children('.container1').append('<li class="riqi">今天</li>');#}
-                {#                            // $("#riqilist").children('.container').append('<li class="riqi">'+(date.getMonth()+1)+'-'+date.getDate()+'</li>');#}
-                {#                            if ((date.getDate() + 1) > daycount) {#}
-                {#                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');#}
-                {#                            } else {#}
-                {#                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 1) + '</li>');#}
-                {#                            }#}
-                {#                            if ((date.getDate() + 2) > daycount) {#}
-                {#                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 1 + '</li>');#}
-                {#                            } else {#}
-                {#                                $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 1) + '-' + (date.getDate() + 2) + '</li>');#}
-                {#                            }#}
-                /****生成时间 END****/
-
-
-                {#            //生成日期 START#}
-                {##}
-                {#            var date = new Date();#}
-                {#            var nowDate = new Date(date.getYear(), date.getMonth() + 2, 0);#}
-                {#            //var nowDate = new Date(2017, 10, 0);#}
-                {#            var monofDay = nowDate.getDate();#}
-                {##}
-                {##}
-                {#            var datum = [{id: 0, text: '日期'}];#}
-                {#            //datum.pop();#}
-                {#            datum.push({id: 1, text: "今天"});#}
-                {#            if ((date.getDate() + 1) > monofDay) {#}
-                {#                datum.push({id: 1, text: (date.getMonth() + 1) + "-" + date.getDate()})#}
-                {##}
-                {#            } else {#}
-                {#                datum.push({id: 1, text: (date.getMonth() + 1) + '-' + (date.getDate() + 1)});#}
-                {#            }#}
-                {#            if ((date.getDate() + 2) > monofDay) {#}
-                {#                datum.push({id: 2, text: (date.getMonth() + 2) + '-' + 1})#}
-                {#            } else {#}
-                {#                datum.push({id: 2, text: (date.getMonth() + 1) + '-' + (date.getDate() + 2)});#}
-                {#            }#}
-                {##}
-                {#            $(".dateList").select2({#}
-                {##}
-                {##}
-                {#                data: datum,#}
-                {#                minimumResultsForSearch: Infinity,#}
-                {##}
-                {#            });#}
-                {##}
-                {##}
-                {#            //生成日期 END#}
 
 
                 //获取学校地址
@@ -1541,150 +1768,16 @@
             }
 
 
-        }
+        }//----------------*!@
+
+
     );
-
-    $(".dateList").on("select2:select", function () {
-        var datumTime = [];
-        var date = new Date();
-
-        //$(this).prev().text() 同辈元素是否为空
-        // if ($(this).prev().text() == "") {
-        if (date.getHours() < 10) {
-            datumTime.push({id: 0, text: '12:00-12:45'});
-
-        }
-        if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {
-            datumTime.push({id: 1, text: '12:45-13:30'});
-        }
-        if (date.getHours() < 16) {
-
-            datumTime.push({id: 2, text: '18:00-18:45'});
-        }
-        if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {
-
-            datumTime.push({id: 3, text: '18:45-19:30'});
-        }
-        if ((date.getHours() == 21 && date.getMinutes() < 30) || date.getHours() < 21) {
-
-            datumTime.push({id: 4, text: '22:00-23:00'});
-        } else {
-
-            datumTime.push({id: 5, text: '无可用取衣时间段'});
-        }
-
-        //  } else {
-
-
-        {#                datumTime.push({id: 0, text: '12:00-12:45'});#}
-        {#                datumTime.push({id: 1, text: '12:45-13:30'});#}
-        {#                datumTime.push({id: 2, text: '18:00-18:45'});#}
-        {#                datumTime.push({id: 3, text: '18:45-19:30'});#}
-        {#                datumTime.push({id: 4, text: '22:00-23:00'});#}
-
-        // }
-
-        $(".timeList").select2({
-
-
-            data: datumTime,
-            minimumResultsForSearch: Infinity,
-
-        })
-
-    });
 
 
     /**
      *
      *  Calender START
      * */
-
-    {#    var date = new Date();#}
-    {#    var nowDate = new Date(date.getYear(), date.getMonth() + 2, 0);#}
-    {#    //var nowDate = new Date(2017, 10, 0);#}
-    {#    var monofDay = nowDate.getDate();#}
-    {##}
-    {##}
-    {#    var datum = [{id: 0, text: '日期'}];#}
-    {#    //datum.pop();#}
-    {#    datum.push({id: 1, text: "今天"});#}
-    {#    if ((date.getDate() + 1) > monofDay) {#}
-    {#        datum.push({id: 1, text: (date.getMonth() + 1) + "-" + date.getDate()})#}
-    {##}
-    {#    } else {#}
-    {#        datum.push({id: 1, text: (date.getMonth() + 1) + '-' + (date.getDate() + 1)});#}
-    {#    }#}
-    {#    if ((date.getDate() + 2) > monofDay) {#}
-    {#        datum.push({id: 2, text: (date.getMonth() + 2) + '-' + 1})#}
-    {#    } else {#}
-    {#        datum.push({id: 2, text: (date.getMonth() + 1) + '-' + (date.getDate() + 2)});#}
-    {#    }#}
-    {##}
-    {#    $(".dateList").select2({#}
-    {##}
-    {##}
-    {#        data: datum,#}
-    {#        minimumResultsForSearch: Infinity,#}
-    {##}
-    {#    });#}
-    $(".timeList").select2({
-
-
-        placeholder: "取衣时间",
-        minimumResultsForSearch: Infinity,
-
-    });
-
-
-    {#    var datumTime = [];#}
-    {##}
-    {##}
-    {#    if ($(this).prev().text() == "") {#}
-    {#        if (date.getHours() < 10) {#}
-    {#            datumTime.push({id: 0, text: '12:00-12:45'});#}
-    {##}
-    {#        }#}
-    {#        if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {#}
-    {#            datumTime.push({id: 1, text: '12:45-13:30'});#}
-    {#        }#}
-    {#        if (date.getHours() < 16) {#}
-    {##}
-    {#            datumTime.push({id: 2, text: '18:00-18:45'});#}
-    {#        }#}
-    {#        if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {#}
-    {##}
-    {#            datumTime.push({id: 3, text: '18:45-19:30'});#}
-    {#        }#}
-    {#        if ((date.getHours() == 21 && date.getMinutes() < 30) || date.getHours() < 21) {#}
-    {##}
-    {#            datumTime.push({id: 4, text: '22:00-23:00'});#}
-    {#        } else {#}
-    {##}
-    {#            datumTime.push({id: 5, text: '无可用取衣时间段'});#}
-    {#        }#}
-    {#    } else {#}
-    {##}
-    {##}
-    {#        datumTime.push({id: 0, text: '12:00-12:45'});#}
-    {#        datumTime.push({id: 1, text: '12:45-13:30'});#}
-    {#        datumTime.push({id: 2, text: '18:00-18:45'});#}
-    {#        datumTime.push({id: 3, text: '18:45-19:30'});#}
-    {#        datumTime.push({id: 4, text: '22:00-23:00'});#}
-    {##}
-    {#    }#}
-
-
-    $('select').on('select2:selecting', function (evt) {
-
-    });
-    {#    $(".timeList").select2({#}
-    {##}
-    {##}
-    {#        data: datumTime,#}
-    {#        minimumResultsForSearch: Infinity,#}
-    {##}
-    {#    })#}
 
 
     /**
@@ -1712,14 +1805,6 @@
      *queryOrderBack
      * */
     $("#queryOrder").click(function () {
-
-        {#         if (!$.cookie("user")) {#}
-        {#            $('#errTip').show(200, function () {#}
-        {#                $("#errTip").text("请先登录");#}
-        {#            }).delay(2000).hide(200);#}
-        {#            return;#}
-        {#        }#}
-
 
         $('#goodsDiv').fadeToggle(200, function () {
             $('#OrdersDiv').fadeToggle(200);
@@ -1842,14 +1927,6 @@
             var note = $('#note').val();
 
 
-            console.log('school:' + school);
-            console.log('addr:' + addr);
-            console.log('address:' + address);
-            console.log('phone:' + phone);
-            console.log('note:' + note);
-            console.log('dateInfo:' + riqi);
-            console.log('timeInfo:' + time);
-
             var dateInfo = riqi;
             var timeInfo = time;
 
@@ -1921,68 +1998,6 @@
 
 ///new-end
 
-
-            /*
-                    $("#payDiv").fadeToggle('200', function () {
-                       // $("#lanziTable").removeData();
-                       // $.cookie("contact", $("#lianxi").val(), {expires: 1});
-                       // $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});
-                        $("#payResultDiv").fadeToggle('200', function () {
-                            setTimeout("$('#miaoshu').text('2')", 800);
-                            setTimeout("$('#miaoshu').text('1')", 1800);
-                            setTimeout("$('#miaoshu').text('0')", 2800);
-                            setTimeout("window.location.href = ''", 2900);
-                        });
-                    });
-
-            */
-
-            /*************************/
-            {#            if ($.cookie('cart')) {#}
-            {#                if ($("#quyu").val() == "" || $("#lianxi").val() == "" || riqi == "" || time == "") {#}
-            {#                    $('.tishi').text('请填写完整信息！');#}
-            {#                    $('.tishi').slideToggle(200);#}
-            {#                    setTimeout("$('.tishi').slideToggle(200);", 1000);#}
-            {#                } else {#}
-            {#                    if ($("#jiesuanDiv").is(":animated")) {#}
-            {#                        return;#}
-            {#                    } else {#}
-            {##}
-            {#                        //new -start#}
-            {#                        if (!$.cookie("cart")) {#}
-            {#                            return;#}
-            {#                        }#}
-            {#                        ;#}
-            {#                        $.cookie("cart", null);#}
-            {#                        $.post("{{ url_for('toudi') }}", {#}
-            {#                            dizhi: $("#quyu").val(),#}
-            {#                            shouji: $("#lianxi").val(),#}
-            {#                            shijian: riqi + " " + time,#}
-            {#                            content: JSON.stringify($("#lanziTable").data()),#}
-            {#                            note: $("#liuyan").val()#}
-            {#                        }, function () {#}
-            {#                            $("#payDiv").fadeToggle('200', function () {#}
-            {#                                $("#lanziTable").removeData();#}
-            {#                                $.cookie("contact", $("#lianxi").val(), {expires: 1});#}
-            {#                                $.cookie("cart", JSON.stringify($("#lanziTable").data()), {expires: 1});#}
-            {#                                $("#payResultDiv").fadeToggle('200', function () {#}
-            {#                                    setTimeout("$('#miaoshu').text('2')", 800);#}
-            {#                                    setTimeout("$('#miaoshu').text('1')", 1800);#}
-            {#                                    setTimeout("$('#miaoshu').text('0')", 2800);#}
-            {#                                    setTimeout("window.location.href = ''", 2900);#}
-            {#                                });#}
-            {#                            });#}
-            {#                        });#}
-            {##}
-            {##}
-            {#///new-end#}
-            {##}
-            {##}
-            {#                    }#}
-            {#                }#}
-            {#            } else {#}
-            {#                return;#}
-            {#            }#}
             /*************************/
 
         }//functon() END
@@ -1993,26 +2008,7 @@
 
 
     /**queryOrders START**/
-    {# $('#checkBtn').click(function () {
-         var tel = $.cookie('contact');
-         $.post("{{ url_for('queryOrders') }}", {phone: tel}, function (data) {
 
-             $("#lishiShow").children().remove();
-             for (i = 0; i < data.cart.length; i++) {
-                 $("#lishiShow").append('<table>' +
-                     '<tr><td>订单内容</td><td style="text-align: center">' + showCart(JSON.parse(data.cart[i].list)) + '</td></tr>' +
-                     '<tr><td>取衣时间</td><td style="text-align: center>' + data.cart[i].dtime + '</td></tr>' +
-                     '<tr><td>地址</td><td style="text-align: center>' + data.cart[i].deliver + '</td></tr>' +
-                     '<tr><td>状态</td><td >' + queryState(data.cart[i].state) + '</td>' +
-                     '</tr><tr><td>留言</td><td>' + data.cart[i].note + '</td></tr>' +
-                     '</table><br>')
-             }
-
-         });
-
-
-     });
- #}
 
     function showCart(cart) {
         var result = "";
@@ -2061,80 +2057,11 @@
     /**时间日期相关 START**/
     $(".container1").delegate('.riqi', 'click', function () {
         var date = new Date();
+
+
         $("#timelist").children('.container1').children().remove();
         $("#timedrop").html('取衣时间');
         time = "";
-
-
-        {#        if ($.cookie('dizhi').substring(0, 6) == "华东师范大学" || $.cookie('dizhi').substring(0, 6) == "上海东海学院" || $.cookie('dizhi').substring(0, 6) == "上海电机学院") {#}
-        {#            if ($(this).prev().text() == "") {#}
-        {#                if (date.getHours() < 10) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
-        {#                }#}
-        {#                if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
-        {#                } else {#}
-        {#                    $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');#}
-        {#                }#}
-        {#            } else {#}
-        {#                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
-        {#                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
-        {#            }#}
-        {#        } else if ($.cookie('dizhi').substring(0, 6) == "上海交通大学") {#}
-        {#            if ($(this).prev().text() == "") {#}
-        {#                if (date.getHours() < 10) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
-        {#                }#}
-        {#                if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
-        {#                }#}
-        {#                if (date.getHours() < 16) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');#}
-        {#                }#}
-        {#                if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');#}
-        {#                }#}
-        {#                if ((date.getHours() == 21 && date.getMinutes() < 30) || date.getHours() < 21) {#}
-        {##}
-        {#                } else {#}
-        {#                    $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');#}
-        {#                }#}
-        {#            } else {#}
-        {#                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
-        {#                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
-        {#                $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');#}
-        {#                $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');#}
-        {##}
-        {#            }#}
-        {#        } else {#}
-        {#            if ($(this).prev().text() == "") {#}
-        {#                if (date.getHours() < 10) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
-        {#                }#}
-        {#                if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
-        {#                }#}
-        {#                if (date.getHours() < 16) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');#}
-        {#                }#}
-        {#                if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');#}
-        {#                }#}
-        {#                if ((date.getHours() == 21 && date.getMinutes() < 30) || date.getHours() < 21) {#}
-        {#                    $("#timelist").children('.container1').append('<li class="time">22:00-23:00</li>');#}
-        {#                } else {#}
-        {#                    $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');#}
-        {#                }#}
-        {#            } else {#}
-        {#                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');#}
-        {#                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');#}
-        {#                $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');#}
-        {#                $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');#}
-        {##}
-        {#            }#}
-        {#        }#}
-
-
 
         /*
         if($.cookie('dizhi')=="上海交通大学" && $(this).text()=="今天"){
@@ -2142,31 +2069,158 @@
 
         }else{
         */
+        var Y = date.getYear();
+        var M = date.getMonth() + 1;
+        var D = date.getDate();
+        var school = $.cookie('dizhi')
+
+        var orderTime = M + '-' + D;
+        var tomm = M + '-' + (D + 1);
+        var tomm1 = M + '-' + (D + 2);
+        var M_D = $(this).text();
+        $.post("{{ url_for('t') }}", {
+            "school": school,
+            "orderTime": orderTime,
+            "orderTimeDay": tomm,
+            "orderTimeDay1": tomm1
+        }, function (data) {
 
 
-        if ($(this).text() == "今天") {
-            if (date.getHours() < 10) {
-                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
-            }
-            if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {
-                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
-            }
-            if (date.getHours() < 16) {
-                $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
-            }
-            if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {
-                $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
-            }
-            else {
-                $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');
-            }
-        } else {
-            $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
-            $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
-            $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
-            $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
+            $("#timelist").children('.container1').children().remove();
+            $("#timedrop").html('取衣时间');
+            {#            remainNumber = data.remainNumber[0].number;#}
+            {#            c_number = data.remainNumber[1].c_number;#}
 
-        }
+            time1_flag_TD = data.flag_TD[orderTime]["time1_flag"];
+            time2_flag_TD = data.flag_TD[orderTime]["time2_flag"];
+            time3_flag_TD = data.flag_TD[orderTime]["time3_flag"];
+            time4_flag_TD = data.flag_TD[orderTime]["time4_flag"];
+
+            time1_flag_T = data.flag_T[tomm]["time1_flag"];
+            time2_flag_T = data.flag_T[tomm]["time2_flag"];
+            time3_flag_T = data.flag_T[tomm]["time3_flag"];
+            time4_flag_T = data.flag_T[tomm]["time4_flag"];
+
+            time1_flag_T1 = data.flag_T1[tomm1]["time1_flag"];
+            time2_flag_T1 = data.flag_T1[tomm1]["time2_flag"];
+            time3_flag_T1 = data.flag_T1[tomm1]["time3_flag"];
+            time4_flag_T1 = data.flag_T1[tomm1]["time4_flag"];
+
+
+            if (M_D == "今天") {
+                if (false) {
+
+                    $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                } else {
+
+                    if (date.getHours() < 10) {
+
+                        if (time1_flag_TD) {
+                            $("#timelist").children('.container1').append('<li class="notime">12:00-12:45(预约已满)</li>');
+                        } else {
+                            $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
+
+                        }
+
+
+                    }
+                    if ((date.getHours() == 11 && date.getMinutes() < 15) || date.getHours() < 11) {
+                        if (time2_flag_TD) {
+                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                        } else {
+                            $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
+
+                        }
+                    }
+                    if (date.getHours() < 16) {
+                        if (time3_flag_TD) {
+                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                        } else {
+                            $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
+                        }
+
+                    }
+                    if ((date.getHours() == 17 && date.getMinutes() < 15) || date.getHours() < 17) {
+                        if (time4_flag_TD) {
+                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                        } else {
+                            $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
+                        }
+
+                    }
+                    else {
+                        $("#timelist").children('.container1').append('<li class="notime">无可用取衣时间段</li>');
+                    }
+
+                }//if-
+            } else {
+                if (M_D == tomm) {
+                    if (false) {
+
+                        $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                    } else {
+                        if (time1_flag_T) {
+                            $("#timelist").children('.container1').append('<li class="notime" style="color:red;font-size:5px">12:00-12:45(预约已满)</li>');
+                        } else {
+                            $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
+                        }
+                        if (time2_flag_T) {
+                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                        } else {
+                            $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
+                        }
+                        if (time3_flag_T) {
+                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                        } else {
+                            $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
+                        }
+                        if (time4_flag_T) {
+                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                        } else {
+                            $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
+                        }
+
+
+                    }
+                }
+                else {
+                    if (M_D == tomm1) {
+                        if (false) {
+
+                            $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                        } else {
+                            if (time1_flag_T1) {
+                                $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            } else {
+                                $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
+                            }
+                            if (time2_flag_T1) {
+                                $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            } else {
+                                $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
+                            }
+                            if (time3_flag_T1) {
+                                $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            } else {
+                                $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
+                            }
+                            if (time4_flag_T1) {
+                                $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
+                            } else {
+                                $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+            }//今天-if
+
+
+        })
 
 
 //}/**/
@@ -2183,6 +2237,8 @@
 
 
     $(".container1").delegate('.time', 'click', function () {
+
+
         $("#timedrop").text($(this).text());
         $(this).parent().slideToggle(200);
         time = $(this).text()
@@ -2196,6 +2252,7 @@
             {#            setTimeout("$('.tishi').slideToggle(200);", 1000);#}
         }
     });
+
     /**时间日期相关 END**/
 
 

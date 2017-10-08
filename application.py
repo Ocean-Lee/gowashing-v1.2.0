@@ -183,13 +183,13 @@ def index():
         print request.cookies.get('schoolname')
         nameSchool = utilMethod(request.cookies.get('schoolname'))
         resultClothes = query_db(
-            'select scope,merchant,c_name,imgURL,price,promotion from merchant m left join tariff t on m.m_id = t.m_id  left join commodity c  on  t.c_id=c.c_id where c_type = 0 and scope=?',
+            'select scope,merchant,c_name,imgURL,price,promotion,disPrice from merchant m left join tariff t on m.m_id = t.m_id  left join commodity c  on  t.c_id=c.c_id where c_type = 0 and scope=?',
             [nameSchool])
         resultShoes = query_db(
-            'select scope,merchant,c_name,imgURL,price,promotion from merchant m left join tariff t on m.m_id = t.m_id  left join commodity c  on  t.c_id=c.c_id where c_type = 1 and scope=?',
+            'select scope,merchant,c_name,imgURL,price,promotion,disPrice from merchant m left join tariff t on m.m_id = t.m_id  left join commodity c  on  t.c_id=c.c_id where c_type = 1 and scope=?',
             [nameSchool])
         result = query_db(
-            'select scope,merchant,c_name,imgURL,price,promotion from merchant m left join tariff t on m.m_id = t.m_id  left join commodity c  on  t.c_id=c.c_id where c_type = 2 and scope=?',
+            'select scope,merchant,c_name,imgURL,price,promotion,disPrice from merchant m left join tariff t on m.m_id = t.m_id  left join commodity c  on  t.c_id=c.c_id where c_type = 2 and scope=?',
             [nameSchool])
         return render_template("goods.html", result=result, resultClothes=resultClothes, resultShoes=resultShoes)
     else:
@@ -473,6 +473,12 @@ def getBackOrder_ALL():
                 'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7)=? order by ID desc',
                 [u'上海财经大学'])
             return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
+        if session['xuexiao'] == "SJUCC":
+            # orders = query_db('select * from cart where substr(deliver, 0, 7)=? order by ID desc', [u'上海财经大学'])
+            orders = query_db(
+                'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 7) in("松江五期","松江六期")  order by ID desc')
+            return render_template("back.html", orders=orders, auth=session['Admin'], all=1)
+
         if session['xuexiao'] == "SJXH":
             # orders = query_db('select * from cart where substr(deliver, 0, 11)=? order by ID desc', [u'上海交通大学(徐汇)'])
             orders = query_db(
@@ -1097,6 +1103,69 @@ def removeMerchant():
     # g.db.commit()
     print 'ok'
     return jsonify({"msg": "OK"})
+
+@app.route('/t', methods=['GET', 'POST'])
+def t():
+
+    school = request.form.get("school")
+    order_day1 = request.form.get("orderTime")
+    order_day2 = request.form.get("orderTimeDay")
+    order_day3 = request.form.get("orderTimeDay1")
+
+    m_num = query_db('select countDay as c_number from merchant where scope = ?', [school])
+    m_num_n = m_num[0]["c_number"]
+    days = [order_day1,order_day2,order_day3]
+    flag_TD = {}
+    flag_T = {}
+    flag_T1 = {}
+
+    for day in days:
+        time_1_use = query_db(
+            "select count(*) as number from cart where substr(dtime, 1, 4) = ? and scope = ? and substr(dtime,6,11)='12:00-12:45' ",
+            [day, school])
+        time_2_use = query_db(
+            "select count(*) as number from cart where substr(dtime, 1, 4) = ? and scope = ? and substr(dtime,6,11)='12:45-13:30' ",
+            [day, school])
+        time_3_use = query_db(
+            "select count(*) as number from cart where substr(dtime, 1, 4) = ? and scope = ? and substr(dtime,6,11)='18:00-18:45' ",
+            [day, school])
+        time_4_use = query_db(
+            "select count(*) as number from cart where substr(dtime, 1, 4) = ? and scope = ? and substr(dtime,6,11)='18:45-19:30' ",
+            [day, school])
+        time_1_use_n = time_1_use[0]["number"]
+        time_2_use_n = time_1_use[0]["number"]
+        time_3_use_n = time_1_use[0]["number"]
+        time_4_use_n = time_1_use[0]["number"]
+
+
+        time1_flag = False
+        time2_flag = False
+        time3_flag = False
+        time4_flag = False
+        if time_1_use_n > m_num_n:
+            time1_flag = True
+
+        if time_2_use_n > m_num_n:
+            time2_flag = True
+
+        if time_3_use_n > m_num_n:
+            time3_flag = True
+
+        if time_4_use_n > m_num_n:
+            time4_flag = True
+
+
+        if day==order_day1:
+            flag_TD={day:{"time1_flag":time1_flag,"time2_flag":time2_flag,"time3_flag":time3_flag,"time4_flag":time4_flag}}
+        if day==order_day2:
+            flag_T={day:{"time1_flag":time1_flag,"time2_flag":time2_flag,"time3_flag":time3_flag,"time4_flag":time4_flag}}
+        if day==order_day3:
+            flag_T1={day:{"time1_flag":time1_flag,"time2_flag":time2_flag,"time3_flag":time3_flag,"time4_flag":time4_flag}}
+
+    return jsonify({"flag_TD": flag_TD, "flag_T":flag_T, "flag_T1":flag_T1})
+
+
+
 
 
 if __name__ == "__main__":
