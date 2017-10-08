@@ -1632,19 +1632,9 @@
 
                     $("#errTip2").text("洗衣商家十一也要放假啦~很抱歉10/1-10/11没法为你取送~请您注意取衣时间哦~");
                 }
-                if (($.cookie('dizhi') == "上海财经大学")) {
-
-                    $("#errTip2").text("洗衣商家十一也要放假啦~很抱歉10/1-10/3没法为你取送~请您注意取衣时间哦~");
-                }
-                if (($.cookie('dizhi') == "松江一期") || ($.cookie('dizhi') == "松江二期") || ($.cookie('dizhi') == "松江三期")) {
-                    $("#errTip2").text("洗衣商家十一也要放假啦~很抱歉10/1-10/5没法为你取送~请您注意取衣时间哦~");
-                }
-
-                if (($.cookie('dizhi') == "松江五期") || ($.cookie('dizhi') == "松江六期")) {
-                    $("#errTip2").text("洗衣商家十一也要放假啦~很抱歉10/1-10/4没法为你取送~请您注意取衣时间哦~");
-                }
 
 
+                $("#errTip2").hide();
             } else {
                 $("#errTip2").hide();
             }
@@ -1680,7 +1670,7 @@
 
 
                     ///上财S
-                    if ($.cookie('dizhi') == "上海财经大学") {
+                    if ($.cookie('dizhi') == "上海财经大") {
                         if ((date.getMonth() + 1) == 9) {
                             $("#riqilist").children('.container1').children().remove();
                             $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 4 + '</li>');
@@ -1696,7 +1686,7 @@
                     else {
                         ///松江1、2、3期
 
-                        if (($.cookie('dizhi') == "松江一期") || ($.cookie('dizhi') == "松江二期") || ($.cookie('dizhi') == "松江三期")) {
+                        if (($.cookie('dizhi') == "松江一") || ($.cookie('dizhi') == "松江二") || ($.cookie('dizhi') == "松江三")) {
                             if ((date.getMonth() + 1) == 9) {
                                 $("#riqilist").children('.container1').children().remove();
                                 $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 6 + '</li>');
@@ -1712,7 +1702,7 @@
 
 
                         else {
-                            if (($.cookie('dizhi') == "松江五期") || ($.cookie('dizhi') == "松江六期")) {
+                            if (($.cookie('dizhi') == "松江五") || ($.cookie('dizhi') == "松江六")) {
                                 if ((date.getMonth() + 1) == 9) {
                                     $("#riqilist").children('.container1').children().remove();
                                     $("#riqilist").children('.container1').append('<li class="riqi">' + (date.getMonth() + 2) + '-' + 5 + '</li>');
