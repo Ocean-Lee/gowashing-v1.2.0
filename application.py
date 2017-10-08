@@ -361,12 +361,16 @@ def getBackOrder():
             orders = query_db(
                 'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5) in ("松江五期","松江六期") order by ID desc')
             return render_template("back.html", orders=orders, auth=session['Admin'])
+
+
         if session['xuexiao'] == "SJHSLJ":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? and time>? order by ID desc', [u'松江四期', int(time.time())-604800])
             orders = query_db(
                 'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
                 [u'松江四期', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
+
+
         if session['xuexiao'] == "SJSW":
             # orders = query_db('select * from cart where substr(deliver, 0, 5) in("松江一期","松江二期","松江三期") and time>? order by ID desc', [ int(time.time())-604800])
             orders = query_db(
@@ -1108,7 +1112,14 @@ def t():
     order_day2 = request.form.get("orderTimeDay")
     order_day3 = request.form.get("orderTimeDay1")
 
-    m_num = query_db('select countDay as c_number from merchant where scope = ?', [school])
+    if school==u'复旦大学':
+        print school
+        m_num = query_db("select countDay as c_number from merchant where scope = '复旦南区'")
+    else:
+        m_num = query_db('select countDay as c_number from merchant where scope = ?', [school])
+
+
+
     m_num_n = m_num[0]["c_number"]
     days = [order_day1,order_day2,order_day3]
 

@@ -1182,7 +1182,7 @@
                         {#        disPrice//促销价#}
                         {#       originPrice//原价#}
                         //amount = amount + 1 * clothesAll.data(i).price;
-                       // amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
+                        // amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
                         amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
 
                     } else {
@@ -1191,7 +1191,7 @@
 //无特价衣物
                 } else {
                     //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
-                    amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price ;
+                    amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
                 }
 
 
@@ -1231,9 +1231,8 @@
                         {#       originPrice//原价#}
                         //到时候改成disPrice
                         //amount = amount + 1 * clothesAll.data(i).price;
-                      //  amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
+                        //  amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
                         amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
-
 
 
                     } else {
@@ -1248,7 +1247,7 @@
 
         } else {
             for (var i in clothesAll.data()) {
-               //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.7;
+                //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.7;
                 amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
 
             }
@@ -1277,7 +1276,7 @@
         var dis_Name = new Array();
 
 
-       // var isRepeat = isOverCount(clothesAll);
+        // var isRepeat = isOverCount(clothesAll);
 
         var count = 0;
         for (var i in clothesAll.data()) {
@@ -1403,28 +1402,28 @@
             // alert($.cookie("old_price"))
             return temp
         }
-/***********************/
+        /***********************/
         //普通用户含有特价商品
 
-{#        if (isRepeat) {#}
-{##}
-{#            $('#disTips').show(200, function () {#}
-{#                $("#disTips").text(typeUser + ":" + "含有特价衣物除外，享受八折优惠" + "￥" + old_price);#}
-{#            })#}
-{#            //return temp * level_discount#}
-{##}
-{##}
-{#            $.cookie("vip_price", 0);#}
-{#            $.cookie("vip_price", temp, {expires: 1});#}
-{#            //alert($.cookie("vip_price"))#}
-{##}
-{##}
-{#            $.cookie("old_price", 0);#}
-{#            $.cookie("old_price", old_price, {expires: 1});#}
-{#            // alert($.cookie("old_price"))#}
-{#            return temp#}
-{#        }#}
-{#        //普通用户含有特价商品END#}
+        {#        if (isRepeat) {#}
+        {##}
+        {#            $('#disTips').show(200, function () {#}
+        {#                $("#disTips").text(typeUser + ":" + "含有特价衣物除外，享受八折优惠" + "￥" + old_price);#}
+        {#            })#}
+        {#            //return temp * level_discount#}
+        {##}
+        {##}
+        {#            $.cookie("vip_price", 0);#}
+        {#            $.cookie("vip_price", temp, {expires: 1});#}
+        {#            //alert($.cookie("vip_price"))#}
+        {##}
+        {##}
+        {#            $.cookie("old_price", 0);#}
+        {#            $.cookie("old_price", old_price, {expires: 1});#}
+        {#            // alert($.cookie("old_price"))#}
+        {#            return temp#}
+        {#        }#}
+        {#        //普通用户含有特价商品END#}
 
 
         $.cookie("old_price", 0);
@@ -2078,6 +2077,8 @@
         var tomm = M + '-' + (D + 1);
         var tomm1 = M + '-' + (D + 2);
         var M_D = $(this).text();
+
+
         $.post("{{ url_for('t') }}", {
             "school": school,
             "orderTime": orderTime,
@@ -2159,6 +2160,7 @@
 
                         $("#timelist").children('.container1').append('<li class="notime">预约已满</li>');
                     } else {
+
                         if (time1_flag_T) {
                             $("#timelist").children('.container1').append('<li class="notime" style="font-size:4px">12:00-12:45(预约已满)</li>');
                         } else {
@@ -2212,6 +2214,13 @@
 
                         }
 
+                    }
+                    //临时删除，为了复旦
+                    else {
+                        $("#timelist").children('.container1').append('<li class="time">12:00-12:45</li>');
+                        $("#timelist").children('.container1').append('<li class="time">12:45-13:30</li>');
+                        $("#timelist").children('.container1').append('<li class="time">18:00-18:45</li>');
+                        $("#timelist").children('.container1').append('<li class="time">18:45-19:30</li>');
                     }
 
                 }
