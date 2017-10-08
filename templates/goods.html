@@ -1308,6 +1308,7 @@
         amount = parseFloat(amount).toFixed(2);
         {#        alert("price "+amount)#}
         temp = amount;
+        alert(temp)
         /*************NEW END*****************/
 
 
@@ -1316,7 +1317,8 @@
         for (var i in $("#lanziTable").data()) {
 
 
-            old_price = old_price + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).originPrice;
+            //old_price = old_price + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).originPrice;
+            old_price = old_price + $("#lanziTable").data(i).quantity * $("#lanziTable").data(i).price;
 
         }
 
@@ -1386,7 +1388,7 @@
         /***********************/
         if (typeUser == 'VIP会员') {
             $('#infoTip').show(200, function () {
-                $("#infoTip").text(typeUser + ":" + "七折优惠(特价衣物除外)" + "￥" + old_price);
+                $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)" + "￥" + old_price);
             })
             //return temp * level_discount
 
@@ -1444,7 +1446,7 @@
         }
 
         if (typeUser == 'VIP会员') {
-            $("#disTips").hide();
+            $("#infoTip").hide();
             return temp;
 
         } else {
