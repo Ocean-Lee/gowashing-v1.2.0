@@ -445,7 +445,7 @@
                                 <div style="" class="origin">¥{{ clothes.price }}</div>
                                 <div style="display: none;" class="disPrice">¥{{ clothes.disPrice }}</div>
 
-                                {% if clothes.c_name== '西服上衣' %}
+                                {% if clothes.c_name== '西服上衣1' %}
                                     <span class="danjia_new"
                                           style="position: absolute;bottom: 110px;padding: 10px 6px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;color: white;">￥{{ clothes.promotion }}</span>
 
@@ -455,7 +455,7 @@
 
                                 {% endif %}
 
-                                {% if clothes.c_name== '西裤' %}
+                                {% if clothes.c_name== '西裤1' %}
                                     <span class="danjia_new"
                                           style="position: absolute;bottom: 110px;padding: 10px 8px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;color: white">￥{{ clothes.promotion }}</span>
 
@@ -501,7 +501,7 @@
                                 <div class="origin">¥{{ shoes.price }}</div>
                                 <div style="display: none;" class="disPrice">¥{{ shoes.disPrice }}</div>
 
-                                {% if shoes.c_name== '运动鞋' %}
+                                {% if shoes.c_name== '运动鞋1' %}
                                     <span class="danjia_new"
                                           style="color: white;position: absolute;bottom: 110px;padding: 10px 8px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ shoes.promotion }}</span>
 
@@ -512,7 +512,7 @@
                                 {% endif %}
 
 
-                                {% if shoes.c_name== '休闲鞋' %}
+                                {% if shoes.c_name== '休闲鞋1' %}
                                     <span class="danjia_new"
                                           style="color: white;position: absolute;bottom: 110px;padding: 10px 8px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ shoes.promotion }}</span>
 
@@ -547,7 +547,7 @@
                                 <div style="display: none;" class="disPrice">¥{{ sheet.disPrice }}</div>
 
 
-                                {% if sheet.c_name== '休闲鞋' %}
+                                {% if sheet.c_name== '休闲鞋1' %}
                                     <span class="danjia_new"
                                           style="color: white;position: absolute;bottom: 110px;padding: 10px 8px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ sheet.promotion }}</span>
 
@@ -557,7 +557,7 @@
 
                                 {% endif %}
 
-                                {% if sheet.c_name== '休闲鞋' %}
+                                {% if sheet.c_name== '休闲鞋1' %}
                                     <span class="danjia_new"
                                           style="color: white;position: absolute;bottom: 110px;padding: 10px 8px;background: rgba(242, 75, 75, 0.87);border-radius: 30px;">￥{{ sheet.promotion }}</span>
 
@@ -642,6 +642,7 @@
         </div>
 
         <div id="infoTip" style="display: none" class="alert alert-info"></div>
+        <div id="infoTip1" style="display: none" class="alert alert-info"></div>
         <div id="disTips" style="display: none" class="alert alert-info"></div>
 
         <div class="row trolleyBtn">
@@ -888,6 +889,7 @@
 
         //先要隐藏VIP提示信息
         $('#infoTip').hide();
+        $('#infoTip1').hide();
         $("#disTips").hide();
         //alert($.cookie('u_type'))
 
@@ -1144,7 +1146,7 @@
         var flag = false;
         for (var i in clothesAll.data()) {
             var tempName = clothesAll.data(i).name;
-            if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
+            if (tempName == "运动鞋") {
                 flag = true;
 
             }
@@ -1162,31 +1164,35 @@
     }
 
     function countNormal(clothesAll, typeUser, discount) {
-        var flag = false;
+        window.flag = false;
+
         for (var i in clothesAll.data()) {
             var tempName = clothesAll.data(i).name;
-            if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
-                flag = true;
+            if (tempName == "运动鞋") {
+                window.flag = true;
                 $.cookie("flag", flag);
             }
         }
 
         var amount = 0;
         //flag 是否有特价
-        if (flag) {
+        if (window.flag) {
             for (var i in clothesAll.data()) {
                 var tempName = clothesAll.data(i).name;
                 //有无特价衣物
-                if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
+                {#                if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {#}
+                if (tempName == "运动鞋") {
                     if (clothesAll.data(i).quantity > 1) {
                         {#        disPrice//促销价#}
                         {#       originPrice//原价#}
+                        amount = amount + 1 * 9;
                         //amount = amount + 1 * clothesAll.data(i).price;
-                        // amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
-                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
+                        //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
 
                     } else {
                         amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                        //amount = amount + clothesAll.data(i).quantity * 9;
                     }
 //无特价衣物
                 } else {
@@ -1212,31 +1218,35 @@
 
     function countDiscount(clothesAll, typeUser, discount) {
 
-        var flag = false;
+        window.flag = false;
         for (var i in clothesAll.data()) {
             var tempName = clothesAll.data(i).name;
-            if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
-                flag = true;
+
+            if (tempName == "运动鞋") {
+                window.flag = true;
 
             }
         }
         var amount = 0;
-        if (flag) {
+        if (window.flag) {
             for (var i in clothesAll.data()) {
                 //有无特价衣物
                 var tempName = clothesAll.data(i).name;
-                if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {
-                    if (clothesAll.data(i).quantity > 1) {
+                if (tempName == "运动鞋") {
+                    if (clothesAll.data(i).quantity >1) {
                         {#        disPrice//促销价#}
                         {#       originPrice//原价#}
                         //到时候改成disPrice
                         //amount = amount + 1 * clothesAll.data(i).price;
-                        //  amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
-                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                        amount = amount + 1 * 9;
+                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price;
+                        //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
 
 
                     } else {
-                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                         amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                         //alert(clothesAll.data(i).quantity * clothesAll.data(i).originPrice)
+                        //amount = amount + clothesAll.data(i).quantity * 9;
                     }
 //无特价衣物
                 } else {
@@ -1386,22 +1396,63 @@
 
         /***********************/
         if (typeUser == 'VIP会员') {
-            $('#infoTip').show(200, function () {
-                $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)" + "￥" + old_price);
-            })
-            //return temp * level_discount
+            if (window.flag) {
+                $('#infoTip').show(200, function () {
+                    $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)，第一双运动鞋特价" + "￥" + old_price);
+                })
+                //return temp * level_discount
 
 
-            $.cookie("vip_price", 0);
-            $.cookie("vip_price", temp, {expires: 1});
-            //alert($.cookie("vip_price"))
+                $.cookie("vip_price", 0);
+                $.cookie("vip_price", temp, {expires: 1});
+                //alert($.cookie("vip_price"))
 
 
-            $.cookie("old_price", 0);
-            $.cookie("old_price", old_price, {expires: 1});
-            // alert($.cookie("old_price"))
-            return temp
+                $.cookie("old_price", 0);
+                $.cookie("old_price", old_price, {expires: 1});
+                // alert($.cookie("old_price"))
+                return temp
+            } else {
+                $('#infoTip').show(200, function () {
+                    $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)" + "￥" + old_price);
+                })
+                //return temp * level_discount
+
+
+                $.cookie("vip_price", 0);
+                $.cookie("vip_price", temp, {expires: 1});
+                //alert($.cookie("vip_price"))
+
+
+                $.cookie("old_price", 0);
+                $.cookie("old_price", old_price, {expires: 1});
+                // alert($.cookie("old_price"))
+                return temp
+
+
+            }
+
+
+        } else {
+            if (window.flag) {
+                $('#infoTip1').show(200, function () {
+                    $("#infoTip1").text("含有运动鞋，第一双特价9元。" + " 原价：￥" + old_price);
+                })
+                //return temp * level_discount
+
+
+                $.cookie("vip_price", 0);
+                $.cookie("vip_price", temp, {expires: 1});
+                //alert($.cookie("vip_price"))
+
+
+                $.cookie("old_price", 0);
+                $.cookie("old_price", old_price, {expires: 1});
+                alert($.cookie("old_price"));
+                return temp
+            }
         }
+
         /***********************/
         //普通用户含有特价商品
 

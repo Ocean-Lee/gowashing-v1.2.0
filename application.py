@@ -98,6 +98,7 @@ def register():
         user = query_db('select * from user where name = ?', [request.form['username']], one=True)
         phone = query_db('select * from user where phone = ?', [request.form['contact']], one=True)
         # phone = query_db('select * from user where phone = ?', [request.form['contact']], one=True)
+        #isVIP = query_db('select * from user_vip where phone = ?', [request.form['contact']], one=True)
         if user is not None:
             error = "REPEAT"
         elif phone is not None:
@@ -105,12 +106,25 @@ def register():
         elif session['key'] != request.form['validation']:
             error = "ERR"
         else:
-            # g.db.execute('insert into user (name, passwd, phone, addr, time) values (?, ?, ?, ?, ?)', [request.form['username'], request.form['password'], request.form['contact'], request.form['addr'], int(time.time())])
+            # if isVIP is not  None:
+            #     g.db.execute('insert into user (name, passwd, phone, school,u_type, time) values (?, ?, ?, ?, ?, ?)',
+            #                  [request.form['username'], request.form['password'], request.form['contact'],
+            #                   request.form['addr'], u'VIP会员', int(time.time())])
+            #     g.db.commit()
+            #     error = "YES"
+            #
+            # else:
             g.db.execute('insert into user (name, passwd, phone, school,u_type, time) values (?, ?, ?, ?, ?, ?)',
-                         [request.form['username'], request.form['password'], request.form['contact'],
-                          request.form['addr'], u'普通用户', int(time.time())])
+                             [request.form['username'], request.form['password'], request.form['contact'],
+                              request.form['addr'], u'普通用户', int(time.time())])
             g.db.commit()
             error = "YES"
+            # g.db.execute('insert into user (name, passwd, phone, addr, time) values (?, ?, ?, ?, ?)', [request.form['username'], request.form['password'], request.form['contact'], request.form['addr'], int(time.time())])
+            # g.db.execute('insert into user (name, passwd, phone, school,u_type, time) values (?, ?, ?, ?, ?, ?)',
+            #              [request.form['username'], request.form['password'], request.form['contact'],
+            #               request.form['addr'], u'普通用户', int(time.time())])
+            # g.db.commit()
+            # error = "YES"
     return jsonify({"msg": error})
 
 
