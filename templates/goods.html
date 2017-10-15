@@ -1187,11 +1187,11 @@
                         {#       originPrice//原价#}
                         amount = amount + 1 * 9;
                         //amount = amount + 1 * clothesAll.data(i).price;
-                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).originPrice;
+                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price;
                         //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
 
                     } else {
-                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                        amount = amount + clothesAll.data(i).quantity * 9;
                         //amount = amount + clothesAll.data(i).quantity * 9;
                     }
 //无特价衣物
@@ -1244,7 +1244,7 @@
 
 
                     } else {
-                         amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                         amount = amount + clothesAll.data(i).quantity * 9;
                          //alert(clothesAll.data(i).quantity * clothesAll.data(i).originPrice)
                         //amount = amount + clothesAll.data(i).quantity * 9;
                     }
@@ -1448,7 +1448,7 @@
 
                 $.cookie("old_price", 0);
                 $.cookie("old_price", old_price, {expires: 1});
-                alert($.cookie("old_price"));
+               // alert($.cookie("old_price"));
                 return temp
             }
         }
@@ -1550,8 +1550,10 @@
                 photoOfDiv.remove();
                 clothInfoOfDiv.remove()
                 numCloth = $("#lanziTable").data(clothName).quantity;
-                if (clothName == '西服上衣' || clothName == '西裤' || clothName == '运动鞋' || clothName == '休闲鞋') {
-                    $('#disTips').hide();
+                if ( clothName == '运动鞋') {
+                    //$('#infoTip').hide();
+                    //alert();
+                      window.location.reload();
                 }
                 {#                $('#disTips').hide();#}
                 {#                $('#infoTip').hide();#}
