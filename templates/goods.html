@@ -1175,30 +1175,62 @@
             }
         }
 
+
+        //判断是否只有一双鞋子
+        window.isOne = false;
+        var totalNum = 0;
+        for (var i in clothesAll.data()) {
+            var tempNum = clothesAll.data(i).quantity;
+            totalNum += tempNum
+
+        }
+
+        for (var i in clothesAll.data()) {
+            var tempName = clothesAll.data(i).name;
+            var tempNum = clothesAll.data(i).quantity;
+
+            if (tempName == "运动鞋" && tempNum == totalNum) {
+
+                //说明只有一种商品
+                window.isOne = true;
+
+            }
+        }
+
+
         var amount = 0;
         //flag 是否有特价
         if (window.flag) {
             for (var i in clothesAll.data()) {
                 var tempName = clothesAll.data(i).name;
-                //有无特价衣物
-                {#                if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {#}
-                if (tempName == "运动鞋") {
-                    if (clothesAll.data(i).quantity > 1) {
-                        {#        disPrice//促销价#}
-                        {#       originPrice//原价#}
-                        amount = amount + 1 * 9;
-                        //amount = amount + 1 * clothesAll.data(i).price;
-                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price;
-                        //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
 
-                    } else {
-                        amount = amount + clothesAll.data(i).quantity * 9;
-                        //amount = amount + clothesAll.data(i).quantity * 9;
-                    }
-//无特价衣物
-                } else {
-                    //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
+                //先判断一下是不是唯一一件商品
+                if (window.isOne) {
                     amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+
+                } else {
+                    //有无特价衣物
+                    {#                if (tempName == "西服上衣" || tempName == "西裤" || tempName == "运动鞋" || tempName == "休闲鞋") {#}
+                    if (tempName == "运动鞋") {
+                        if (clothesAll.data(i).quantity > 1) {
+                            {#        disPrice//促销价#}
+                            {#       originPrice//原价#}
+                            amount = amount + 1 * 9;
+                            //amount = amount + 1 * clothesAll.data(i).price;
+                            amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price;
+                            //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+
+                        } else {
+                            amount = amount + clothesAll.data(i).quantity * 9;
+                            //amount = amount + clothesAll.data(i).quantity * 9;
+                        }
+//无特价衣物
+                    } else {
+                        //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
+                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                    }
+
+
                 }
 
 
@@ -1228,25 +1260,55 @@
 
             }
         }
+
+        //判断是否只有一双鞋子
+        window.isOne = false;
+        var totalNum = 0;
+        for (var i in clothesAll.data()) {
+            var tempNum = clothesAll.data(i).quantity;
+            totalNum += tempNum
+
+        }
+
+        for (var i in clothesAll.data()) {
+            var tempName = clothesAll.data(i).name;
+            var tempNum = clothesAll.data(i).quantity;
+
+            if (tempName == "运动鞋" && tempNum == totalNum) {
+
+                //说明只有一种商品
+                window.isOne = true;
+
+            }
+        }
+
+
         var amount = 0;
         if (window.flag) {
             for (var i in clothesAll.data()) {
+
                 //有无特价衣物
                 var tempName = clothesAll.data(i).name;
-                if (tempName == "运动鞋") {
-                    if (clothesAll.data(i).quantity >1) {
+
+                //先判断一下是不是唯一一件商品
+                if (window.isOne) {
+                    amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price*0.8;
+
+                } else {
+                    if (tempName == "运动鞋") {
+                    if (clothesAll.data(i).quantity > 1) {
                         {#        disPrice//促销价#}
                         {#       originPrice//原价#}
                         //到时候改成disPrice
                         //amount = amount + 1 * clothesAll.data(i).price;
                         amount = amount + 1 * 9;
-                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price*0.8;
+                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price * 0.8;
                         //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
 
 
                     } else {
-                         amount = amount + clothesAll.data(i).quantity * 9;
-                         //alert(clothesAll.data(i).quantity * clothesAll.data(i).originPrice)
+                        amount = amount + clothesAll.data(i).quantity * 9;
+                        //alert(clothesAll.data(i).quantity * clothesAll.data(i).originPrice)
                         //amount = amount + clothesAll.data(i).quantity * 9;
                     }
 //无特价衣物
@@ -1254,6 +1316,11 @@
                     //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.7;
                     amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
                 }
+
+                }
+
+
+
             }
 
         } else {
@@ -1449,7 +1516,7 @@
 
                 $.cookie("old_price", 0);
                 $.cookie("old_price", old_price, {expires: 1});
-               // alert($.cookie("old_price"));
+                // alert($.cookie("old_price"));
                 return temp
             }
         }
@@ -1551,10 +1618,10 @@
                 photoOfDiv.remove();
                 clothInfoOfDiv.remove()
                 numCloth = $("#lanziTable").data(clothName).quantity;
-                if ( clothName == '运动鞋') {
+                if (clothName == '运动鞋') {
                     //$('#infoTip').hide();
                     //alert();
-                      window.location.reload();
+                    window.location.reload();
                 }
                 {#                $('#disTips').hide();#}
                 {#                $('#infoTip').hide();#}
