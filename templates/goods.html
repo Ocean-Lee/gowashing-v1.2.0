@@ -1206,7 +1206,29 @@
 
                 //先判断一下是不是唯一一件商品
                 if (window.isOne) {
-                    amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+
+
+                     if (tempName == "运动鞋") {
+                        if (clothesAll.data(i).quantity > 1) {
+                            {#        disPrice//促销价#}
+                            {#       originPrice//原价#}
+                            amount = amount + 1 * 9;
+                            //amount = amount + 1 * clothesAll.data(i).price;
+                            amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price;
+                            //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+
+                        } else {
+                            amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                            //amount = amount + clothesAll.data(i).quantity * 9;
+                        }
+//无特价衣物
+                    } else {
+                        //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
+                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                    }
+
+
+
 
                 } else {
                     //有无特价衣物
@@ -1292,33 +1314,57 @@
 
                 //先判断一下是不是唯一一件商品
                 if (window.isOne) {
-                    amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price*0.8;
+
+
+                    if (tempName == "运动鞋") {
+                        if (clothesAll.data(i).quantity > 1) {
+                            {#        disPrice//促销价#}
+                            {#       originPrice//原价#}
+                            //到时候改成disPrice
+                            //amount = amount + 1 * clothesAll.data(i).price;
+                            amount = amount + 1 * 9;
+                            amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price * 0.8;
+                            //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+
+
+                        } else {
+                            amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
+                            //alert(clothesAll.data(i).quantity * clothesAll.data(i).originPrice)
+                            //amount = amount + clothesAll.data(i).quantity * 9;
+                        }
+//无特价衣物
+                    } else {
+                        //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.7;
+                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
+                    }
+
+
+
 
                 } else {
                     if (tempName == "运动鞋") {
-                    if (clothesAll.data(i).quantity > 1) {
-                        {#        disPrice//促销价#}
-                        {#       originPrice//原价#}
-                        //到时候改成disPrice
-                        //amount = amount + 1 * clothesAll.data(i).price;
-                        amount = amount + 1 * 9;
-                        amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price * 0.8;
-                        //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
+                        if (clothesAll.data(i).quantity > 1) {
+                            {#        disPrice//促销价#}
+                            {#       originPrice//原价#}
+                            //到时候改成disPrice
+                            //amount = amount + 1 * clothesAll.data(i).price;
+                            amount = amount + 1 * 9;
+                            amount = amount + (clothesAll.data(i).quantity - 1) * clothesAll.data(i).price * 0.8;
+                            //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price;
 
 
-                    } else {
-                        amount = amount + clothesAll.data(i).quantity * 9;
-                        //alert(clothesAll.data(i).quantity * clothesAll.data(i).originPrice)
-                        //amount = amount + clothesAll.data(i).quantity * 9;
-                    }
+                        } else {
+                            amount = amount + clothesAll.data(i).quantity * 9;
+                            //alert(clothesAll.data(i).quantity * clothesAll.data(i).originPrice)
+                            //amount = amount + clothesAll.data(i).quantity * 9;
+                        }
 //无特价衣物
-                } else {
-                    //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.7;
-                    amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
-                }
+                    } else {
+                        //amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.7;
+                        amount = amount + clothesAll.data(i).quantity * clothesAll.data(i).price * 0.8;
+                    }
 
                 }
-
 
 
             }
