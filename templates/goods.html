@@ -1800,8 +1800,8 @@
             var orderTime = M + '-' + D;
 
 /////////--------------------------
-            if (($.cookie('dizhi') == "复旦大学") || ($.cookie('dizhi') == "上海财经大学") || ($.cookie('dizhi') == "松江一期") || ($.cookie('dizhi') == "松江二期")
-                || ($.cookie('dizhi') == "松江三期") || ($.cookie('dizhi') == "松江五期") || ($.cookie('dizhi') == "松江六期")) {
+            if (($.cookie('dizhi') == "复旦大学1") || ($.cookie('dizhi') == "上海财经大学1") || ($.cookie('dizhi') == "松江一期") || ($.cookie('dizhi') == "松江二期")
+                || ($.cookie('dizhi') == "松江三期1") || ($.cookie('dizhi') == "松江五期") || ($.cookie('dizhi') == "松江六期")) {
 
 
                 if (($.cookie('dizhi') == "复旦大学")) {
@@ -2105,7 +2105,7 @@
                 $('#phone').focus();
                 return;
             } else {
-                var telReg = !!phone.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+                var telReg = !!phone.match(/^(0|86|173951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/);
                 if (telReg == false) {
                     //  alert()
                     $('#errTip1').show(200, function () {

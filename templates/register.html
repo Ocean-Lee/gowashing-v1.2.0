@@ -328,7 +328,7 @@
 
     $("#register_validateBtn").click(function () {
         var tel = $("#register_contact").val(); //获取手机号
-        var telReg = !!tel.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[345678]|18[0-9]|14[57])[0-9]{8}$/);
+        var telReg = !!tel.match(/^(0|86|173951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/);
         //如果手机号码不能通过验证
         if (telReg == false) {
             //alert('请输入正确手机号码~');
