@@ -1512,7 +1512,7 @@
         if (typeUser == 'VIP会员') {
             if (window.flag) {
                 $('#infoTip').show(200, function () {
-                    $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)，第一双运动鞋特价" + "￥" + old_price);
+                    $("#infoTip").text("VIP会员优惠+任意下单九元洗鞋(运动鞋)优惠" + "￥" + old_price);
                 })
                 //return temp * level_discount
 
@@ -1528,7 +1528,7 @@
                 return temp
             } else {
                 $('#infoTip').show(200, function () {
-                    $("#infoTip").text(typeUser + ":" + "八折优惠(特价衣物除外)" + "￥" + old_price);
+                    $("#infoTip").text( "VIP会员优惠  原价" + "￥" + old_price);
                 })
                 //return temp * level_discount
 
@@ -1550,7 +1550,7 @@
         } else {
             if (window.flag) {
                 $('#infoTip1').show(200, function () {
-                    $("#infoTip1").text("含有运动鞋，第一双特价9元。" + " 原价：￥" + old_price);
+                    $("#infoTip1").text("任意下单九元洗鞋(运动鞋)优惠 " + " 原价：￥" + old_price);
                 })
                 //return temp * level_discount
 
