@@ -91,14 +91,13 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     error_r = None
-    print "sss" + request.form['contact']
 
     if request.method == 'POST':
         # user = query_db('select * from user where name = ?', [request.form['username']], one=True)
         user = query_db('select * from user where name = ?', [request.form['username']], one=True)
         phone = query_db('select * from user where phone = ?', [request.form['contact']], one=True)
         # phone = query_db('select * from user where phone = ?', [request.form['contact']], one=True)
-        #isVIP = query_db('select * from user_vip where phone = ?', [request.form['contact']], one=True)
+        # isVIP = query_db('select * from user_vip where phone = ?', [request.form['contact']], one=True)
         if user is not None:
             error = "REPEAT"
         elif phone is not None:
@@ -115,8 +114,8 @@ def register():
             #
             # else:
             g.db.execute('insert into user (name, passwd, phone, school,u_type, time) values (?, ?, ?, ?, ?, ?)',
-                             [request.form['username'], request.form['password'], request.form['contact'],
-                              request.form['addr'], u'普通用户', int(time.time())])
+                         [request.form['username'], request.form['password'], request.form['contact'],
+                          request.form['addr'], u'普通用户', int(time.time())])
             g.db.commit()
             error = "YES"
             # g.db.execute('insert into user (name, passwd, phone, addr, time) values (?, ?, ?, ?, ?)', [request.form['username'], request.form['password'], request.form['contact'], request.form['addr'], int(time.time())])
@@ -194,7 +193,8 @@ def uTerm():
 def index():
     if request.cookies.get('dizhi'):
 
-        print request.cookies.get('schoolname')
+        print
+        request.cookies.get('schoolname')
         nameSchool = utilMethod(request.cookies.get('schoolname'))
         resultClothes = query_db(
             'select scope,merchant,c_name,imgURL,price,promotion,disPrice from merchant m left join tariff t on m.m_id = t.m_id  left join commodity c  on  t.c_id=c.c_id where c_type = 0 and scope=?',
@@ -376,14 +376,12 @@ def getBackOrder():
                 'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5) in ("松江五期","松江六期") order by ID desc')
             return render_template("back.html", orders=orders, auth=session['Admin'])
 
-
         if session['xuexiao'] == "SJHSLJ":
             # orders = query_db('select * from cart where substr(deliver, 0, 5)=? and time>? order by ID desc', [u'松江四期', int(time.time())-604800])
             orders = query_db(
                 'select c.id  id,state,list,c.time time,deliver,dtime,name,c.phone phone,u_type,note, comment, vipPrice, oldPrice from cart c left join user u on c.phone=u.phone where substr(deliver, 0, 5)=? and c.time>? order by ID desc',
                 [u'松江四期', int(time.time()) - 604800])
             return render_template("back.html", orders=orders, auth=session['Admin'])
-
 
         if session['xuexiao'] == "SJSW":
             # orders = query_db('select * from cart where substr(deliver, 0, 5) in("松江一期","松江二期","松江三期") and time>? order by ID desc', [ int(time.time())-604800])
@@ -639,7 +637,6 @@ def toudi():
     scope = request.form.get('scope')
     vip_price = request.form.get('vip_price')
     old_price = request.form.get('old_price')
-    print old_price
 
     # g.db.execute('insert into cart (contact, list, note, deliver, time, pickup, dtime, ptime) values (?, ?, ?, ?, ?, ?, ?, ?)',
     g.db.execute(
@@ -937,16 +934,17 @@ def signActivity():
                                             one=True)
                         g.db.execute('update user set nicecard = ?, time = ? where username = ?',
                                      [nicecard['nicecard'] + k, (
-                                     str(local_time_array.tm_year) + u'年' + str(local_time_array.tm_mon) + u'月' + str(
-                                         local_time_array.tm_mday) + u'日'), session['username']])
+                                         str(local_time_array.tm_year) + u'年' + str(
+                                             local_time_array.tm_mon) + u'月' + str(
+                                             local_time_array.tm_mday) + u'日'), session['username']])
                         g.db.commit()
                         return redirect(url_for('eventActivity', success=u"您获得奖励：好人卡" + str(k) + u"张！"))
         else:
             k = randint(-1, 5)
             nicecard = query_db('select nicecard from user where username = ?', [session['username']], one=True)
             g.db.execute('update user set nicecard = ?, time = ? where username = ?', [nicecard['nicecard'] + k, (
-            str(local_time_array.tm_year) + u'年' + str(local_time_array.tm_mon) + u'月' + str(
-                local_time_array.tm_mday) + u'日'), session['username']])
+                str(local_time_array.tm_year) + u'年' + str(local_time_array.tm_mon) + u'月' + str(
+                    local_time_array.tm_mday) + u'日'), session['username']])
             g.db.commit()
             return redirect(url_for('eventActivity', success=u"您获得奖励：好人卡" + str(k) + u"张！"))
     return redirect(url_for('welcome'))
@@ -1103,13 +1101,13 @@ def page_not_found(error):
     return render_template('error.html'), 404
 
 
-
 @app.route('/table')
 def getTable():
     merchants = query_db('select * from merchant')
     commodity = query_db('select * from commodity')
     tariff = query_db('select * from tariff')
-    return render_template("queryTable.html", orders=merchants,commodity=commodity,tariff=tariff)
+    return render_template("queryTable.html", orders=merchants, commodity=commodity, tariff=tariff)
+
 
 @app.route('/table/removeMerchant', methods=['GET', 'POST'])
 def removeMerchant():
@@ -1120,24 +1118,22 @@ def removeMerchant():
 
     return jsonify({"msg": "OK"})
 
+
 @app.route('/t', methods=['GET', 'POST'])
 def t():
-
     school = request.form.get("school")
     order_day1 = request.form.get("orderTime")
     order_day2 = request.form.get("orderTimeDay")
     order_day3 = request.form.get("orderTimeDay1")
 
-    if school==u'复旦大学':
+    if school == u'复旦大学':
 
         m_num = query_db("select countDay as c_number from merchant where scope = '复旦南区'")
     else:
         m_num = query_db('select countDay as c_number from merchant where scope = ?', [school])
 
-
-
     m_num_n = m_num[0]["c_number"]
-    days = [order_day1,order_day2,order_day3]
+    days = [order_day1, order_day2, order_day3]
 
     flag_TD = {}
     flag_T = {}
@@ -1176,19 +1172,17 @@ def t():
         if time_4_use_n > m_num_n:
             time4_flag = True
 
+        if day == order_day1:
+            flag_TD = {day: {"time1_flag": time1_flag, "time2_flag": time2_flag, "time3_flag": time3_flag,
+                             "time4_flag": time4_flag}}
+        if day == order_day2:
+            flag_T = {day: {"time1_flag": time1_flag, "time2_flag": time2_flag, "time3_flag": time3_flag,
+                            "time4_flag": time4_flag}}
+        if day == order_day3:
+            flag_T1 = {day: {"time1_flag": time1_flag, "time2_flag": time2_flag, "time3_flag": time3_flag,
+                             "time4_flag": time4_flag}}
 
-        if day==order_day1:
-            flag_TD={day:{"time1_flag":time1_flag,"time2_flag":time2_flag,"time3_flag":time3_flag,"time4_flag":time4_flag}}
-        if day==order_day2:
-            flag_T={day:{"time1_flag":time1_flag,"time2_flag":time2_flag,"time3_flag":time3_flag,"time4_flag":time4_flag}}
-        if day==order_day3:
-            flag_T1={day:{"time1_flag":time1_flag,"time2_flag":time2_flag,"time3_flag":time3_flag,"time4_flag":time4_flag}}
-
-
-    return jsonify({"flag_TD": flag_TD, "flag_T":flag_T, "flag_T1":flag_T1})
-
-
-
+    return jsonify({"flag_TD": flag_TD, "flag_T": flag_T, "flag_T1": flag_T1})
 
 
 if __name__ == "__main__":
