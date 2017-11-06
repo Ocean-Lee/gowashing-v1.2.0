@@ -1106,7 +1106,7 @@ def getTable():
     merchants = query_db('select * from merchant')
     commodity = query_db('select * from commodity')
     tariff = query_db('select * from tariff')
-    return render_template("queryTable.html", orders=merchants, commodity=commodity, tariff=tariff)
+    return render_template("queryTable.html", orders=merchants, commoditys=commodity, tariffs=tariff)
 
 
 @app.route('/table/removeMerchant', methods=['GET', 'POST'])

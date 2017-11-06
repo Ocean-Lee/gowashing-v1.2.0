@@ -95,7 +95,7 @@
 
     </tr>
 
-    {% for order in orders %}
+    {% for commodity in commoditys %}
         <tr>
             <td class="orderID">
                 {{ commodity.id }}
@@ -115,10 +115,10 @@
 
 
             <td>
-                <button class="reBtn" onclick="remove({{ order.id }})">删除</button>
+                <button class="reBtn" onclick="remove({{ commodity.id }})">删除</button>
             </td>
             <td>
-                <button class="reBtn" onclick="removeOrder({{ order.id }})">修改</button>
+                <button class="reBtn" onclick="removeOrder({{ commodity.id }})">修改</button>
             </td>
 
         </tr>
@@ -144,7 +144,7 @@
 
     </tr>
 
-    {% for order in orders %}
+    {% for tariff in tariffs %}
         <tr>
             <td class="orderID">
                 {{ tariff.id }}
@@ -169,10 +169,10 @@
             </td>
 
             <td>
-                <button class="reBtn" onclick="remove({{ order.id }})">删除</button>
+                <button class="reBtn" onclick="remove({{ tariff.id }})">删除</button>
             </td>
             <td>
-                <button class="reBtn" onclick="removeOrder({{ order.id }})">修改</button>
+                <button class="reBtn" onclick="removeOrder({{ tariff.id }})">修改</button>
             </td>
 
         </tr>
