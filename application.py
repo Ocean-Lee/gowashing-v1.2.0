@@ -1107,7 +1107,9 @@ def page_not_found(error):
 @app.route('/table')
 def getTable():
     merchants = query_db('select * from merchant')
-    return render_template("queryTable.html", orders=merchants)
+    commodity = query_db('select * from commodity')
+    tariff = query_db('select * from tariff')
+    return render_template("queryTable.html", orders=merchants,commodity=commodity,tariff=tariff)
 
 @app.route('/table/removeMerchant', methods=['GET', 'POST'])
 def removeMerchant():
@@ -1115,7 +1117,7 @@ def removeMerchant():
     # g.db.execute('delete from cart where id=?', [pid])
     # g.db.execute('delete from cart where id=?', [pid])
     # g.db.commit()
-    print 'ok'
+
     return jsonify({"msg": "OK"})
 
 @app.route('/t', methods=['GET', 'POST'])
@@ -1127,7 +1129,7 @@ def t():
     order_day3 = request.form.get("orderTimeDay1")
 
     if school==u'复旦大学':
-        print school
+
         m_num = query_db("select countDay as c_number from merchant where scope = '复旦南区'")
     else:
         m_num = query_db('select countDay as c_number from merchant where scope = ?', [school])

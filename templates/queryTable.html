@@ -31,6 +31,7 @@
 
 <body>
 
+<!-- 商家 -->
 <table id="BACKORDER" border="1" style="">
     <tr>
         <th>编号</th>
@@ -77,23 +78,66 @@
     {% endfor %}
 </table>
 
+<br>
+
+<!-- 商品 -->
+<table id="BACKORDER" border="1" style="">
+    <tr>
+        <th>编号</th>
+        <th>商品编号</th>
+        <th>商品名称</th>
+        <th>图片地址</th>
+        <th>图片类型</th>
+
+        <th>删除</th>
+        <th>修改</th>
 
 
+    </tr>
+
+    {% for order in orders %}
+        <tr>
+            <td class="orderID">
+                {{ commodity.id }}
+            </td>
+            <td class="state">
+                {{ commodity.c_id }}
+            </td>
+            <td class="orderList">
+                {{ commodity.c_name }}
+            </td>
+            <td>
+                {{ commodity.imgURL }}
+            </td>
+            <td>
+                {{ commodity.c_type }}
+            </td>
 
 
+            <td>
+                <button class="reBtn" onclick="remove({{ order.id }})">删除</button>
+            </td>
+            <td>
+                <button class="reBtn" onclick="removeOrder({{ order.id }})">修改</button>
+            </td>
+
+        </tr>
+    {% endfor %}
+</table>
 
 
 <br>
 
-
+<!-- 价格 -->
 <table id="BACKORDER" border="1" style="">
     <tr>
         <th>编号</th>
-        <th>商家编号</th>
-        <th>商家merchant</th>
-        <th>商家用户名</th>
-        <th>商家密码</th>
-        <th>scope</th>
+        <th>m_id</th>
+        <th>c_id</th>
+        <th>price</th>
+        <th>discount</th>
+        <th>promotion</th>
+        <th>disPrice</th>
         <th>删除</th>
         <th>修改</th>
 
@@ -103,22 +147,25 @@
     {% for order in orders %}
         <tr>
             <td class="orderID">
-                {{ order.id }}
+                {{ tariff.id }}
             </td>
             <td class="state">
-                {{ order.m_id }}
+                {{ tariff.m_id }}
             </td>
             <td class="orderList">
-                {{ order.merchant }}
+                {{ tariff.c_id }}
             </td>
             <td>
-                {{ order.m_name }}
+                {{ tariff.price }}
             </td>
             <td>
-                {{ order.m_passwd }}
+                {{ tariff.discount }}
             </td>
             <td class="dtime">
-                {{ order.scope }}
+                {{ tariff.promotion }}
+            </td>
+            <td class="dtime">
+                {{ tariff.disPrice }}
             </td>
 
             <td>
@@ -131,7 +178,6 @@
         </tr>
     {% endfor %}
 </table>
-
 
 
 
