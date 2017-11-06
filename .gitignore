@@ -3,6 +3,7 @@
 web.pid
 /database
 database/LS.db
+/database/LS.db
 application.pyc
 *.pyc
 testGit
