@@ -1,663 +1,673 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset='utf8'/>
-	<!-- <title>GetWash-云上干洗，触手可洗！</title> -->
-	 <title>触手可洗-最便捷校园洗衣</title>
-    <meta name="baidu-site-verification" content="zQsbmS6VJQ" />
+    <meta charset='utf8'/>
+    <!-- <title>GetWash-云上干洗，触手可洗！</title> -->
+    <title>触手可洗-最便捷校园洗衣</title>
+    <meta name="baidu-site-verification" content="zQsbmS6VJQ"/>
     <script type="text/javascript">
-		if(window.location.host != "www.gowashing.com" && window.location.host != "127.0.0.1:5000")
-			location.replace("http://www.gowashing.com")
-	</script>
-	<link rel="shortcut icon" href="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/favicon.ico') }}" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+        if (window.location.host != "www.gowashing.com" && window.location.host != "127.0.0.1:5000")
+            location.replace("http://www.gowashing.com")
+    </script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body unselectable="on" onselectstart="return false;">
-	<img id="logoImg" src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/logo.png') }}">
-	<h2>选择您的地址</h2>
-	<iframe id="loading" src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/loading.gif') }}"></iframe>
-	<div class="A" id="p1" style="display: none;">
-		<div class="country">
-			<div class="addr" onclick="minhang()">闵行</div>
-			<div class="addr"  >松江</div>
-			<div class="addr" onclick="yangpu()">杨浦</div>
-			<div class="addr">奉贤</div>
-			<div class="addr">宝山</div>
-			<div class="addr">嘉定</div>
-			<div class="addr" onclick="xuhui()">徐汇</div>
-			<div class="addr">浦东</div>
-			<div class="addr">普陀</div>
-			<div class="addr">青浦</div>
-			<div class="addr">临港</div>
-			<div class="addr">长宁</div>
-		</div>
-	</div>
-	<div class="A" id="p2" style="display: none;">
-		<div id="schoolData" class="school">
-			<div class="addr XueXiao">上海交通大学</div>
-			<div class="addr XueXiao" style="display: none;">华东师范大学</div>
-			<div class="addr">上海电机学院</div>
-			<div class="addr">上海东海学院</div>
-		</div>
-		<div  id="login1">
-			<a onclick="fanhui1()">返回</a>
-		</div>
-	</div>
+<img id="logoImg" src="{{ url_for('static', filename='img/logo.png') }}">
+<h2>选择您的地址</h2>
+<iframe id="loading" src="{{ url_for('static', filename='img/loading.gif') }}"></iframe>
+<div class="A" id="p1" style="display: none;">
+    <div class="country">
+        <div class="addr" onclick="minhang()">闵行</div>
+        <div class="addr">松江</div>
+        <div class="addr" onclick="yangpu()">杨浦</div>
+        <div class="addr">奉贤</div>
+        <div class="addr">宝山</div>
+        <div class="addr">嘉定</div>
+        <div class="addr" onclick="xuhui()">徐汇</div>
+        <div class="addr">浦东</div>
+        <div class="addr">普陀</div>
+        <div class="addr">青浦</div>
+        <div class="addr">临港</div>
+        <div class="addr">长宁</div>
+    </div>
+</div>
+<div class="A" id="p2" style="display: none;">
+    <div id="schoolData" class="school">
+        <div class="addr XueXiao">上海交通大学</div>
+        <div class="addr XueXiao" style="display: none;">华东师范大学</div>
+        <div class="addr">上海电机学院</div>
+        <div class="addr">上海东海学院</div>
+    </div>
+    <div id="login1">
+        <a onclick="fanhui1()">返回</a>
+    </div>
+</div>
 
-	<div class="A" id="p4" style="display: none;">
-		<div id="schoolData" class="school">
-			<div class="addr  songjiang">松江一期</div>
-			<div class="addr  songjiang">松江二期</div>
-			<div class="addr  songjiang">松江三期</div>
-			<div class="addr  songjiang">松江四期</div>
-			<div class="addr  songjiang">松江五期</div>
-			<div class="addr  songjiang">松江六期</div>
-
-
-		</div>
-		<div  id="login1">
-			<a onclick="fanhui4()">返回</a>
-		</div>
-	</div>
-
-	<div class="A" id="p5" style="display: none;">
-		<div id="schoolData" class="school">
-			<div class="addr  yangpu">复旦大学</div>
-			<div class="addr  yangpu" style="display:none">复旦北区</div>
-			<div class="addr  yangpu">同济大学</div>
-			<div class="addr  yangpu" style="display:none">上海财经大学</div>
-
-		</div>
-		<div  id="login1">
-			<a onclick="fanhui5()">返回</a>
-		</div>
-	</div>
-
-	<div class="A" id="p6" style="display: none;">
-		<div id="schoolData" class="school">
-			<div class="addr  xuhui">上海交通大学(徐汇)</div>
+<div class="A" id="p4" style="display: none;">
+    <div id="schoolData" class="school">
+        <div class="addr  songjiang">松江一期</div>
+        <div class="addr  songjiang">松江二期</div>
+        <div class="addr  songjiang">松江三期</div>
+        <div class="addr  songjiang">松江四期</div>
+        <div class="addr  songjiang">松江五期</div>
+        <div class="addr  songjiang">松江六期</div>
 
 
-		</div>
-		<div  id="login1">
-			<a onclick="fanhui6()">返回</a>
-		</div>
-	</div>
+    </div>
+    <div id="login1">
+        <a onclick="fanhui4()">返回</a>
+    </div>
+</div>
+
+<div class="A" id="p5" style="display: none;">
+    <div id="schoolData" class="school">
+        <div class="addr  yangpu">复旦大学</div>
+        <div class="addr  yangpu" style="display:none">复旦北区</div>
+        <div class="addr  yangpu">同济大学</div>
+        <div class="addr  yangpu" style="display:none">上海财经大学</div>
+
+    </div>
+    <div id="login1">
+        <a onclick="fanhui5()">返回</a>
+    </div>
+</div>
+
+<div class="A" id="p6" style="display: none;">
+    <div id="schoolData" class="school">
+        <div class="addr  xuhui">上海交通大学(徐汇)</div>
 
 
-	<div class="A" id="p3" style="display: none;">
-
-		<div id="shijian">
-			<input id="R" type="text" placeholder="区域">
-			<input id="H" type="text" placeholder="楼幢">
-		</div>
-		<div class="login">
-			<a onclick="fanhui2()">返回</a>
-            <a onclick="queren()" >确认</a>
-		</div>
-
-		<span class="tishi"></span>
-		<span id="waiting" style="display:none;">正在跳转，请等待...</span>
-
-	</div>
-
-	<div class="A" id="p41" style="display: none;">
-
-		<div id="shijian">
-			<input id="R41" type="text" placeholder="区域">
-			<input id="H41" type="text" placeholder="楼幢">
-		</div>
-		<div class="login">
-			<a onclick="fanhui41()">返回</a>
-						<a onclick="queren41()" >确认</a>
-		</div>
-
-		<span class="tishi"></span>
-		<span id="waiting" style="display:none;">正在跳转，请等待...</span>
-
-	</div>
-
-	<div class="A" id="p51" style="display: none;">
-
-		<div id="shijian">
-			<input id="R51" type="text" placeholder="区域">
-			<input id="H51" type="text" placeholder="楼幢">
-		</div>
-		<div class="login">
-			<a onclick="fanhui51()">返回</a>
-						<a onclick="queren51()" >确认</a>
-		</div>
-
-		<span class="tishi"></span>
-		<span id="waiting" style="display:none;">正在跳转，请等待...</span>
-
-	</div>
-
-	<div class="A" id="p61" style="display: none;">
-
-		<div id="shijian">
-			<input id="R61" type="text" placeholder="区域">
-			<input id="H61" type="text" placeholder="楼幢">
-		</div>
-		<div class="login">
-			<a onclick="fanhui61()">返回</a>
-			<a onclick="queren61()" >确认</a>
-		</div>
-
-		<span class="tishi"></span>
-		<span id="waiting" style="display:none;">正在跳转，请等待...</span>
-
-	</div>
+    </div>
+    <div id="login1">
+        <a onclick="fanhui6()">返回</a>
+    </div>
+</div>
 
 
+<div class="A" id="p3" style="display: none;">
+
+    <div id="shijian">
+        <input id="R" type="text" placeholder="区域">
+        <input id="H" type="text" placeholder="楼幢">
+    </div>
+    <div class="login">
+        <a onclick="fanhui2()">返回</a>
+        <a onclick="queren()">确认</a>
+    </div>
+
+    <span class="tishi"></span>
+    <span id="waiting" style="display:none;">正在跳转，请等待...</span>
+
+</div>
+
+<div class="A" id="p41" style="display: none;">
+
+    <div id="shijian">
+        <input id="R41" type="text" placeholder="区域">
+        <input id="H41" type="text" placeholder="楼幢">
+    </div>
+    <div class="login">
+        <a onclick="fanhui41()">返回</a>
+        <a onclick="queren41()">确认</a>
+    </div>
+
+    <span class="tishi"></span>
+    <span id="waiting" style="display:none;">正在跳转，请等待...</span>
+
+</div>
+
+<div class="A" id="p51" style="display: none;">
+
+    <div id="shijian">
+        <input id="R51" type="text" placeholder="区域">
+        <input id="H51" type="text" placeholder="楼幢">
+    </div>
+    <div class="login">
+        <a onclick="fanhui51()">返回</a>
+        <a onclick="queren51()">确认</a>
+    </div>
+
+    <span class="tishi"></span>
+    <span id="waiting" style="display:none;">正在跳转，请等待...</span>
+
+</div>
+
+<div class="A" id="p61" style="display: none;">
+
+    <div id="shijian">
+        <input id="R61" type="text" placeholder="区域">
+        <input id="H61" type="text" placeholder="楼幢">
+    </div>
+    <div class="login">
+        <a onclick="fanhui61()">返回</a>
+        <a onclick="queren61()">确认</a>
+    </div>
+
+    <span class="tishi"></span>
+    <span id="waiting" style="display:none;">正在跳转，请等待...</span>
+
+</div>
 
 
+<div id="denglu" style="display: none;">
+    <form id="signin">
+        <input id="yonghuming" type="text" placeholder="用户名" required>
+        <input id="mima" type="password" placeholder="密码" required>
+    </form>
+    <br>
+    <div class="login">
+        <a onclick="confirm()">确认</a>
+        <span>或</span>
+        <a class="quxiaoBtn">取消</a>
+    </div>
+    <br>
+    <span class="tishi"></span>
+</div>
 
-	<div id="denglu" style="display: none;">
-		<form id="signin">
-			<input id="yonghuming" type="text" placeholder="用户名" required>
-			<input id="mima" type="password" placeholder="密码" required>
-		</form>
-		<br>
-		<div class="login">
-			<a onclick="confirm()">确认</a>
-			<span>或</span>
-			<a class="quxiaoBtn">取消</a>
-		</div>
-		<br>
-		<span class="tishi"></span>
-	</div>
-
-	<div id="zhuce" style="display: none;">
-		<form class="login" id="signin">
-			<input id="yonghuming" type="text" placeholder="用户名" required>
-			<input id="mima" type="password" placeholder="密码" required>
-			<input id="yonghuming" type="text" placeholder="手机号" required>
-			<br><br><a>获取验证码</a><br><br>
-			<input id="yonghuming" type="text" placeholder="验证码" required>
-		</form>
-		<br>
-		<div class="login">
-			<a onclick="confirm()">确认</a>
-			<span>或</span>
-			<a class="quxiaoBtn">取消</a>
-		</div>
-		<br>
-		<span class="tishi"></span>
-	</div>
+<div id="zhuce" style="display: none;">
+    <form class="login" id="signin">
+        <input id="yonghuming" type="text" placeholder="用户名" required>
+        <input id="mima" type="password" placeholder="密码" required>
+        <input id="yonghuming" type="text" placeholder="手机号" required>
+        <br><br><a>获取验证码</a><br><br>
+        <input id="yonghuming" type="text" placeholder="验证码" required>
+    </form>
+    <br>
+    <div class="login">
+        <a onclick="confirm()">确认</a>
+        <span>或</span>
+        <a class="quxiaoBtn">取消</a>
+    </div>
+    <br>
+    <span class="tishi"></span>
+</div>
 
 
 <!-- 	<img id="processImg" style="display:none" src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/process.png') }}">
 	<br> -->
-	<table class="botHezuo">
-		<p style="padding-top:5rem;margin-top:0px;margin-bottom:10px;font-size:20px;">合作伙伴</p>
-		<tbody>
-			<tr>
-				<td>
-					<img src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/1.png') }}">
-				</td>
-				<td>
-{#					<img src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/2.png') }}">#}
-					<img src="{{ url_for('static', filename='img/约瑟芬02.jpg') }}">
-				</td>
-				<td>
-					<img src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/3.png') }}">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					UCC国际
-				</td>
-				<td>
-					约瑟芬精奢洗护馆
-				</td>
-				<td>
-					洁丰干洗
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<hr>
-	<table class="botDiv">
-		<tr>
-			<td>
-				<input id="adviceInput" style="width:190px;" placeholder="反馈建议">
-			</td>
-			<td class="login">
-				<a id="advice">提交</a>
-			</td>
-		</tr>
-	</table>
-	<table class="botDiv">
-		<tbody>
-			<tr>
-				<td>
-					<img src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/qrcode.png') }}">
-				</td>
-				<td>
-					<p class="botNav" id="faq"><span style="text-decoration: underline;cursor:pointer;">常见问题解答</span></p>
-					<p class="botNav" style="">联系电话：18818271210</p>
-					<p class="botNav" style="">邮箱：gowashing2017@163.com</p>
-					<p class="botNav" style="">触手可洗，一触即洗</p>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<table class="botHezuo">
+    <p style="padding-top:5rem;margin-top:0px;margin-bottom:10px;font-size:20px;">合作伙伴</p>
+    <tbody>
+    <tr>
+        <td>
+            <img src="{{ url_for('static', filename='img/1.png') }}">
+        </td>
+        <td>
+            {#					<img src="http://7xitj5.com1.z0.glb.clouddn.com{{ url_for('static', filename='img/2.png') }}">#}
+            <img src="{{ url_for('static', filename='img/约瑟芬02.jpg') }}">
+        </td>
+        <td>
+            <img src="{{ url_for('static', filename='img/3.png') }}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            UCC国际
+        </td>
+        <td>
+            约瑟芬精奢洗护馆
+        </td>
+        <td>
+            洁丰干洗
+        </td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<table class="botDiv">
+    <tr>
+        <td>
+            <input id="adviceInput" style="width:190px;" placeholder="反馈建议">
+        </td>
+        <td class="login">
+            <a id="advice">提交</a>
+        </td>
+    </tr>
+</table>
+<table class="botDiv">
+    <tbody>
+    <tr>
+        <td>
+            <img src="{{ url_for('static', filename='img/qrcode.png') }}">
+        </td>
+        <td>
+            <p class="botNav" id="faq"><span style="text-decoration: underline;cursor:pointer;">常见问题解答</span></p>
+            <p class="botNav" style="">联系电话：18818271210</p>
+            <p class="botNav" style="">邮箱: gowashing2017@163.com</p>
+            <p class="botNav" style="">触手可洗，一触即洗</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><p class="botNav" style="text-align: center">
+            <a style="text-decoration: none;color: white"
+               href="http://218.242.124.22:8081/businessCheck/verifKey.do?showType=extShow&serial=9031000020171201094150000002217152-SAIC_SHOW_310000-20190626110346621403&signData=MEYCIQCBgNRBxHC8MNjwIUMrgIEDMehlfJJaSyv+LtUM/uIolwIhAM30QVF5YvHtt8HEzOWB8mHOAu2HXERpqQRnIBVPYGHP">
+                沪ICP备17035507号-1</a>
+        </p></td>
+
+    </tr>
+    </tbody>
+</table>
 </body>
-	<script type="text/javascript">
-		var toggledDrop;
-		function minhang() {
-			$('#p1').fadeToggle(200, function(){$('#p2').fadeToggle(200)});
+<script type="text/javascript">
+    var toggledDrop;
+    function minhang() {
+        $('#p1').fadeToggle(200, function () {
+            $('#p2').fadeToggle(200)
+        });
 
-		}
+    }
 
-		function yangpu() {
-			$('#p1').fadeToggle(200, function(){$('#p5').fadeToggle(200)});
-		}
+    function yangpu() {
+        $('#p1').fadeToggle(200, function () {
+            $('#p5').fadeToggle(200)
+        });
+    }
 
-		function songjiang() {
-			$('#p1').fadeToggle(200, function(){$('#p4').fadeToggle(200)});
-		}
+    function songjiang() {
+        $('#p1').fadeToggle(200, function () {
+            $('#p4').fadeToggle(200)
+        });
+    }
 
-		function xuhui() {
-			$('#p1').fadeToggle(200, function(){$('#p6').fadeToggle(200)});
-		}
-
-
-		function fanhui1 () {
-			$('#p2').fadeToggle(200, function(){$('#p1').fadeToggle(200)});
-		}
-
-		function fanhui4 () {
-			$('#p4').fadeToggle(200, function(){$('#p1').fadeToggle(200)});
-		}
-
-		function fanhui5 () {
-			$('#p5').fadeToggle(200, function(){$('#p1').fadeToggle(200)});
-		}
-
-		function fanhui6 () {
-			$('#p6').fadeToggle(200, function(){$('#p1').fadeToggle(200)});
-		}
+    function xuhui() {
+        $('#p1').fadeToggle(200, function () {
+            $('#p6').fadeToggle(200)
+        });
+    }
 
 
+    function fanhui1() {
+        $('#p2').fadeToggle(200, function () {
+            $('#p1').fadeToggle(200)
+        });
+    }
 
-		function fanhui2 () {
-			$('#p3').fadeToggle(200, function(){$('#p2').fadeToggle(200)});
+    function fanhui4() {
+        $('#p4').fadeToggle(200, function () {
+            $('#p1').fadeToggle(200)
+        });
+    }
 
-		}
+    function fanhui5() {
+        $('#p5').fadeToggle(200, function () {
+            $('#p1').fadeToggle(200)
+        });
+    }
+
+    function fanhui6() {
+        $('#p6').fadeToggle(200, function () {
+            $('#p1').fadeToggle(200)
+        });
+    }
 
 
-		function fanhui41 () {
-			$('#p41').fadeToggle(200, function(){$('#p4').fadeToggle(200)});
+    function fanhui2() {
+        $('#p3').fadeToggle(200, function () {
+            $('#p2').fadeToggle(200)
+        });
 
-		}
-		function fanhui51 () {
-			$('#p51').fadeToggle(200, function(){$('#p5').fadeToggle(200)});
+    }
 
-		}
 
-        function fanhui61 () {
-            $('#p61').fadeToggle(200, function(){$('#p6').fadeToggle(200)});
+    function fanhui41() {
+        $('#p41').fadeToggle(200, function () {
+            $('#p4').fadeToggle(200)
+        });
 
+    }
+    function fanhui51() {
+        $('#p51').fadeToggle(200, function () {
+            $('#p5').fadeToggle(200)
+        });
+
+    }
+
+    function fanhui61() {
+        $('#p61').fadeToggle(200, function () {
+            $('#p6').fadeToggle(200)
+        });
+
+    }
+
+
+    function queren() {
+        var region = $("#R").val();
+        var floor = $("#H").val();
+        if (region == "") {
+            $("#R").focus().attr("placeholder", "请填写区域");
         }
-
-
-
-function queren() {
-	var region = $("#R").val();
-	var floor =  $("#H").val();
-	if(region=="" )
-	{
-		$("#R").focus().attr("placeholder","请填写区域");
-	}
-	else
-	{
-		if(floor=="")
-		{
-			$("#H").focus().attr("placeholder","请填写楼栋");
-		}
-		else
-		{
-			$("#waiting").fadeIn(200);
-			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 1 });
-			window.location.href = '';
-		}
-	}
-}
-
-
-function queren41() {
-	var region = $("#R41").val();
-	var floor =  $("#H41").val();
-	if(region=="" )
-	{
-		$("#R41").focus().attr("placeholder","请填写区域");
-	}
-	else
-	{
-		if(floor=="")
-		{
-			$("#H41").focus().attr("placeholder","请填写楼栋");
-		}
-		else
-		{
-			$("#waiting").fadeIn(200);
-			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 1 });
-			window.location.href = '';
-		}
-	}
-}
-
-
-function queren51() {
-	var region = $("#R51").val();
-	var floor =  $("#H51").val();
-	if(region=="" )
-	{
-		$("#R51").focus().attr("placeholder","请填写区域");
-	}
-	else
-	{
-		if(floor=="")
-		{
-			$("#H51").focus().attr("placeholder","请填写楼栋");
-		}
-		else
-		{
-			$("#waiting").fadeIn(200);
-			$.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, { expires: 1 });
-			window.location.href = '';
-		}
-	}
-}
-
-
-function queren61() {
-            var region = $("#R61").val();
-            var floor = $("#H61").val();
-            if (region == "") {
-                $("#R61").focus().attr("placeholder", "请填写区域");
+        else {
+            if (floor == "") {
+                $("#H").focus().attr("placeholder", "请填写楼栋");
             }
             else {
-                if (floor == "") {
-                    $("#H61").focus().attr("placeholder", "请填写楼栋");
-                }
-                else {
-                    $("#waiting").fadeIn(200);
-                    $.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, {expires: 1});
-                    window.location.href = '';
-                }
+                $("#waiting").fadeIn(200);
+                $.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, {expires: 1});
+                window.location.href = '';
             }
         }
+    }
+
+
+    function queren41() {
+        var region = $("#R41").val();
+        var floor = $("#H41").val();
+        if (region == "") {
+            $("#R41").focus().attr("placeholder", "请填写区域");
+        }
+        else {
+            if (floor == "") {
+                $("#H41").focus().attr("placeholder", "请填写楼栋");
+            }
+            else {
+                $("#waiting").fadeIn(200);
+                $.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, {expires: 1});
+                window.location.href = '';
+            }
+        }
+    }
+
+
+    function queren51() {
+        var region = $("#R51").val();
+        var floor = $("#H51").val();
+        if (region == "") {
+            $("#R51").focus().attr("placeholder", "请填写区域");
+        }
+        else {
+            if (floor == "") {
+                $("#H51").focus().attr("placeholder", "请填写楼栋");
+            }
+            else {
+                $("#waiting").fadeIn(200);
+                $.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, {expires: 1});
+                window.location.href = '';
+            }
+        }
+    }
+
+
+    function queren61() {
+        var region = $("#R61").val();
+        var floor = $("#H61").val();
+        if (region == "") {
+            $("#R61").focus().attr("placeholder", "请填写区域");
+        }
+        else {
+            if (floor == "") {
+                $("#H61").focus().attr("placeholder", "请填写楼栋");
+            }
+            else {
+                $("#waiting").fadeIn(200);
+                $.cookie('dizhi', $("#schoolData").data("xuexiao") + region + floor, {expires: 1});
+                window.location.href = '';
+            }
+        }
+    }
+
+
+    function jiaoda() {
+    }
+
+    function huashida() {
+    }
+    function confirm() {
+        if ($("#yonghuming").val() == "" || $("#mima").val() == "") {
+            $('.tishi').text('请填写完整信息！');
+            $('.tishi').slideToggle(200);
+            setTimeout("$('.tishi').slideToggle(200);", 1000);
+        }
+        ;
+    }
+    $(document).ready(function () {
+        $("#loading").hide();
+        $("#p1").fadeToggle(200);
+        setTimeout('$("#processImg").fadeIn(200)', 50);
+        setTimeout('$("#faq").fadeIn(200)', 100);
+
+
+        $(".XueXiao").click(
+            function () {
+                $('#riqidrop').html('区域<b class="triangle"></b>');
+                $('#riqidrop').next().children().remove();
+                if ($(this).text() == "上海交通大学") {
+                    $('#riqidrop').next().append('<li class="riqi">西区</li><li class="riqi">东区</li><li class="riqi">办公楼</li>');
+                }
+                ;
+                if ($(this).text() == "华东师范大学") {
+                    $('#riqidrop').next().append('<li class="riqi">本科生</li><li class="riqi">研究生</li>');
+                }
+                if ($(this).text() == "上海电机学院") {
+                    $('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
+                }
+                if ($(this).text() == "上海东海学院") {
+                    $('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
+                }
+
+                //$('#p2').fadeToggle(200, function(){$('#p3').fadeToggle(200)});
+
+                $("#schoolData").data("xuexiao", $(this).text());
+
+                $("#waiting").fadeIn(200);
+                var schoolName = $("#schoolData").data("xuexiao");
+
+                $.cookie('dizhi', schoolName, {expires: 1});
+
+                if ($(this).text() == "上海交通大学") {
+                    $.cookie('schoolname', 'jiaotong', {expires: 1});
+                } else if ($(this).text() == "华东师范大学") {
+                    $.cookie('schoolname', 'huashida', {expires: 1});
+                }
+
+
+                //window.location.href = '';
+                setTimeout("window.location.href = ''", 200);
+
+
+            }
+        );
+
+        $(".songjiang").click(
+            function () {
+                $('#riqidrop').html('区域<b class="triangle"></b>');
+                $('#riqidrop').next().children().remove();
+                if ($(this).text() == "上海交通大学") {
+                    $('#riqidrop').next().append('<li class="riqi">西区</li><li class="riqi">东区</li><li class="riqi">办公楼</li>');
+                }
+                ;
+                if ($(this).text() == "华东师范大学") {
+                    $('#riqidrop').next().append('<li class="riqi">本科生</li><li class="riqi">研究生</li>');
+                }
+                if ($(this).text() == "上海电机学院") {
+                    $('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
+                }
+                if ($(this).text() == "上海东海学院") {
+                    $('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
+                }
 
+                //$('#p4').fadeToggle(200, function(){$('#p41').fadeToggle(200)});
 
-function jiaoda () {
-		}
 
-		function huashida () {
-		}
-		function confirm() {
-			if ($("#yonghuming").val()=="" || $("#mima").val()=="") {
-				$('.tishi').text('请填写完整信息！');
-				$('.tishi').slideToggle(200);
-				setTimeout("$('.tishi').slideToggle(200);", 1000);
-			};
-		}
-		$(document).ready(function(){
-			$("#loading").hide();
-			$("#p1").fadeToggle(200);
-			setTimeout('$("#processImg").fadeIn(200)', 50);
-			setTimeout('$("#faq").fadeIn(200)', 100);
+                $("#schoolData").data("xuexiao", $(this).text());
 
 
-			$(".XueXiao").click(
-				function () {
-					$('#riqidrop').html('区域<b class="triangle"></b>');
-					$('#riqidrop').next().children().remove();
-					if ($(this).text() == "上海交通大学") {
-						$('#riqidrop').next().append('<li class="riqi">西区</li><li class="riqi">东区</li><li class="riqi">办公楼</li>');
-					};
-					if ($(this).text() == "华东师范大学") {
-						$('#riqidrop').next().append('<li class="riqi">本科生</li><li class="riqi">研究生</li>');
-					}
-					if ($(this).text() == "上海电机学院") {
-						$('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
-					}
-					if ($(this).text() == "上海东海学院") {
-						$('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
-					}
+                $("#waiting").fadeIn(200);
+                $.cookie('dizhi', $("#schoolData").data("xuexiao"), {expires: 1});
 
-					//$('#p2').fadeToggle(200, function(){$('#p3').fadeToggle(200)});
 
-                     $("#schoolData").data("xuexiao", $(this).text());
+                if ($(this).text() == "松江一期") {
+                    $.cookie('schoolname', 'songjiang1', {expires: 1});
+                } else if ($(this).text() == "松江二期") {
+                    $.cookie('schoolname', 'songjiang2', {expires: 1});
+                } else if ($(this).text() == "松江三期") {
+                    $.cookie('schoolname', 'songjiang3', {expires: 1});
+                } else if ($(this).text() == "松江四期") {
+                    $.cookie('schoolname', 'songjiang4', {expires: 1});
+                } else if ($(this).text() == "松江五期") {
+                    $.cookie('schoolname', 'songjiang5', {expires: 1});
+                } else if ($(this).text() == "松江六期") {
+                    $.cookie('schoolname', 'songjiang6', {expires: 1});
+                }
 
-					$("#waiting").fadeIn(200);
-					var schoolName = $("#schoolData").data("xuexiao");
 
-					$.cookie('dizhi', schoolName, { expires: 1 });
-
-					if($(this).text() == "上海交通大学") {
-					    $.cookie('schoolname', 'jiaotong', { expires: 1 });
-                    } else if($(this).text() == "华东师范大学") {
-					    $.cookie('schoolname', 'huashida', { expires: 1 });
-                    }
-
-
-
-
-                    //window.location.href = '';
-                    setTimeout("window.location.href = ''", 200);
-
-
-
-
-				}
-			);
-
-			$(".songjiang").click(
-				function () {
-					$('#riqidrop').html('区域<b class="triangle"></b>');
-					$('#riqidrop').next().children().remove();
-					if ($(this).text() == "上海交通大学") {
-						$('#riqidrop').next().append('<li class="riqi">西区</li><li class="riqi">东区</li><li class="riqi">办公楼</li>');
-					};
-					if ($(this).text() == "华东师范大学") {
-						$('#riqidrop').next().append('<li class="riqi">本科生</li><li class="riqi">研究生</li>');
-					}
-					if ($(this).text() == "上海电机学院") {
-						$('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
-					}
-					if ($(this).text() == "上海东海学院") {
-						$('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
-					}
-
-					//$('#p4').fadeToggle(200, function(){$('#p41').fadeToggle(200)});
-
-
-					$("#schoolData").data("xuexiao", $(this).text());
-
-
-
-					$("#waiting").fadeIn(200);
-					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 1 });
-
-
-					if($(this).text() == "松江一期") {
-					    $.cookie('schoolname', 'songjiang1', { expires: 1 });
-                    } else if($(this).text() == "松江二期") {
-					    $.cookie('schoolname', 'songjiang2', { expires: 1 });
-                    } else if($(this).text() == "松江三期") {
-					    $.cookie('schoolname', 'songjiang3', { expires: 1 });
-                    } else if($(this).text() == "松江四期") {
-					    $.cookie('schoolname', 'songjiang4', { expires: 1 });
-                    } else if($(this).text() == "松江五期") {
-					    $.cookie('schoolname', 'songjiang5', { expires: 1 });
-                    } else if($(this).text() == "松江六期") {
-					    $.cookie('schoolname', 'songjiang6', { expires: 1 });
-                    }
-
-
-
-
-
-
-
-
-                    //window.location.href = '';
-                    setTimeout("window.location.href = ''", 200);
-				}
-			);
-
-			$(".yangpu").click(
-				function () {
-					$('#riqidrop').html('区域<b class="triangle"></b>');
-					$('#riqidrop').next().children().remove();
-					if ($(this).text() == "上海交通大学") {
-						$('#riqidrop').next().append('<li class="riqi">西区</li><li class="riqi">东区</li><li class="riqi">办公楼</li>');
-					};
-					if ($(this).text() == "华东师范大学") {
-						$('#riqidrop').next().append('<li class="riqi">本科生</li><li class="riqi">研究生</li>');
-					}
-					if ($(this).text() == "上海电机学院") {
-						$('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
-					}
-					if ($(this).text() == "上海东海学院") {
-						$('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
-					}
-
-					///$('#p5').fadeToggle(200, function(){$('#p51').fadeToggle(200)});
-
-
-					$("#schoolData").data("xuexiao", $(this).text());
-
-
-					$("#waiting").fadeIn(200);
-					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 1 });
-
-					if($(this).text() == "复旦大学") {
-					    $.cookie('schoolname', 'fudannan', { expires: 1 });
-                    } else if($(this).text() == "复旦北区") {
-					    $.cookie('schoolname', 'fudanbei', { expires: 1 });
-                    } else if($(this).text() == "同济大学") {
-					    $.cookie('schoolname', 'tongji', { expires: 1 });
-                    } else if($(this).text() == "上海财经大学") {
-					    $.cookie('schoolname', 'caijingdaxue', { expires: 1 });
-                    }
-
-
-
-
-
-                    //window.location.href = '';
-                    setTimeout("window.location.href = ''", 200);
-				}
-			);
-
-
-			//////
-            $(".xuhui").click(
-				function () {
-					$('#riqidrop').html('区域<b class="triangle"></b>');
-					$('#riqidrop').next().children().remove();
-					if ($(this).text() == "上海交通大学(徐汇)") {
-						$('#riqidrop').next().append('<li class="riqi">西区</li><li class="riqi">东区</li><li class="riqi">办公楼</li>');
-					};
-
-
-					//$('#p6').fadeToggle(200, function(){$('#p61').fadeToggle(200)});
-
-
-					$("#schoolData").data("xuexiao", $(this).text());
-
-
-
-					$("#waiting").fadeIn(200);
-					$.cookie('dizhi', $("#schoolData").data("xuexiao"), { expires: 1 });
-
-					$.cookie('schoolname', 'jiaodaxuhui', { expires: 1 });
-
-
-
-
-
-                   // window.location.href = '';
-                    setTimeout("window.location.href = ''", 200);
-				}
-			);
-
-
-
-
-
-            ////////
-
-
-
-            $("a").mouseenter (
-				function () {
-					$(this).css({backgroundColor:"#FFFFFF","color":"#009bf5"});
-				}
-			);
-			$("a").mouseleave (
-				function () {
-					$(this).css({backgroundColor:"#009bf5",color:"#FFFFFF"});
-				}
-			);
-			$(".addr").mouseenter (
-				function () {
-					$(this).css({backgroundColor:"#FFFFFF","color":"#009bf5"});
-				}
-			);
-			$(".addr").mouseleave (
-				function () {
-					$(this).css({backgroundColor:"#009bf5",color:"#FFFFFF"});
-				}
-			);
-			$(".dengluBtn").click (
-				function () {
-					$(this).parent().parent().fadeToggle(200, function(){$('#denglu').fadeToggle(200);$("#yonghuming").focus});
-				}
-			);
-			$(".zhuceBtn").click (
-				function () {
-					$(this).parent().parent().fadeToggle(200, function(){$('#zhuce').fadeToggle(200);$("#yonghuming").focus});
-				}
-			);
-			$(".quxiaoBtn").click (
-				function () {
-					$(this).parent().parent().fadeToggle(200, function(){$('#p1').fadeToggle(200)});
-				}
-			);
-
-
-
-			$(document).click(function(e, toggledDrop) {
-				var _con = $('li.drop');
-				if(!_con.is(e.target) && _con.has(e.target).length === 0) {
-					$("li.drop").next().slideUp();
-				}
-			});
-			$("li.drop").click(function() {
-				if ($(this).next().text() != "") {
-					$(this).next().slideToggle(200);
-				}
-				else {
-					$('.tishi').text('请先选择区域！');
-					$('.tishi').slideToggle(200);
-					setTimeout("$('.tishi').slideToggle(200);", 1000);
-				}
-			});
-			$("#faq").click(function() {
-				window.location.href = '/faq';
-			});
-			$("#advice").click(function() {
-				if ($("#adviceInput").val() != "") {
-					$.post("{{ url_for('advice') }}", {advice: $("#adviceInput").val()}, function () {;alert("提交成功！\n感谢您的建议！");$("#adviceInput").val("");});
-				};
-			});
-		});
-	</script>
+                //window.location.href = '';
+                setTimeout("window.location.href = ''", 200);
+            }
+        );
+
+        $(".yangpu").click(
+            function () {
+                $('#riqidrop').html('区域<b class="triangle"></b>');
+                $('#riqidrop').next().children().remove();
+                if ($(this).text() == "上海交通大学") {
+                    $('#riqidrop').next().append('<li class="riqi">西区</li><li class="riqi">东区</li><li class="riqi">办公楼</li>');
+                }
+                ;
+                if ($(this).text() == "华东师范大学") {
+                    $('#riqidrop').next().append('<li class="riqi">本科生</li><li class="riqi">研究生</li>');
+                }
+                if ($(this).text() == "上海电机学院") {
+                    $('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
+                }
+                if ($(this).text() == "上海东海学院") {
+                    $('#riqidrop').next().append('<li class="riqi">寝室楼</li>');
+                }
+
+                ///$('#p5').fadeToggle(200, function(){$('#p51').fadeToggle(200)});
+
+
+                $("#schoolData").data("xuexiao", $(this).text());
+
+
+                $("#waiting").fadeIn(200);
+                $.cookie('dizhi', $("#schoolData").data("xuexiao"), {expires: 1});
+
+                if ($(this).text() == "复旦大学") {
+                    $.cookie('schoolname', 'fudannan', {expires: 1});
+                } else if ($(this).text() == "复旦北区") {
+                    $.cookie('schoolname', 'fudanbei', {expires: 1});
+                } else if ($(this).text() == "同济大学") {
+                    $.cookie('schoolname', 'tongji', {expires: 1});
+                } else if ($(this).text() == "上海财经大学") {
+                    $.cookie('schoolname', 'caijingdaxue', {expires: 1});
+                }
+
+
+                //window.location.href = '';
+                setTimeout("window.location.href = ''", 200);
+            }
+        );
+
+
+        //////
+        $(".xuhui").click(
+            function () {
+                $('#riqidrop').html('区域<b class="triangle"></b>');
+                $('#riqidrop').next().children().remove();
+                if ($(this).text() == "上海交通大学(徐汇)") {
+                    $('#riqidrop').next().append('<li class="riqi">西区</li><li class="riqi">东区</li><li class="riqi">办公楼</li>');
+                }
+                ;
+
+
+                //$('#p6').fadeToggle(200, function(){$('#p61').fadeToggle(200)});
+
+
+                $("#schoolData").data("xuexiao", $(this).text());
+
+
+                $("#waiting").fadeIn(200);
+                $.cookie('dizhi', $("#schoolData").data("xuexiao"), {expires: 1});
+
+                $.cookie('schoolname', 'jiaodaxuhui', {expires: 1});
+
+
+                // window.location.href = '';
+                setTimeout("window.location.href = ''", 200);
+            }
+        );
+
+
+        ////////
+
+
+        $("a").mouseenter(
+            function () {
+                $(this).css({backgroundColor: "#FFFFFF", "color": "#009bf5"});
+            }
+        );
+        $("a").mouseleave(
+            function () {
+                $(this).css({backgroundColor: "#009bf5", color: "#FFFFFF"});
+            }
+        );
+        $(".addr").mouseenter(
+            function () {
+                $(this).css({backgroundColor: "#FFFFFF", "color": "#009bf5"});
+            }
+        );
+        $(".addr").mouseleave(
+            function () {
+                $(this).css({backgroundColor: "#009bf5", color: "#FFFFFF"});
+            }
+        );
+        $(".dengluBtn").click(
+            function () {
+                $(this).parent().parent().fadeToggle(200, function () {
+                    $('#denglu').fadeToggle(200);
+                    $("#yonghuming").focus
+                });
+            }
+        );
+        $(".zhuceBtn").click(
+            function () {
+                $(this).parent().parent().fadeToggle(200, function () {
+                    $('#zhuce').fadeToggle(200);
+                    $("#yonghuming").focus
+                });
+            }
+        );
+        $(".quxiaoBtn").click(
+            function () {
+                $(this).parent().parent().fadeToggle(200, function () {
+                    $('#p1').fadeToggle(200)
+                });
+            }
+        );
+
+
+        $(document).click(function (e, toggledDrop) {
+            var _con = $('li.drop');
+            if (!_con.is(e.target) && _con.has(e.target).length === 0) {
+                $("li.drop").next().slideUp();
+            }
+        });
+        $("li.drop").click(function () {
+            if ($(this).next().text() != "") {
+                $(this).next().slideToggle(200);
+            }
+            else {
+                $('.tishi').text('请先选择区域！');
+                $('.tishi').slideToggle(200);
+                setTimeout("$('.tishi').slideToggle(200);", 1000);
+            }
+        });
+        $("#faq").click(function () {
+            window.location.href = '/faq';
+        });
+        $("#advice").click(function () {
+            if ($("#adviceInput").val() != "") {
+                $.post("{{ url_for('advice') }}", {advice: $("#adviceInput").val()}, function () {
+                    ;
+                    alert("提交成功！\n感谢您的建议！");
+                    $("#adviceInput").val("");
+                });
+            }
+            ;
+        });
+    });
+</script>
 </html>
