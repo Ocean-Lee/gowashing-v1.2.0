@@ -166,7 +166,7 @@ create table commodity (
 );
 
 insert into commodity(c_id,c_name,imgURL,c_type) values(1,'西服上衣','http://7xitj5.com1.z0.glb.clouddn.com/static/img/1西服上衣 拷贝.jpg',0);
-
+update  commodity set imgURL=replace(imgURL,'http://7xitj5.com1.z0.glb.clouddn.com/','')
 
 insert into commodity(c_id,c_name,imgURL,c_type) values(2,'西裤','http://7xitj5.com1.z0.glb.clouddn.com/static/img/2西裤 拷贝.jpg',0);
 
