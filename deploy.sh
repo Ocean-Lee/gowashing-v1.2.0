@@ -7,10 +7,10 @@ kill_msg="kill web.pid...."
 
 echo ${webpid_msg}: `cat web.pid`
 kill `cat web.pid`
-ehco ${kill_msg}
+echo ${kill_msg}
 git pull
-ehco 'git pull success....'
+echo 'git pull success....'
 
 source /home/website/env/bin/activate
 gunicorn application:app -p web.pid -D
-echo ${webpid_msg}: `cat web.pid`
+echo ${webpid_msg}:`cat web.pid`
