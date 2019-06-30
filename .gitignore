@@ -1,6 +1,7 @@
 .idea
 .DS_Store
 web.pid
+database/LS.db
 /database
 database/LS.db
 /database/LS.db
